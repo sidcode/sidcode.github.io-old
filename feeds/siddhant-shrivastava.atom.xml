@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sweat and Neurons</title><link href="/" rel="alternate"></link><link href="/feeds/siddhant-shrivastava.atom.xml" rel="self"></link><id>/</id><updated>2015-02-04T11:52:00+01:00</updated><entry><title>My first experience with Pelican</title><link href="/blog/2015/02/04/my-first-experience-with-pelican/" rel="alternate"></link><updated>2015-02-04T11:52:00+01:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-02-04:blog/2015/02/04/my-first-experience-with-pelican/</id><summary type="html">&lt;p&gt;I am trying to set up Pelican here.&lt;/p&gt;</summary></entry><entry><title>"The LaTeX course of life"</title><link href="/blog/2015/01/10/the-latex-course-of-life/" rel="alternate"></link><updated>2015-01-10T16:42:14+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-01-10:blog/2015/01/10/the-latex-course-of-life/</id><summary type="html">&lt;p&gt;Summer internships' deadlines knell by as I key this post. A common section in all application forms is the Curriculum Vitae/Résumé. Having made 2 versions of my résumé in Microsoft Word, the FOSS enthusiast in me felt the pinch. I decided- my résumé should be in LaTeX - the typesetting framework based on Knuth's TeX.&lt;/p&gt;
+&lt;p&gt;Having just a theoretical knowledge of how LaTeX worked, I probed into the open-source community. Forked Debarghya Das' résumé which I liked because of its brevity and summarization in just one page.&lt;/p&gt;
+&lt;p&gt;This exercise taught me the importance of documentation, yet again. I was not merely modifying someone's LaTeX code. The documentation was edifying and I actually learnt a lot in the process.&lt;/p&gt;
+&lt;p&gt;Ok, enough said. I urge you to try out LaTeX if you haven't already. It has a steep learning curve for certain - but I am sure the hacker in you will be happy to help you climb the TeXy mountain.&lt;/p&gt;
+&lt;p&gt;Alright, back to completing my application forms :) &lt;/p&gt;</summary></entry><entry><title>"I like my factors Prime and and my numbers Random"</title><link href="/blog/2015/01/10/i-like-my-factors-prime-and-and-my-numbers-random/" rel="alternate"></link><updated>2015-01-10T16:07:04+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-01-10:blog/2015/01/10/i-like-my-factors-prime-and-and-my-numbers-random/</id><summary type="html">&lt;p _="%" endblockquote="endblockquote"&gt;A Quadratic Sieve is currently factorizing 7393913335919140050521110339491123405991919445111971 as I write this post. And the choice of this 52-digit number is not random.
+{% blockquote %} 
+The largest prime factor of this number will lead me to the next level in hacker.org challenges.&lt;/p&gt;
+&lt;p&gt;I am currently working on creating the Python bindings to the PCG family of Random-number generators. A recent approach claims to be perform significantly well over other PRNGs across different statistical metrics.&lt;/p&gt;
+&lt;p&gt;hacker.org teaches me a lot of nifty tricks in my favorite language of late - Python.&lt;/p&gt;
+&lt;p&gt;To know more about all the bit-level twiddling stuff, refer to "Hacker's Delight" by Henry Warren Jr.&lt;/p&gt;</summary></entry><entry><title>"Listener to Talker : The four-year transform"</title><link href="/blog/2014/07/04/listener-to-talker-the-four-year-transform/" rel="alternate"></link><updated>2014-07-04T04:10:03+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-07-04:blog/2014/07/04/listener-to-talker-the-four-year-transform/</id><summary type="html">&lt;p&gt;To be completed...In the phase&lt;/p&gt;</summary></entry><entry><title>"A Computing Era gone by..."</title><link href="/blog/2014/06/28/a-computing-era-gone-by/" rel="alternate"></link><updated>2014-06-28T14:55:17+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-28:blog/2014/06/28/a-computing-era-gone-by/</id><summary type="html">&lt;p&gt;Being a 90s person, mine was one of the first generation adopters of intuitive Graphical User Interfaces. It took me 18 years to be properly lose my Unix virginity. It not only brought a plethora of hacking skills, but also a deep appreciation of our rich computer heritage. Computer Science is the best thing to happen to the world in the last century. Turing had a hunch - to replace the scores of women 'computers' calculating away during the World Wars, with a hypothetical machine that follows instructions and operates on data - continuously maintaining one of its several states.&lt;/p&gt;
+&lt;p&gt;We have come a long way since. The Computer History Museum does an awesome job at preserving the heroics of the people who contrived contraptions that made life easier.&lt;/p&gt;
+&lt;p&gt;Microsoft dominated the Unix market with its licensed platform - Xenix. DOS is heavily inspired by Unix. But then they split ways.&lt;/p&gt;
+&lt;p&gt;Much more to be added in this post. Keep looking for the buzz.&lt;/p&gt;
+&lt;p&gt;http://en.wikipedia.org/wiki/Computer_terminals
+http://en.wikipedia.org/wiki/Teletype_Model_33&lt;/p&gt;
+&lt;p&gt;Refer : Unix Prog. Environment by Kernighan and Pike
+        The Man who knew too much - Life of Alan Turing&lt;/p&gt;</summary></entry><entry><title>"The Tree of Life"</title><link href="/blog/2014/06/16/the-tree-of-life/" rel="alternate"></link><updated>2014-06-16T22:43:56+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-16:blog/2014/06/16/the-tree-of-life/</id><summary type="html">&lt;hr /&gt;
+&lt;p&gt;Watching Cosmos [S01E02]. Neil deGrasse Tyson speaks about artificial and natural selection ( dog breeds, and polar bears; respectively ). He also talks that we share our DNA with plants, and furthermore, plants and humans share DNA with birds, etc..So we can backtrack in a similar inductive fashion to reason that life started as ONE COMMON ancestor.&lt;/p&gt;
+&lt;p&gt;What I think?
+We have ML, and DM backtracking mechanisms available. Why not think in this direction, that we can establish a correlation between different species, a coming together of various kingdoms, in a way that both explains and justifies evolution - both in the artificial, and the natural way.&lt;/p&gt;
+&lt;p&gt;My hunches are sometimes right, and mostly overstated. But we can try, right? It'll teach us a lot of things. Firstly it'll make us better at looking at ourselves, at the world as one great family (that's what Vasudev Kutumb is all about, right?)&lt;/p&gt;
+&lt;p&gt;If we can use backtracking to predict disease vectors, and weather conditions (from the IIRS orientation session), I believe we can collectively develop a genealogy project for species all over.&lt;/p&gt;
+&lt;p&gt;After all, why am I learning all the tools to process data, and to code? To make the world a better place, right?&lt;/p&gt;
+&lt;p&gt;Remember, we don't need to save the planet, the planet is strong enough to sustain itself; we need to save ourselves, from the disasters we can cause artificially.&lt;/p&gt;</summary></entry><entry><title>"From GitHub pages to siddhantsci.org"</title><link href="/blog/2014/06/14/from-github-pages-to-siddhantsciorg/" rel="alternate"></link><updated>2014-06-14T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-14:blog/2014/06/14/from-github-pages-to-siddhantsciorg/</id><summary type="html">&lt;p&gt;Being a total amateur when it comes to Domain Names, TLDs,&lt;code&gt;CNAME&lt;/code&gt; records, and selecting a service from the brutal competetion among Domain/Host providers; this journey has been exhausting, time consuming, but essentially important.&lt;/p&gt;
+&lt;p&gt;Basically everything boils down to communication between two computers in the world. Computers on the World Wide Web (the Internet as we know it - ignoring deep web for now), are addressed by a set of numbers known as IP (Internet Protocol) addresses. Just like your home address, this helps all the computers in the world to know where "on the network", your computer/ your domain provider's computer is. IP addresses are generally of the form "192.30.252.153", in the IPv4 scheme (read more about Combinatorial Explosion and IP in this post's footnotes ).&lt;/p&gt;
+&lt;p&gt;Since memorizing numbers for humans is considered too brain-intensive, we delegate this important task to computers, and create human-friendly names in Natural Languages (like English, Arabic, Hindi, Mandarin etc). For example google.com runs on a lot of computers and one such address is 173.194.36.5. Copy paste this number in your browser's address bar and you'll reach google.com :D . How do I know about this number? There are a number of ways to find it out. I used:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ping google.com
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;which resulted in&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;google.com.             91      IN      A       173.194.36.7
+google.com.             91      IN      A       173.194.36.4
+google.com.             91      IN      A       173.194.36.5
+google.com.             91      IN      A       173.194.36.2
+google.com.             91      IN      A       173.194.36.3
+google.com.             91      IN      A       173.194.36.14
+google.com.             91      IN      A       173.194.36.0
+google.com.             91      IN      A       173.194.36.1
+google.com.             91      IN      A       173.194.36.6
+google.com.             91      IN      A       173.194.36.9
+google.com.             91      IN      A       173.194.36.8
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;ping is a useful utility to test connections over any type of network topology - I'll be using it more frequently when I talk about my Raspberry Pi setup over a VNC server. (There also I'll have to create a Static IP)&lt;/p&gt;
+&lt;p&gt;So getting back to IP address mapping to English language words - henceforth referred to as "domain names". People like you and me, have the choice to select a name of our choice (similar in spirit to christening children, naming a company, or naming anything in general). Of course, with choice comes competition - and more often than not, the domain name that we want is already chosen by somebody else (remember it has to be unique unlike human names). In my case, siddhant.org was already taken. Since this blog focuses on the confluence of Computer Science and Everything, I decided to append a "sci" to my name, and hence this domain is www.siddhantsci.org.&lt;/p&gt;
+&lt;p&gt;Initially this site was hosted on GitHub Pages i.e at sidcode.github.io . I always wanted a custom domain name ( David Malan sir's CS50 lectures also motivated me to get one :D ).&lt;/p&gt;
+&lt;p&gt;So I went domain service provider hunting. Having just a brief idea about some providers like GoDaddy - I was shocked at the intense competition in this domain (pun unintended). With every other company claiming about features like "Unlimited Bandwidth", "Unlimited Domains", "Unlimited email addresses", and what not - I got wayward, and lost. Of course the limitlessness provided by these providers is an illusion for the people hosting their site on their servers. Servers are simply normal computers running dedicated software to receive incoming connections, and relay outputs according to the requests. And they have to run ALL THE TIME, otherwise the site would go down - since there would be no computer at the receiver's end to reply. But I realized that I don't need a special server on these hosting solution providers - since this blog would be hosted on GitHub pages. All I needed was a domain name to which I can point this blog to.&lt;/p&gt;
+&lt;p&gt;Thus I just bought the domain name for a year (the damage was around 13$) on HostGator.&lt;/p&gt;
+&lt;p&gt;I modified the DNS records to point to GitHub' IP addresses provided on https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages .
+So I created an &lt;code&gt;A record&lt;/code&gt; to point from the host(siddhantsci.org) to the static IPs provided by GitHub. On GitHub's side I created a &lt;code&gt;CNAME&lt;/code&gt; file with just the content - "www.siddhantsci.org" in it. This essentially aliased sidcode.github.io to siddhantsci.org.&lt;/p&gt;
+&lt;p&gt;Now I have to wait for another day to get the two computers of the world, and the Domain Management System to acknowledge this mapping, before you can access this site. If you are reading this, it means that everything is properly configured.&lt;/p&gt;</summary></entry><entry><title>"Lessons from the Octopress Setup"</title><link href="/blog/2014/06/11/lessons-from-the-octopress-setup/" rel="alternate"></link><updated>2014-06-11T23:37:37+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-11:blog/2014/06/11/lessons-from-the-octopress-setup/</id><summary type="html">&lt;p&gt;This is my first post on this blog. I am learning to play with the various commands and get a knack of the basic publishing workflow.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;This is how syntax highlighting is done
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;After creating &lt;code&gt;.markdown&lt;/code&gt; files, all one has to do is to push changes to the master branch of the remote repo:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;bundle exec rake generate
+bundle exec rake deploy
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Git commands to be used:&lt;/p&gt;
+&lt;p&gt;To update the &lt;code&gt;source&lt;/code&gt; branch with the latest changes (it is recommended to keep a backup)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git add .
+git commit -m &amp;quot;source update #&amp;quot;
+git push origin source
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;whereas to revert to the master branch, go to the _deploy directory, and run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;git pull origin master
+bundle exec rake deploy
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To-do:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Add pages: about, travel, competitive programming, open source contributions, BITS work, SciTech News, etc.&lt;/li&gt;
+&lt;li&gt;Understand the different plugins that are available for the blog, and use some of them - like Google Analytics, g+ integration, etc.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally, after posting couple of posts on Blogger and WordPress, I feel at home@Octopress.&lt;/p&gt;
+&lt;p&gt;Cheers&lt;/p&gt;</summary></entry></feed>
