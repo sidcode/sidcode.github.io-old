@@ -1,67 +1,60 @@
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>"From GitHub pages to siddhantsci.org" &mdash; Sweat and Neurons</title>
-  <meta name="author" content="Siddhant Shrivastava">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sweat and Neurons, ">
 
-  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
-        title="Sweat and Neurons Atom Feed" />
+        <link rel="alternate"  href="/feeds/all.atom.xml" type="application/atom+xml" title="Sweat and Neurons Full Atom Feed"/>
+        <link rel="alternate" href="/atom.xml" type="application/atom+xml" title="Sweat and Neurons Atom Feed"/>
 
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>"From GitHub pages to siddhantsci.org" // Sweat and Neurons // </title>
 
 
-    <link href="/favicon.png" rel="icon">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/theme/css/pure.css">
+    <link rel="stylesheet" href="/theme/css/pygments.css">
 
-  <link href="/theme/css/main.css" media="screen, projection"
-        rel="stylesheet" type="text/css">
-
-  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
-        rel="stylesheet" type="text/css">
-  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
-        rel="stylesheet" type="text/css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fitvids/1.0.1/jquery.fitvids.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".content").fitVids();
+        });
+    </script>
 </head>
 
 <body>
-  <header role="banner"><hgroup>
-  <h1><a href="/">Sweat and Neurons</a></h1>
-    <h2>Where Computer Science meets everything</h2>
-</hgroup></header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-atom">Atom</a></li>
-</ul>
-
-
-<form action="//google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-
-<ul class="main-navigation">
-    <li><a href="/archives.html">Archives</a></li>
-    <li><a href="http://siddhantsci.org">Home Page</a></li>
-    <li><a href="http://siddhantsci.org/bfc-orientation">Mozilla FOSS Talk</a></li>
-    <li><a href="http://siddhantsci.org/rightthingtodo">Talk on Justice</a></li>
-</ul></nav>
-  <div id="main">
-    <div id="content">
-<div>
-  <article class="hentry" role="article">
-<header>
-      <h1 class="entry-title">"From GitHub pages to siddhantsci.org"</h1>
-    <p class="meta">
-<time datetime="2014-06-14T00:53:52+00:00" pubdate>Sat 14 June 2014</time>    </p>
-</header>
-
-  <div class="entry-content"><p>Being a total amateur when it comes to Domain Names, TLDs,<code>CNAME</code> records, and selecting a service from the brutal competetion among Domain/Host providers; this journey has been exhausting, time consuming, but essentially important.</p>
+    <div class="pure-g-r" id="layout">
+        <div class="sidebar pure-u">
+            <div class="cover-img" style="background-image: url('')">
+                <div class="cover-body">
+                    <header class="header">
+                        <hgroup>
+                            <h1 class="brand-main"><a href="">Sweat and Neurons</a></h1>
+                            <p class="tagline"></p>
+                                <p class="links"><a href="//archives.html">Archives</a></p>
+                                <p class="links"><a href="/http://siddhantsci.org">Home Page</a></p>
+                                <p class="links"><a href="/http://siddhantsci.org/bfc-orientation">Mozilla FOSS Talk</a></p>
+                                <p class="links"><a href="/http://siddhantsci.org/rightthingtodo">Talk on Justice</a></p>
+                                <p class="social">
+                                </p>
+                        </hgroup>
+                    </header>
+                </div>
+            </div>
+        </div>
+    <div class="pure-u">
+        <div class="content">
+            <section class="post">
+                <header class="post-header">
+                    <h1>"From GitHub pages to siddhantsci.org"</h1>
+                        <p class="post-meta">
+                            // under                         </p>
+                </header>
+            </section>
+            <p>Being a total amateur when it comes to Domain Names, TLDs,<code>CNAME</code> records, and selecting a service from the brutal competetion among Domain/Host providers; this journey has been exhausting, time consuming, but essentially important.</p>
 <p>Basically everything boils down to communication between two computers in the world. Computers on the World Wide Web (the Internet as we know it - ignoring deep web for now), are addressed by a set of numbers known as IP (Internet Protocol) addresses. Just like your home address, this helps all the computers in the world to know where "on the network", your computer/ your domain provider's computer is. IP addresses are generally of the form "192.30.252.153", in the IPv4 scheme (read more about Combinatorial Explosion and IP in this post's footnotes ).</p>
 <p>Since memorizing numbers for humans is considered too brain-intensive, we delegate this important task to computers, and create human-friendly names in Natural Languages (like English, Arabic, Hindi, Mandarin etc). For example google.com runs on a lot of computers and one such address is 173.194.36.5. Copy paste this number in your browser's address bar and you'll reach google.com :D . How do I know about this number? There are a number of ways to find it out. I used:</p>
 <div class="highlight"><pre>ping google.com
@@ -90,97 +83,40 @@ google.com.             91      IN      A       173.194.36.8
 <p>Thus I just bought the domain name for a year (the damage was around 13$) on HostGator.</p>
 <p>I modified the DNS records to point to GitHub' IP addresses provided on https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages .
 So I created an <code>A record</code> to point from the host(siddhantsci.org) to the static IPs provided by GitHub. On GitHub's side I created a <code>CNAME</code> file with just the content - "www.siddhantsci.org" in it. This essentially aliased sidcode.github.io to siddhantsci.org.</p>
-<p>Now I have to wait for another day to get the two computers of the world, and the Domain Management System to acknowledge this mapping, before you can access this site. If you are reading this, it means that everything is properly configured.</p></div>
-    <footer>
-<p class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">
-        Siddhant Shrivastava
-    </span>
-  </span>
-<time datetime="2014-06-14T00:53:52+00:00" pubdate>Sat 14 June 2014</time>  <span class="categories">
-    <a class='category' href='/category/misc.html'>misc</a>
-  </span>
-</p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="/blog/2014/06/14/from-github-pages-to-siddhantsciorg/" data-via="siddhantcode" data-counturl="/blog/2014/06/14/from-github-pages-to-siddhantsciorg/" >Tweet</a>
-  <div class="g-plusone" data-size="medium"></div>
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-</div>    </footer>
-  </article>
+<p>Now I have to wait for another day to get the two computers of the world, and the Domain Management System to acknowledge this mapping, before you can access this site. If you are reading this, it means that everything is properly configured.</p>
+            <a href="#" class="go-top">Go Top</a>
+<footer class="footer">
+    <p>&copy; Siddhant Shrivastava &ndash;
+        Built with <a href="https://github.com/PurePelicanTheme/pure-single">Pure Theme</a>
+        for <a href="http://blog.getpelican.com/">Pelican</a>
+    </p>
+</footer>        </div>
+    </div>
+    </div>
+    <script>
+        var $top = $('.go-top');
 
-</div>
-<aside class="sidebar">
-  <section>
-    <h1>Recent Posts</h1>
-    <ul id="recent_posts">
-      <li class="post">
-          <a href="/blog/2015/02/13/identifying-bots-from-above/">"Identifying Bots from above"</a>
-      </li>
-      <li class="post">
-          <a href="/blog/2015/02/05/memcomputing-is-here-to-stay/">"Memcomputing is here to stay"</a>
-      </li>
-      <li class="post">
-          <a href="/blog/2015/02/04/my-first-experience-with-pelican/">My first experience with Pelican</a>
-      </li>
-      <li class="post">
-          <a href="/blog/2015/02/04/life-is-a-2-d-board-game/">"Life is a 2-D board game!"</a>
-      </li>
-      <li class="post">
-          <a href="/blog/2015/01/10/the-latex-course-of-life/">"The LaTeX course of life"</a>
-      </li>
-    </ul>
-  </section>
-  <section>
-      
-    <h1>Categories</h1>
-    <ul id="recent_posts">
-        <li><a href="/category/misc.html">misc</a></li>
-        <li><a href="/category/review.html">Review</a></li>
-    </ul>
-  </section>
- 
+        // Show or hide the sticky footer button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                $top.fadeIn(200);
+            } else {
+                $top.fadeOut(200);
+            }
+        });
 
-  <section>
-  <h1>Tags</h1>
-  </section>
+        // Animate the scroll to top
+        $top.click(function(event) {
+            event.preventDefault();
+            $('html, body').animate({scrollTop: 0}, 300);
+        })
 
+        // Makes sure that the href="#" attached to the <a> elements
+        // don't scroll you back up the page.
+        $('body').on('click', 'a[href="#"]', function(event) {
+            event.preventDefault();
+        });
+    </script>
 
-
-<section>
-    <a href="http://twitter.com/siddhantcode" class="twitter-follow-button" data-show-count="true">Follow @siddhantcode</a>
-</section>
-</aside>    </div>
-  </div>
-  <footer role="contentinfo"><p>
-    Copyright &copy;  2014&ndash;2015  Siddhant Shrivastava &mdash;
-  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
-</p></footer>
-  <script src="/theme/js/modernizr-2.0.js"></script>
-  <script src="/theme/js/ender.js"></script>
-  <script src="/theme/js/octopress.js" type="text/javascript"></script>
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 </html>
