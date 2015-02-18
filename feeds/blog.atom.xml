@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sweat and Neurons</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2015-02-18T10:57:00+01:00</updated><entry><title>My first experience with Pelican</title><link href="/blog/2015/02/07/my-first-experience-with-pelican/" rel="alternate"></link><updated>2015-02-18T10:57:00+01:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-02-07:blog/2015/02/07/my-first-experience-with-pelican/</id><summary type="html">&lt;p&gt;I am trying to set up Pelican here.&lt;/p&gt;
+&lt;p&gt;Edit: The setup process was so much easier than Octopress that I could complete manual migration in less than half an hour.&lt;/p&gt;
+&lt;p&gt;Thanks to the plugins and theme support, everything that a blogger might need is simply &lt;em&gt;battery included&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;So here is a list of resources that I found indispensable:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2&gt;Octopress theme&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The readablity and functionality offered by this minimalist theme is brilliant.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2&gt;Social Media Integration&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The configuration files &lt;em&gt;pelicanconf.py&lt;/em&gt; and &lt;em&gt;publishconf.py&lt;/em&gt; have ample variables for linking with the popular social media platforms - Facebook, Twitter, G+.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2&gt;Google Analytics&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Open Source bloggers can use this to track hits and get visual visits-with-time feedback.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2&gt;Markdown&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I like this typesetting format for multiple reasons - touchtyping friendly characters, frugal use of tags, expressiveness, and the LaTeX-like non-WYSIWYG nature.&lt;/p&gt;
+&lt;/blockquote&gt;</summary><category term="review"></category><category term="personal"></category></entry></feed>
