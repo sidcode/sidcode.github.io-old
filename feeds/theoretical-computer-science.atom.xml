@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Sweat and Neurons</title><link href="/" rel="alternate"></link><link href="/feeds/theoretical-computer-science.atom.xml" rel="self"></link><id>/</id><updated>2015-01-10T16:07:04+00:00</updated><entry><title>I like my factors Prime and and my numbers Random</title><link href="/blog/2015/01/10/i-like-my-factors-prime-and-and-my-numbers-random/" rel="alternate"></link><updated>2015-01-10T16:07:04+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-01-10:blog/2015/01/10/i-like-my-factors-prime-and-and-my-numbers-random/</id><summary type="html">&lt;p&gt;A Quadratic Sieve is currently factorizing 7393913335919140050521110339491123405991919445111971 as I write this post. And the choice of this 52-digit number is not random.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The largest prime factor of this number will lead me to the next level in hacker.org challenges.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I am currently working on creating the Python bindings to the PCG family of Random-number generators. A &lt;a href="www.pcg-random.org"&gt;recent approach&lt;/a&gt; claims to be perform significantly well over other PRNGs across different statistical metrics.&lt;/p&gt;
+&lt;p&gt;hacker.org teaches me a lot of nifty tricks in my favorite language of late - Python.&lt;/p&gt;
+&lt;p&gt;To know more about all the bit-level twiddling stuff, refer to &lt;strong&gt;Hacker's Delight&lt;/strong&gt; by Henry Warren Jr.&lt;/p&gt;</summary><category term="maths"></category><category term="computers"></category><category term="foss"></category><category term="puzzles"></category><category term="hacker"></category><category term="random"></category></entry></feed>
