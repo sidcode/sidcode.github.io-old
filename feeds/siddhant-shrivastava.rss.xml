@@ -83,7 +83,7 @@ CMake
 g++ compatibility and flags
 OpenCV warping and contours
 Cascade Classifiers&lt;/p&gt;
-&lt;p&gt;The &lt;em&gt;zbar&lt;/em&gt; library for linux makes decoding qr codes a breeze.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Fri, 13 Feb 2015 00:53:52 +0000</pubDate><guid>tag:,2015-02-13:blog/2015/02/13/identifying-bots-from-above/</guid><category>maths</category><category>robots</category></item><item><title>Memcomputing is here to stay</title><link>/blog/2015/02/05/memcomputing-is-here-to-stay/</link><description>&lt;p&gt;Competitive Programming is about to perish. Information Processing and Storage at the same space and time. &lt;/p&gt;
+&lt;p&gt;The &lt;em&gt;zbar&lt;/em&gt; library for linux makes decoding qr codes a breeze.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Fri, 13 Feb 2015 00:53:52 +0000</pubDate><guid>tag:,2015-02-13:blog/2015/02/13/identifying-bots-from-above/</guid><category>maths</category><category>robots</category><category>computers</category><category>vision</category></item><item><title>Memcomputing is here to stay</title><link>/blog/2015/02/05/memcomputing-is-here-to-stay/</link><description>&lt;p&gt;Competitive Programming is about to perish. Information Processing and Storage at the same space and time. &lt;/p&gt;
 &lt;p&gt;Now that I have your undivided attention, it would be worth the spacetime to take a look at the research being conducted on &lt;strong&gt;Memcomputing&lt;/strong&gt;. &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Memcomputing is a theorized notion introduced in the 70's which is currently being realized by nanoparticles. &lt;/p&gt;
