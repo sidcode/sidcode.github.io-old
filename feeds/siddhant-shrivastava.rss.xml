@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sweat and Neurons</title><link>/</link><description>Where Computer Science meets everything</description><atom:link href="/feeds/siddhant-shrivastava.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 18 Feb 2015 10:57:00 +0100</lastBuildDate><item><title>My first experience with Pelican</title><link>/blog/2015/02/17/my-first-experience-with-pelican/</link><description>&lt;p&gt;I am trying to set up Pelican here.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sweat and Neurons</title><link>/</link><description>Where Computer Science meets everything</description><atom:link href="/feeds/siddhant-shrivastava.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 11 Mar 2015 00:53:52 +0000</lastBuildDate><item><title>Soft Intelligent Bots</title><link>/blog/2015/03/11/soft-intelligent-bots/</link><description>&lt;blockquote&gt;
+&lt;p&gt;Disney doesn't always make a robot movie, but when it does, it creates a new yardstick for scientific research altogether.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;Big Hero 6 - Disney (2014)&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="Baymax" src="/blog/2015/03/11/soft-intelligent-bots/images/bighero.png" /&gt;&lt;/p&gt;
+&lt;p&gt;This post is not a run-of-the-mill regular weekly thing I do. I happened to stumble over &lt;em&gt;Big Hero 6&lt;/em&gt;, a movie based on an adolescent roboticist's life (enough to get me hooked). They say &lt;em&gt;serendipity&lt;/em&gt; is a good thing. And they're right. What are the odds of bumping into a Disney movie after watching Apple's latest keynote presentation of the new MacBook (tactile trackpad) and the new medical research platform - 
+&lt;img alt="ResearchKit" src="{https://www.apple.com/researchkit/}" /&gt;.&lt;/p&gt;
+&lt;h1&gt;The things I love about &lt;strong&gt;Big Hero 6&lt;/strong&gt; -&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;h2&gt;Inspired from Robotics research, not the other way round&lt;/h2&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The film's producers trailed a non-existent path by learning from the research on &lt;em&gt;Human-Robot interaction&lt;/em&gt; and &lt;em&gt;Soft Robotics&lt;/em&gt; at &lt;strong&gt;Robotics Institute, Carnegie Mellon University&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;So here's to the robots of tomorrow - who can feel just like a human - &lt;strong&gt;social robotics&lt;/strong&gt; and human-robot interaction are potential early adopters of the developments that sprout from this research.&lt;/p&gt;
+&lt;p&gt;Here are some Social Robots that might interest you:&lt;/p&gt;
+&lt;h1&gt;Jibo - MIT Media Lab&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="Jibo" src="/blog/2015/03/11/soft-intelligent-bots/images/jibo.jpg" /&gt;&lt;/p&gt;
+&lt;h1&gt;Aldebaran Nao - Aldebaran Robotics&lt;/h1&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Wed, 11 Mar 2015 00:53:52 +0000</pubDate><guid>tag:,2015-03-11:blog/2015/03/11/soft-intelligent-bots/</guid><category>movies</category><category>robots</category><category>soft</category><category>ai</category><category>healthcare</category><category>computers</category></item><item><title>My first experience with Pelican</title><link>/blog/2015/02/17/my-first-experience-with-pelican/</link><description>&lt;p&gt;I am trying to set up Pelican here.&lt;/p&gt;
 &lt;p&gt;Edit: The setup process was so much easier than Octopress that I could complete manual migration in less than half an hour.&lt;/p&gt;
 &lt;p&gt;Thanks to the plugins and theme support, everything that a blogger might need is simply &lt;em&gt;battery included&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;So here is a list of resources that I found indispensable:&lt;/p&gt;
@@ -78,7 +98,7 @@
 &lt;p&gt;So here's to the robots of tomorrow - who can feel just like a human - &lt;strong&gt;social robotics&lt;/strong&gt; and human-robot interaction are potential early adopters of the developments that sprout from this research.&lt;/p&gt;
 &lt;p&gt;Here are some Social Robots that might interest you:&lt;/p&gt;
 &lt;h1&gt;Jibo - MIT Media Lab&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="Jibo" src="/blog/2015/02/15/human-sensor-network-and-fusion/images/jibo.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Sun, 15 Feb 2015 00:53:52 +0000</pubDate><guid>tag:,2015-02-15:blog/2015/02/15/human-sensor-network-and-fusion/</guid><category>computers</category><category>robots</category><category>networks</category><category>AI</category></item><item><title>Identifying Bots from above</title><link>/blog/2015/02/13/identifying-bots-from-above/</link><description>&lt;p&gt;After a firm resolve to abstinate from using C++ for any programming project, I am back to square one - this time with a Robotics research project. The team at The Robotics lab is creating a testbed for swarm algorithms on epuck bots. This entails localization and communication. I have chosen to ID each of the bots while moving via a QR code. This will be done using OpenCV and C++. Learnt about - 
+&lt;p&gt;&lt;img alt="Jibo" src="/blog/2015/03/11/soft-intelligent-bots/images/jibo.jpg" /&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Sun, 15 Feb 2015 00:53:52 +0000</pubDate><guid>tag:,2015-02-15:blog/2015/02/15/human-sensor-network-and-fusion/</guid><category>computers</category><category>robots</category><category>networks</category><category>AI</category></item><item><title>Identifying Bots from above</title><link>/blog/2015/02/13/identifying-bots-from-above/</link><description>&lt;p&gt;After a firm resolve to abstinate from using C++ for any programming project, I am back to square one - this time with a Robotics research project. The team at The Robotics lab is creating a testbed for swarm algorithms on epuck bots. This entails localization and communication. I have chosen to ID each of the bots while moving via a QR code. This will be done using OpenCV and C++. Learnt about - 
 CMake
 g++ compatibility and flags
 OpenCV warping and contours
