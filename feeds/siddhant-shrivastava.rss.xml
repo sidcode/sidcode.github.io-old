@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sweat and Neurons</title><link>/</link><description>Where Computer Science meets everything</description><atom:link href="/feeds/siddhant-shrivastava.rss.xml" rel="self"></atom:link><lastBuildDate>Mon, 16 Mar 2015 18:10:52 +0530</lastBuildDate><item><title>Tonight's Robot : TARS from Interstellar</title><link>/blog/2015/03/16/tonights-robot-tars-from-interstellar/</link><description>&lt;p&gt;With this post, I've decided to flag off a new blog series, &lt;strong&gt;Tonight's Robot &lt;/strong&gt; whose raison-de-etre are the robots from real life research and fiction; what they can teach us about Robotics and its allied fields (Human-Robot Interaction, Artificial Intelligence, Roboethics, etc).&lt;/p&gt;
 &lt;p&gt;So this post is about the U.S Marine Corps robot commanders from the 2014 blockbuster &lt;em&gt;Interstellar&lt;/em&gt; named TARS, CASE, and KIPPS.&lt;/p&gt;
+&lt;h1&gt;Robots of Interstellar (2014)&lt;/h1&gt;
+&lt;p&gt;&lt;img alt="interstellar" src="/blog/2015/03/16/tonights-robot-tars-from-interstellar/images/bighero.png" /&gt;&lt;/p&gt;
 &lt;p&gt;Here's what they can teach us: &lt;/p&gt;
 &lt;h2&gt;1. Companionship&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -9,11 +11,12 @@
 &lt;h2&gt;2. One with the humans&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The robots actually spend all their time with humans or other robots. They are as important as the human flight commanders. Equal responsibility and equal capability sans the Relativistic Math skills which Cooper didn't possess. &lt;em&gt;Treatment as equals&lt;/em&gt; was something I covered in the post on &lt;em&gt;Big Hero 6's&lt;/em&gt;  &lt;strong&gt;Soft Intelligent Bots&lt;/strong&gt; article as well. The robots of the future &lt;strong&gt;would not&lt;/strong&gt; be limited to the &lt;strong&gt;4Ds&lt;/strong&gt; - &lt;em&gt;Dangerous&lt;/em&gt;, &lt;em&gt;Dirty&lt;/em&gt;, &lt;em&gt;Daunting&lt;/em&gt;, &lt;em&gt;Dull&lt;/em&gt; but would cohabitate with humans as equals.&lt;/p&gt;
-&lt;/blockquote&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Mon, 16 Mar 2015 18:10:52 +0530</pubDate><guid>tag:,2015-03-16:blog/2015/03/16/tonights-robot-tars-from-interstellar/</guid><category>movies</category><category>robots</category><category>soft</category><category>ai</category><category>healthcare</category><category>computers</category></item><item><title>Soft Intelligent Bots</title><link>/blog/2015/03/11/soft-intelligent-bots/</link><description>&lt;blockquote&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;3. Human-Centric, not Robo-Centric&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Mon, 16 Mar 2015 18:10:52 +0530</pubDate><guid>tag:,2015-03-16:blog/2015/03/16/tonights-robot-tars-from-interstellar/</guid><category>movies</category><category>robots</category><category>soft</category><category>ai</category><category>healthcare</category><category>computers</category></item><item><title>Soft Intelligent Bots</title><link>/blog/2015/03/11/soft-intelligent-bots/</link><description>&lt;blockquote&gt;
 &lt;p&gt;Disney doesn't always make a robot movie, but when it does, it creates a new yardstick for scientific research altogether.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1&gt;Big Hero 6 - Disney (2014)&lt;/h1&gt;
-&lt;p&gt;&lt;img alt="Baymax" src="/blog/2015/03/11/soft-intelligent-bots/images/bighero.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Baymax" src="/blog/2015/03/16/tonights-robot-tars-from-interstellar/images/bighero.png" /&gt;&lt;/p&gt;
 &lt;p&gt;This post is not a run-of-the-mill regular weekly thing I do. I happened to stumble over &lt;em&gt;Big Hero 6&lt;/em&gt;, a movie based on an adolescent roboticist's life (enough to get me hooked). They say &lt;em&gt;serendipity&lt;/em&gt; is a good thing. And they couldn't be more right. What are the odds of bumping into a life-changing movie after watching Apple's latest keynote presentation of the new MacBook (tactile trackpad) and the new medical research platform - 
 &lt;img alt="ResearchKit" src="{https://www.apple.com/researchkit/}" /&gt;.&lt;/p&gt;
 &lt;h1&gt;The things I love about &lt;strong&gt;Big Hero 6&lt;/strong&gt;&lt;/h1&gt;
