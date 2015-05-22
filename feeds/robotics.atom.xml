@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="/" rel="alternate"></link><link href="/feeds/robotics.atom.xml" rel="self"></link><id>/</id><updated>2015-03-16T18:10:52+05:30</updated><entry><title>Tonight's Robot : TARS from Interstellar</title><link href="/blog/2015/03/16/tonights-robot-tars-from-interstellar/" rel="alternate"></link><updated>2015-03-16T18:10:52+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-03-16:blog/2015/03/16/tonights-robot-tars-from-interstellar/</id><summary type="html">&lt;p&gt;With this post, I've decided to flag off a new blog series, &lt;strong&gt;Tonight's Robot &lt;/strong&gt; whose raison-de-etre are the robots from real life research and fiction; what they can teach us about Robotics and its allied fields (Human-Robot Interaction, Artificial Intelligence, Roboethics, etc).&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="/" rel="alternate"></link><link href="/feeds/robotics.atom.xml" rel="self"></link><id>/</id><updated>2015-04-01T00:53:52+00:00</updated><entry><title>Notes for this blog</title><link href="/blog/2015/04/01/notes-for-this-blog/" rel="alternate"></link><updated>2015-04-01T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-01:blog/2015/04/01/notes-for-this-blog/</id><summary type="html">&lt;p&gt;List -
+0. GSoC as of now (1st May 2015)
+1. Disqus comments integration
+2. About me page
+3. Blog name
+4. 1pad - a post every two days
+5. On Typeracing
+6. On Movies and Literature
+7. On writing.
+8. on algorithms.
+9. on research.
+10. on mit media lab
+11. on linux (arch), etc.&lt;/p&gt;</summary><category term="movies"></category><category term="robots"></category><category term="soft"></category><category term="ai"></category><category term="healthcare"></category><category term="computers"></category></entry><entry><title>Tonight's Robot : TARS from Interstellar</title><link href="/blog/2015/03/16/tonights-robot-tars-from-interstellar/" rel="alternate"></link><updated>2015-03-16T18:10:52+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-03-16:blog/2015/03/16/tonights-robot-tars-from-interstellar/</id><summary type="html">&lt;p&gt;With this post, I've decided to flag off a new blog series, &lt;strong&gt;Tonight's Robot &lt;/strong&gt; whose raison-de-etre are the robots from real life research and fiction; what they can teach us about Robotics and its allied fields (Human-Robot Interaction, Artificial Intelligence, Roboethics, etc).&lt;/p&gt;
 &lt;p&gt;So this post is about the U.S Marine Corps robot commanders from the 2014 blockbuster &lt;em&gt;Interstellar&lt;/em&gt; named TARS, CASE, and KIPPS.&lt;/p&gt;
 &lt;h1&gt;Robots of Interstellar (2014)&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="interstellar" src="/blog/2015/03/16/tonights-robot-tars-from-interstellar/images/tars.jpg" /&gt;
@@ -15,7 +27,7 @@
 &lt;/blockquote&gt;
 &lt;h2&gt;3. Human-Centric, not Robo-Centric&lt;/h2&gt;
 &lt;p&gt;&lt;img alt="baymax meets tars" src="/blog/2015/03/16/tonights-robot-tars-from-interstellar/images/baymaxtars.jpg" /&gt;&lt;/p&gt;</summary><category term="movies"></category><category term="robots"></category><category term="soft"></category><category term="ai"></category><category term="healthcare"></category><category term="computers"></category></entry><entry><title>Soft Intelligent Bots</title><link href="/blog/2015/03/11/soft-intelligent-bots/" rel="alternate"></link><updated>2015-03-11T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-03-11:blog/2015/03/11/soft-intelligent-bots/</id><summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Disney doesn't always make a robot movie, but when it does, it creates a new yardstick for scientific research altogether.&lt;/p&gt;
+&lt;p&gt;Disney doesn't always make a robot movie, but when it does it creates a new yardstick for scientific research altogether.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h1&gt;Big Hero 6 - Disney (2014)&lt;/h1&gt;
 &lt;p&gt;&lt;img alt="Baymax" src="/blog/2015/03/11/soft-intelligent-bots/images/bighero.png" /&gt;&lt;/p&gt;
@@ -36,7 +48,7 @@
 &lt;/blockquote&gt;
 &lt;h2&gt;4. Parenting done right.&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Hiro wouldn't be the prodigy he became if not for his brother Tadashi and Aunt Cass. The film dabbles with scolding, concern, care, love, help, unconditional support. The elder brother is a parent to him - guiding Hiro on the right path whenver he goes wayward....till the very end. Tadashi doesn't die. &lt;em&gt;Tadashi is here.&lt;/em&gt; - says Baymax multiple times in the movie. And till the end, Tadashi lives through Baymax and Hiro.&lt;/p&gt;
+&lt;p&gt;Hiro wouldn't be the humble prodigy if not for his brother Tadashi and his aunt Cass. The film dabbles with the myriad aspects of teenage and parenting - scolding, concern, care, love, help, unconditional support. The elder brother is a parent to him - guiding Hiro on the right path whenver he goes wayward....till the very end. Tadashi doesn't die. &lt;em&gt;Tadashi is here.&lt;/em&gt; - says Baymax multiple times in the movie. And till the end, Tadashi lives through Baymax and Hiro. Later in the movie, it becomes quite prominent how Baymax becomes a parent to Hiro - Baymax to Hiro &lt;em&gt;"Seatbelts save lives. Always fasten them."&lt;/em&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;5. Robotics is hard, and rewarding&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -57,11 +69,11 @@ And the &lt;em&gt;magnum opus&lt;/em&gt; - &lt;strong&gt;Baymax&lt;/strong&gt; -
 &lt;/blockquote&gt;
 &lt;h2&gt;9. Robots treated as equals&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;The title of the movie is Big Hero &lt;strong&gt;6 &lt;/strong&gt;. This includes the 5 humans and Baymax, The film is a great step forward in Roboethics. &lt;strong&gt;Our programming prevents us from injuring a human being&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;The title of the movie is Big Hero &lt;strong&gt;6 &lt;/strong&gt;. This includes the 5 humans and Baymax, the film is a great step forward in Roboethics. &lt;strong&gt;Our programming prevents us from injuring a human being&lt;/strong&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h2&gt;10. Expectations from a Health Care robot&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;"I fail to see how &lt;xxxxx&gt; makes me a better healthcare companion "&lt;/strong&gt;. Baymax voices this concern multiple times with his intimidating upgrades. The movie follows the lines of &lt;strong&gt;Robot and Frank&lt;/strong&gt; where a personal robot attendant understands the needs of its user - right or wrong. Baymax is reticent when it comes to following harm-causing orders. From this, we can learn that AI can be controlled, and need not result in singularity. Even if it does result, the robots would be intelligent enuough to keep the humans that are good at heart.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;"I fail to see how this makes me a better healthcare companion "&lt;/strong&gt;. Baymax voices this concern multiple times with his intimidating upgrades. The movie follows the lines of &lt;strong&gt;Robot and Frank&lt;/strong&gt; where a personal robot attendant understands the needs of its user - right or wrong. Baymax is reticent when it comes to following harm-causing orders. From this, we can learn that AI can be controlled, and need not result in singularity. Even if it does result, the robots would be intelligent enuough to keep the humans that are good at heart.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;So here's to the robots of today and tomorrow - who can feel just like a human - &lt;strong&gt;social robotics&lt;/strong&gt; and human-robot interaction are potential early adopters of the developments that sprout from this research.&lt;/p&gt;
 &lt;p&gt;Here are some Social Robots that might interest you:&lt;/p&gt;
@@ -73,4 +85,5 @@ CMake
 g++ compatibility and flags
 OpenCV warping and contours
 Cascade Classifiers&lt;/p&gt;
-&lt;p&gt;The &lt;em&gt;zbar&lt;/em&gt; library for linux makes decoding qr codes a breeze.&lt;/p&gt;</summary><category term="maths"></category><category term="robots"></category><category term="computers"></category><category term="vision"></category></entry></feed>
+&lt;p&gt;The &lt;em&gt;zbar&lt;/em&gt; library for linux makes decoding qr codes a breeze. All this while, figuring out the perfect library for this job was a red herring. It even turns out that ROS has its own wrapper library - &lt;strong&gt;roszbar&lt;/strong&gt; to use the features of zbar as a ROS node, thus extending the scope of the lab to work with our TurtleBot much easier.&lt;/p&gt;
+&lt;p&gt;Here's to visually identifying robots in a lab.&lt;/p&gt;</summary><category term="maths"></category><category term="robots"></category><category term="computers"></category><category term="vision"></category></entry></feed>
