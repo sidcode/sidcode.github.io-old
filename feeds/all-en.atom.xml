@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2015-04-16T18:10:52+05:30</updated><entry><title>GSoC RSS Feed Test Post</title><link href="/blog/2015/04/16/gsoc-rss-feed-test-post/" rel="alternate"></link><updated>2015-04-16T18:10:52+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-16:blog/2015/04/16/gsoc-rss-feed-test-post/</id><summary type="html">&lt;p&gt;Much GSoC. So RSS. Very Python :)&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2015-05-20T00:53:52+00:00</updated><entry><title>GSoC 2015 with the Italian Mars Society</title><link href="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/" rel="alternate"></link><updated>2015-05-20T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-05-20:blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/</id><summary type="html">&lt;p&gt;&lt;img alt="GSoC Banner" src="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/images/gsoc-banner.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I got accepted into the eleventh edition of the &lt;strong&gt;Google Summer of Code&lt;/strong&gt; program (&lt;a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;GSoC 2015&lt;/a&gt;) with the &lt;strong&gt;Python Software Foundation&lt;/strong&gt; umbrella organization. The list of selected students was announced on 28th April, 2015.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python Logo" src="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/images/python-logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;More specifically, I'll be working with the Italian Mars Society under the ERAS (European MaRs Analogue Station) project. 
+Quoting from the &lt;a href="http://erasproject.org/"&gt;source&lt;/a&gt; -&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The European MaRs Analogue Station for Advanced Technologies Integration (ERAS) is a program spearheaded by the Italian Mars Society (IMS) which main goal is to provide an effective test bed for field operation studies in preparation for manned missions to Mars.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="ERAS logo" src="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/images/eras-logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The focus of this GSoC project is &lt;strong&gt;Virtual Reality based Telerobotics&lt;/strong&gt; for V-ERAS.&lt;/p&gt;
+&lt;p&gt;Virtual European Mars Analog Station (V-ERAS) is based on immersive real-time environment simulations running on top of the Blender Game Engine (BGE).&lt;/p&gt;
+&lt;p&gt;This project has three distinct components - &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;A &lt;strong&gt;ROS-Kinect&lt;/strong&gt; interface for the Teleoperative control of the Clearpath Husky Robot rover's motion via human body-tracking.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Streaming the 3-D camera video feed from the rover to BGE over the network.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Processing the video feed into an Augmented Reality experience through a head-mounted Virtual Reality device. &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The goal of this V-ERAS project is thus to develop a software and hardware system that enhances the capabilities of the crew members preparing for Mars missions.&lt;/p&gt;
+&lt;p&gt;I feel elated to be a part of the Italian Mars Society and be able to contribute towards manned space exploration which is one of the vital aims of the next two decades. GSoC marks my first foray into the world of collaborative Open Source software development.&lt;/p&gt;
+&lt;p&gt;I shall be mentored by two really cool people - &lt;a href="https://il.linkedin.com/in/yuvalbrodsky"&gt;Yuval Brodsky&lt;/a&gt; and &lt;a href="https://plus.google.com/105053384149339279492/posts"&gt;Fabio Nigi&lt;/a&gt; with whom I share my interests of exploration, robotics, networks. In addition, I'll be constantly interacting with the IMS-ERAS community - &lt;a href=""&gt;Franco Carbognani&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thank you Google for this birthday gift :)&lt;/p&gt;
+&lt;p&gt;Looking forward to a great and challenging summer of Code!&lt;/p&gt;
+&lt;p&gt;I'll share the details of the project in the next post in this series.&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category></entry><entry><title>GSoC RSS Feed Test Post</title><link href="/blog/2015/04/16/gsoc-rss-feed-test-post/" rel="alternate"></link><updated>2015-04-16T18:10:52+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-16:blog/2015/04/16/gsoc-rss-feed-test-post/</id><summary type="html">&lt;p&gt;Much GSoC. So RSS. Very Python :)&lt;/p&gt;
 &lt;p&gt;This is a test blog post to check if the &lt;strong&gt;atom.xml&lt;/strong&gt; for the category &lt;strong&gt;GSoC&lt;/strong&gt;. Python Software Foundation motivates its students to blog at least once in every two weeks (stating the frequency of posting in clear terms because biweekly can be ambiguous sometimes). Blogging the &lt;strong&gt;developments&lt;/strong&gt; is essential for any constructive task; in my case the task is Open Source Software development using Python.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Developments entail success, setbacks(interestingly &lt;em&gt;failure&lt;/em&gt; is not used in this industry because nobody ever fails), issues, progress, discussion on design aspects and learning.&lt;/p&gt;
