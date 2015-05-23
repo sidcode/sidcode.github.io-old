@@ -1,13 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>/</id><updated>2015-05-20T00:53:52+00:00</updated><entry><title>GSoC 2015 with the Italian Mars Society</title><link href="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/" rel="alternate"></link><updated>2015-05-20T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-05-20:blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/</id><summary type="html">&lt;p&gt;&lt;img alt="GSoC Banner" src="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/images/gsoc-banner.png" /&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>/</id><updated>2015-05-23T00:53:52+00:00</updated><entry><title>GSoC 2015 Project Details</title><link href="/blog/2015/05/23/gsoc-2015-project-details/" rel="alternate"></link><updated>2015-05-23T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-05-23:blog/2015/05/23/gsoc-2015-project-details/</id><summary type="html">&lt;p&gt;Third Post in the GSoC 2015 series. Here I'll take you through the engaging community bonding experience.&lt;/p&gt;
+&lt;h2&gt;Introduction to Community Bonding&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Community Bonding&lt;/strong&gt; is arguably one of the most important phases of the Google Summer of Code. In the 2015 edition, it took place from April 27 to May 25. This is what the &lt;a href="http://www.google-melange.com/gsoc/document/show/gsoc_program/google/gsoc2015/help_page"&gt;GSoC FAQ&lt;/a&gt; has to say about this period -&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Students get to know mentors, read documentation, get up to speed to begin working on their projects.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;About the community&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="ERAS logo" src="/blog/2015/05/23/gsoc-2015-project-details/images/eras-logo.jpg" /&gt;
+The &lt;strong&gt;Italian Mars Society&lt;/strong&gt; is a highly motivated group of incredibly smart and friendly scientists and developers who share the vision of working towards manned missions to Mars. I have been interacting with the community since March 2015 and I've never looked back. I was interested in the projects even during the brief period when it was unclear whether IMS would be able to participate or not. I'm grateful to the community members for applying under the Python Software Foundation umbrella and giving students like me a brilliant opportunity to explore real world Open Source development. From what I've heard, this organization comes up with the &lt;em&gt;coolest&lt;/em&gt; projects for GSoC. And I concur with them - my project seems to blend in all the cool fields required for exploration - Robotics, Body-tracking, Virtual Reality, Oculus Rift, Real-time 3-D video streaming, Augmented Reality, etc.&lt;/p&gt;
+&lt;h2&gt;Understanding the Codebase&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Mercurial logo" src="/blog/2015/05/23/gsoc-2015-project-details/images/mercurial.png" /&gt;
+To this end, there is a stable amount of software/hardware development shared on the Bitbucket platform. While interacting with Franco and Ezio, I discovered that all students are given &lt;strong&gt;write access&lt;/strong&gt; to the &lt;a href="https://bitbucket.org/italianmarssociety/eras/"&gt;ERAS&lt;/a&gt; and &lt;a href="https://bitbucket.org/italianmarssociety/v-eras-blender"&gt;V-ERAS&lt;/a&gt; repositories using the &lt;strong&gt;Mercurial&lt;/strong&gt; revision control system. This imparts tremendous responsiblity as new developers which I very much appreciate since it fosters trust and makes us mature community members. &lt;/p&gt;
+&lt;p&gt;Going through the codebase a couple of weeks ago, I found well-documented code, almost all of which follows the PEP8 guidelines and written in Python 3. The heart of the V-ERAS project is the &lt;a href="http://www.tango-controls.org/"&gt;Tango Controls&lt;/a&gt; server which is a distributed device server for Supervisory Control and Data Acquistion systems. This is ideal for a complex environment like ERAS where multiple hardware and software devices like the Oculus VR, Kinect, Linux Machines, Husky Rover, and Blender Game Engine applications are involved in a distributed setup. The entire networking subsystem of ERAS is well-explained in &lt;a href="http://erasproject.org/download/the-networking-sub-system-of-t-he-virtual-european-mar-s-analog-station-e-melotti-bachelors-thesis/"&gt;Ezio's thesis&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Interacting with the Community&lt;/h2&gt;
+&lt;p&gt;My experience with the Italian Mars Society has been memorable and pleasant right from the word go when I first entered the hallowed &lt;strong&gt;IMS&lt;/strong&gt; channel of IRC (Internet Relay Chat) and introduced myself. I was promptly pointed to the right person for my project of interest. Within a single IRC Chat session with Franco, I got a clear idea of what to expect from this GSoC. The IRC channel though frequented by a small number of people is always bustling with activity. We've had fruitful discussion for each and every part of the project - from software architecture diagrams in the proposal, to the collaboration between two GSoC projects, and even some fun interactions about Python software development and Mars exploration. I always appreciate the levels of responsibity and feedback that the community members muster during interacting with students. Helping my fellow GSoC aspirants and seeking help from them is always a refreshing experience. Apart from IRC and Email, I got the chance to &lt;strong&gt;video-conference&lt;/strong&gt; with all the project mentors on two occasions - &lt;em&gt;during my GSoC interview and in the Kickoff meeting after the GSoC selection&lt;/em&gt;. This was the first time I had a teleconference interview and I thank IMS for that. It felt more like a sincere discussion of the things that I had in mind for the GSoC project rather than a test of my skills. The trust these guys had in me let me confidently speak out my mind which helped me make my points. The big GSoC Kickoff meeting meetup took place on April 29, 2015 where we all gathered on &lt;strong&gt;Google Hangouts&lt;/strong&gt; to discuss various important points for the upcoming summer of code such as -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The importance of blogging&lt;/li&gt;
+&lt;li&gt;Hardware/Software requirements&lt;/li&gt;
+&lt;li&gt;Strategic timeline of events&lt;/li&gt;
+&lt;li&gt;Software engineering guidelines&lt;/li&gt;
+&lt;li&gt;Suggestions of joint code review sessions&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I helped prepare the meeting minutes for this session since some members faced connection problems to join the Hangout. These are shared in &lt;a href="https://docs.google.com/document/d/1jRhBnmjlMINCjwuomrE18BPTKnUO8974-I9qexb5TfQ/edit?usp=sharing"&gt;this document&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Setup and Technologies&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Husky Rover" src="/blog/2015/05/23/gsoc-2015-project-details/images/husky1.jpe" /&gt;
+I have been exposed to an ample number of new concepts and technologies with this project. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Terrain Vehicle Rover&lt;/strong&gt; - Clearpath Robotics' &lt;strong&gt;Husky robot&lt;/strong&gt; which is ROS-based&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Microsoft Kinect Sensor&lt;/strong&gt; for obtaining body-tracking information&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Minoru 3-d webcam&lt;/strong&gt; for stereo video streaming&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Oculus Rift Development Kit 2&lt;/strong&gt; for augmented reality applications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To this end, I set up my workstation for the &lt;a href="https://docs.google.com/document/d/11iE-pQ8wEX8BUwbexGgULJddv0xWRN98MYRrd0iunOI/edit?usp=sharing"&gt;project requirements&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;My current machine configuration for this GSoC project is as follows -
+- Ubuntu 14.04.2 (Trusty Tahr)
+- ROS Indigo
+- Python 3
+- Blender 2.74
+- Tango Controls 1.99
+- Linux Kernel 3.2
+- Mercurial 3.4
+- Hardware - 8 GB RAM, Intel Core i7 processor, Nvidia 2GB GPU GT650M&lt;/p&gt;
+&lt;p&gt;In the last couple of weeks, I have been busy with setting up the various ROS packages which are required for &lt;em&gt;bodytracking based semi-autonmous teleoperation&lt;/em&gt;. The list of ROS packages will be added to the project documentation soon.&lt;/p&gt;
+&lt;h2&gt;Learning Experience so far&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="ffmpeg" src="/blog/2015/05/23/gsoc-2015-project-details/images/ffmpeg.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I've learnt an unexpected great deal about a lot of different things during this project. I had to do a lot of reading to get up to speed with the existing state of V-ERAS. Franco pointed me to the &lt;a href="https://eras.readthedocs.org/en/latest/index.html"&gt;project documentation pages&lt;/a&gt;. I learned about Blender and Blender Game Engine after pulling an all-nighter. FFMPEG followed soon after that where I had to set up a MJPEG streaming server for the BGE client. That was followed by my first experience with PEP8, Mercurial, architecture diagrams, Tango Control system. My GSoC proposal has been an extensive piece of work with 61 revisions and brilliant feedback from my mentors. The proposal can be found &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;here&lt;/a&gt;. A more comprehensive description of the project is taken up in &lt;a href=""&gt;this post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;To be continued...about ROS, Software Testing, Mapping, algorithms, etc&lt;/strong&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category></entry><entry><title>GSoC 2015 Project Details</title><link href="/blog/2015/05/07/gsoc-2015-project-details/" rel="alternate"></link><updated>2015-05-07T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-05-07:blog/2015/05/07/gsoc-2015-project-details/</id><summary type="html">&lt;p&gt;Second Post in the GSoC 2015 series. This post is intended to explain my project proposal.
+Status: draft&lt;/p&gt;
+&lt;p&gt;The project proposal that I submitted can be found &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;to be continued...&lt;/em&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category></entry><entry><title>GSoC 2015 with the Italian Mars Society</title><link href="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/" rel="alternate"></link><updated>2015-04-29T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-29:blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/</id><summary type="html">&lt;p&gt;&lt;img alt="GSoC Banner" src="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/images/gsoc-banner.png" /&gt;&lt;/p&gt;
 &lt;p&gt;I got accepted into the eleventh edition of the &lt;strong&gt;Google Summer of Code&lt;/strong&gt; program (&lt;a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;GSoC 2015&lt;/a&gt;) with the &lt;strong&gt;Python Software Foundation&lt;/strong&gt; umbrella organization. The list of selected students was announced on 28th April, 2015.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Python Logo" src="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/images/python-logo.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Python Logo" src="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/images/python-logo.png" /&gt;&lt;/p&gt;
 &lt;p&gt;More specifically, I'll be working with the Italian Mars Society under the ERAS (European MaRs Analogue Station) project. 
 Quoting from the &lt;a href="http://erasproject.org/"&gt;source&lt;/a&gt; -&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The European MaRs Analogue Station for Advanced Technologies Integration (ERAS) is a program spearheaded by the Italian Mars Society (IMS) which main goal is to provide an effective test bed for field operation studies in preparation for manned missions to Mars.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img alt="ERAS logo" src="/blog/2015/05/20/gsoc-2015-with-the-italian-mars-society/images/eras-logo.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ERAS logo" src="/blog/2015/05/23/gsoc-2015-project-details/images/eras-logo.jpg" /&gt;&lt;/p&gt;
 &lt;p&gt;The focus of this GSoC project is &lt;strong&gt;Virtual Reality based Telerobotics&lt;/strong&gt; for V-ERAS.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Virtual European Mars Analog Station (V-ERAS)&lt;/strong&gt; is based on immersive real-time environment simulations running on top of the Blender Game Engine (BGE).&lt;/p&gt;
 &lt;p&gt;This project has three distinct components - &lt;/p&gt;
@@ -34,7 +83,7 @@ Quoting from the &lt;a href="http://erasproject.org/"&gt;source&lt;/a&gt; -&lt;/
 &lt;blockquote&gt;
 &lt;p&gt;Developments entail success, setbacks(interestingly &lt;em&gt;failure&lt;/em&gt; is not used in this industry because nobody ever fails), issues, progress, discussion on design aspects and learning.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1&gt;Update(29th April, 2015)&lt;/h1&gt;
+&lt;h2&gt;Update(29th April, 2015)&lt;/h2&gt;
 &lt;p&gt;The list of accepted students was announced yesterday(amazingly coinciding with my birthday). I have been accepted for the Google Summer of Code program as a student under the Python Software Foundation umbrella with the organization - Italian Mars Society. A detailed post on my acceptance can be found here.&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category></entry><entry><title>Notes for this blog</title><link href="/blog/2015/04/01/notes-for-this-blog/" rel="alternate"></link><updated>2015-04-01T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-01:blog/2015/04/01/notes-for-this-blog/</id><summary type="html">&lt;p&gt;List -
 0. GSoC as of now (1st May 2015)
 1. Disqus comments integration
