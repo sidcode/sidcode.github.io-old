@@ -47,7 +47,8 @@
 &lt;p&gt;I've learnt an unexpected great deal about a lot of different things during this project. I had to do a lot of reading to get up to speed with the existing state of V-ERAS. Franco pointed me to the &lt;a href="https://eras.readthedocs.org/en/latest/index.html"&gt;project documentation pages&lt;/a&gt;. I learned about Blender and Blender Game Engine after pulling an all-nighter. FFMPEG followed soon after that where I had to set up a MJPEG streaming server for the BGE client. That was followed by my first experience with PEP8, Mercurial, architecture diagrams, Tango Control system. My GSoC proposal has been an extensive piece of work with 61 revisions and brilliant feedback from my mentors. The proposal can be found &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;here&lt;/a&gt;. A more comprehensive description of the project is taken up in &lt;a href="gsoc-02-project-details.md"&gt;this post&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;To be continued...about ROS, Software Testing, Mapping, algorithms, etc&lt;/em&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category></entry><entry><title>GSoC '15 - About my Project</title><link href="/blog/2015/05/07/gsoc-15-about-my-project/" rel="alternate"></link><updated>2015-05-07T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-05-07:blog/2015/05/07/gsoc-15-about-my-project/</id><summary type="html">&lt;p&gt;Second Post in the GSoC 2015 series. This post is intended to explain my project proposal.&lt;/p&gt;
 &lt;p&gt;The project proposal that I submitted can be found &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;to be continued...&lt;/em&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category></entry><entry><title>GSoC 2015 with the Italian Mars Society</title><link href="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/" rel="alternate"></link><updated>2015-04-29T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-29:blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/</id><summary type="html">&lt;p&gt;&lt;img alt="GSoC Banner" src="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/images/gsoc-banner.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="ERAS Station" src="/blog/2015/05/07/gsoc-15-about-my-project/images/eras-station.jpg" /&gt;
+&lt;em&gt;to be continued...&lt;/em&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category></entry><entry><title>GSoC 2015 with the Italian Mars Society</title><link href="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/" rel="alternate"></link><updated>2015-04-29T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2015-04-29:blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/</id><summary type="html">&lt;p&gt;&lt;img alt="GSoC Banner" src="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/images/gsoc-banner.png" /&gt;&lt;/p&gt;
 &lt;p&gt;I got accepted into the eleventh edition of the &lt;strong&gt;Google Summer of Code&lt;/strong&gt; program (&lt;a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;GSoC 2015&lt;/a&gt;) with the &lt;strong&gt;Python Software Foundation&lt;/strong&gt; umbrella organization. The list of selected students was announced on 28th April, 2015.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Python Logo" src="/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/images/python-logo.png" /&gt;&lt;/p&gt;
 &lt;p&gt;More specifically, I'll be working with the Italian Mars Society under the ERAS (European MaRs Analogue Station) project. 
@@ -289,8 +290,7 @@ Cascade Classifiers&lt;/p&gt;
 &lt;p&gt;http://en.wikipedia.org/wiki/Computer_terminals
 http://en.wikipedia.org/wiki/Teletype_Model_33&lt;/p&gt;
 &lt;p&gt;Refer : Unix Prog. Environment by Kernighan and Pike
-        The Man who knew too much - Life of Alan Turing&lt;/p&gt;</summary><category term="computers"></category><category term="history"></category><category term="electronics"></category><category term="nix"></category><category term="world"></category><category term="linux"></category></entry><entry><title>The Tree of Life</title><link href="/blog/2014/06/16/the-tree-of-life/" rel="alternate"></link><updated>2014-06-16T22:43:56+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-16:blog/2014/06/16/the-tree-of-life/</id><summary type="html">&lt;hr /&gt;
-&lt;p&gt;Watching Cosmos [S01E02]. Neil deGrasse Tyson speaks about artificial and natural selection ( dog breeds, and polar bears; respectively ). He also talks that we share our DNA with plants, and furthermore, plants and humans share DNA with birds, etc..So we can backtrack in a similar inductive fashion to reason that life started as ONE COMMON ancestor.&lt;/p&gt;
+        The Man who knew too much - Life of Alan Turing&lt;/p&gt;</summary><category term="computers"></category><category term="history"></category><category term="electronics"></category><category term="nix"></category><category term="world"></category><category term="linux"></category></entry><entry><title>The Tree of Life</title><link href="/blog/2014/06/16/the-tree-of-life/" rel="alternate"></link><updated>2014-06-16T22:43:56+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-16:blog/2014/06/16/the-tree-of-life/</id><summary type="html">&lt;p&gt;Watching Cosmos [S01E02]. Neil deGrasse Tyson speaks about artificial and natural selection ( dog breeds, and polar bears; respectively ). He also talks that we share our DNA with plants, and furthermore, plants and humans share DNA with birds, etc..So we can backtrack in a similar inductive fashion to reason that life started as ONE COMMON ancestor.&lt;/p&gt;
 &lt;p&gt;What I think?
 We have ML, and DM backtracking mechanisms available. Why not think in this direction, that we can establish a correlation between different species, a coming together of various kingdoms, in a way that both explains and justifies evolution - both in the artificial, and the natural way.&lt;/p&gt;
 &lt;p&gt;My hunches are sometimes right, and mostly overstated. But we can try, right? It'll teach us a lot of things. Firstly it'll make us better at looking at ourselves, at the world as one great family (that's what Vasudev Kutumb is all about, right?)&lt;/p&gt;
@@ -299,22 +299,22 @@ We have ML, and DM backtracking mechanisms available. Why not think in this dire
 &lt;p&gt;Remember, we don't need to save the planet, the planet is strong enough to sustain itself; we need to save ourselves, from the disasters we can cause artificially.&lt;/p&gt;</summary><category term="astronomy"></category><category term="evolution"></category><category term="learning"></category><category term="life"></category><category term="universe"></category></entry><entry><title>From GitHub pages to siddhantsci.org</title><link href="/blog/2014/06/14/from-github-pages-to-siddhantsciorg/" rel="alternate"></link><updated>2014-06-14T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-14:blog/2014/06/14/from-github-pages-to-siddhantsciorg/</id><summary type="html">&lt;p&gt;Being a total amateur when it comes to Domain Names, TLDs,&lt;code&gt;CNAME&lt;/code&gt; records, and selecting a service from the brutal competition among Domain/Host providers; this journey has been exhausting, time consuming, but essentially important.&lt;/p&gt;
 &lt;p&gt;Basically everything boils down to communication between two computers in the world. Computers on the World Wide Web (the Internet as we know it - ignoring deep web for now), are addressed by a set of numbers known as IP (Internet Protocol) addresses. Just like your home address, this helps all the computers in the world to know where "on the network", your computer/ your domain provider's computer is. IP addresses are generally of the form "192.30.252.153", in the IPv4 scheme (read more about Combinatorial Explosion and IP in this post's footnotes ).&lt;/p&gt;
 &lt;p&gt;Since memorizing numbers for humans is considered too brain-intensive, we delegate this important task to computers, and create human-friendly names in Natural Languages (like English, Arabic, Hindi, Mandarin etc). For example google.com runs on a lot of computers and one such address is 173.194.36.5. Copy paste this number in your browser's address bar and you'll reach google.com :D . How do I know about this number? There are a number of ways to find it out. I used:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ping google.com
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ping&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;which resulted in&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;google.com.             91      IN      A       173.194.36.7
-google.com.             91      IN      A       173.194.36.4
-google.com.             91      IN      A       173.194.36.5
-google.com.             91      IN      A       173.194.36.2
-google.com.             91      IN      A       173.194.36.3
-google.com.             91      IN      A       173.194.36.14
-google.com.             91      IN      A       173.194.36.0
-google.com.             91      IN      A       173.194.36.1
-google.com.             91      IN      A       173.194.36.6
-google.com.             91      IN      A       173.194.36.9
-google.com.             91      IN      A       173.194.36.8
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.7&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.4&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.5&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.2&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.3&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.14&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.0&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.1&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.6&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.9&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.8&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -326,27 +326,27 @@ google.com.             91      IN      A       173.194.36.8
 &lt;p&gt;I modified the DNS records to point to GitHub' IP addresses provided on https://help.github.com/articles/setting-up-a-custom-domain-with-github-pages .
 So I created an &lt;code&gt;A record&lt;/code&gt; to point from the host(siddhantsci.org) to the static IPs provided by GitHub. On GitHub's side I created a &lt;code&gt;CNAME&lt;/code&gt; file with just the content - "www.siddhantsci.org" in it. This essentially aliased sidcode.github.io to siddhantsci.org.&lt;/p&gt;
 &lt;p&gt;Now I have to wait for another day to get the two computers of the world, and the Domain Management System to acknowledge this mapping, before you can access this site. If you are reading this, it means that everything is properly configured.&lt;/p&gt;</summary></entry><entry><title>Lessons from the Octopress Setup</title><link href="/blog/2014/06/11/lessons-from-the-octopress-setup/" rel="alternate"></link><updated>2014-06-11T23:37:37+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:,2014-06-11:blog/2014/06/11/lessons-from-the-octopress-setup/</id><summary type="html">&lt;p&gt;This is my first post on this blog. I am learning to play with the various commands and get a knack of the basic publishing workflow.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;This is how syntax highlighting is done
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;how&lt;/span&gt; &lt;span class="n"&gt;syntax&lt;/span&gt; &lt;span class="n"&gt;highlighting&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;After creating &lt;code&gt;.markdown&lt;/code&gt; files, all one has to do is to push changes to the master branch of the remote repo:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;bundle exec rake generate
-bundle exec rake deploy
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bundle&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;rake&lt;/span&gt; &lt;span class="n"&gt;generate&lt;/span&gt;
+&lt;span class="n"&gt;bundle&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;rake&lt;/span&gt; &lt;span class="n"&gt;deploy&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Git commands to be used:&lt;/p&gt;
 &lt;p&gt;To update the &lt;code&gt;source&lt;/code&gt; branch with the latest changes (it is recommended to keep a backup)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git add .
-git commit -m &amp;quot;source update #&amp;quot;
-git push origin source
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;source update #&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;whereas to revert to the master branch, go to the _deploy directory, and run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git pull origin master
-bundle exec rake deploy
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;pull&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;span class="n"&gt;bundle&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;rake&lt;/span&gt; &lt;span class="n"&gt;deploy&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
