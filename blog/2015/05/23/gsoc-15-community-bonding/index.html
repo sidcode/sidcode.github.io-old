@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Life is a 2-D board game! &mdash; All Day I Dream About Science</title>
+  <title>GSoC '15 Community Bonding &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -57,26 +57,59 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Life is a 2-D board game!</h1>
+      <h1 class="entry-title">GSoC '15 Community Bonding</h1>
     <p class="meta">
-<time datetime="2015-02-04T00:53:52+00:00" pubdate>Wed 04 February 2015</time>  &ndash; &#128339; 2 min read
+<time datetime="2015-05-23T00:53:52+00:00" pubdate>Sat 23 May 2015</time>  &ndash; &#128339; 4 min read
     </p>
 </header>
 
-  <div class="entry-content"><p><strong>Conway's Game of Life</strong> or the single-player zero sum game comprised of cellular automata with four simple rules. It was proposed by John Conway as a <em>Scientific American</em> article and not very long ago, it reassured me of the beauty of Mathematics. </p>
+  <div class="entry-content"><p>Third Post in the GSoC 2015 series. Here I'll take you through the engaging community bonding experience.</p>
+<h2>Introduction to Community Bonding</h2>
+<p><strong>Community Bonding</strong> is arguably one of the most important phases of the Google Summer of Code. In the 2015 edition, it took place from April 27 to May 25. This is what the <a href="http://www.google-melange.com/gsoc/document/show/gsoc_program/google/gsoc2015/help_page">GSoC FAQ</a> has to say about this period -</p>
 <blockquote>
-<p>The game has intrigued me for quite a long time.</p>
+<p>Students get to know mentors, read documentation, get up to speed to begin working on their projects.</p>
 </blockquote>
-<p>I got the opportunity to dabble with the intricate patterns and get to know the rules when I alter the rules. The results are to say the least, quite disastrous. The conditions for Conway's game begin to crumble down with simple changes in the rules. Simulations under way.</p>
-<p>I am thinking along the lines of applying the Game of Life in <strong>Pattern Formation problems in Robotics</strong>. For its automaton-ness...no history, no future. Adaptability to future outcome, modification of rules as and when you like, the tenacity of the patterns. Oscillators, still lifes all can be used in different domains of Robotics. </p>
-<blockquote>
-<p>An entire world of Robots can be imagined where all the different kinds of bots follow the rules of the game of life.</p>
-</blockquote>
-<p>This not only controls the population, but also results in self-sufficient communities. This can teach us things about Android epistemology. For instance, a robot meant for video surveillance would not move, hence lives a  Still Life. A robot meant to patrol a region frequently should be an Oscillator. The simple states of the Automata ensure crispness of pattern formation.</p>
-<p>However it would be a challenge to deploy robots to the next states in the Automata, ensure which robots to move where, which robots to keep, which robots to summon. Virtually making a cell dead even when a robot lives there.</p>
-<p>Cellular Automata would prove beneficial in self-organizing systems.</p>
-<p>People tried the game with QR codes.</p>
-<p>Fun Fact: I was introduced to Conway's Game via a strategy board game with the same name - "Game of Life". </p></div>
+<h2>About the community</h2>
+<p><img alt="ERAS logo" src="../../../../../blog/2015/05/23/gsoc-15-community-bonding/images/eras-logo.jpg" />
+The <strong>Italian Mars Society</strong> is a highly motivated group of incredibly smart and friendly scientists and developers who share the vision of working towards manned missions to Mars. I have been interacting with the community since March 2015 and I've never looked back. I was interested in the projects even during the brief period when it was unclear whether IMS would be able to participate or not. I'm grateful to the community members for applying under the Python Software Foundation umbrella and giving students like me a brilliant opportunity to explore real world Open Source development. From what I've heard, this organization comes up with the <em>coolest</em> projects for GSoC. And I concur with them - my project seems to blend in all the cool fields required for exploration - Robotics, Body-tracking, Virtual Reality, Oculus Rift, Real-time 3-D video streaming, Augmented Reality, etc.</p>
+<h2>Understanding the Codebase</h2>
+<p><img alt="Mercurial logo" src="../../../../../blog/2015/05/23/gsoc-15-community-bonding/images/mercurial.png" />
+To this end, there is a stable amount of software/hardware development shared on the Bitbucket platform. While interacting with Franco and Ezio, I discovered that all students are given <strong>write access</strong> to the <a href="https://bitbucket.org/italianmarssociety/eras/">ERAS</a> and <a href="https://bitbucket.org/italianmarssociety/v-eras-blender">V-ERAS</a> repositories using the <strong>Mercurial</strong> revision control system. This imparts tremendous responsiblity as new developers which I very much appreciate since it fosters trust and makes us mature community members. </p>
+<p>Going through the codebase a couple of weeks ago, I found well-documented code, almost all of which follows the PEP8 guidelines and written in Python 3. The heart of the V-ERAS project is the <a href="http://www.tango-controls.org/">Tango Controls</a> server which is a distributed device server for Supervisory Control and Data Acquistion systems. This is ideal for a complex environment like ERAS where multiple hardware and software devices like the Oculus VR, Kinect, Linux Machines, Husky Rover, and Blender Game Engine applications are involved in a distributed setup. The entire networking subsystem of ERAS is well-explained in <a href="http://erasproject.org/download/the-networking-sub-system-of-t-he-virtual-european-mar-s-analog-station-e-melotti-bachelors-thesis/">Ezio's thesis</a>.</p>
+<h2>Interacting with the Community</h2>
+<p>My experience with the Italian Mars Society has been memorable and pleasant right from the word go when I first entered the hallowed <strong>IMS</strong> channel of IRC (Internet Relay Chat) and introduced myself. I was promptly pointed to the right person for my project of interest. Within a single IRC Chat session with Franco, I got a clear idea of what to expect from this GSoC. The IRC channel though frequented by a small number of people is always bustling with activity. We've had fruitful discussion for each and every part of the project - from software architecture diagrams in the proposal, to the collaboration between two GSoC projects, and even some fun interactions about Python software development and Mars exploration. I always appreciate the levels of responsibity and feedback that the community members muster during interacting with students. Helping my fellow GSoC aspirants and seeking help from them is always a refreshing experience. Apart from IRC and Email, I got the chance to <strong>video-conference</strong> with all the project mentors on two occasions - <em>during my GSoC interview and in the Kickoff meeting after the GSoC selection</em>. This was the first time I had a teleconference interview and I thank IMS for that. It felt more like a sincere discussion of the things that I had in mind for the GSoC project rather than a test of my skills. The trust these guys had in me let me confidently speak out my mind which helped me make my points. The big GSoC Kickoff meeting meetup took place on April 29, 2015 where we all gathered on <strong>Google Hangouts</strong> to discuss various important points for the upcoming summer of code such as -</p>
+<ol>
+<li>The importance of blogging</li>
+<li>Hardware/Software requirements</li>
+<li>Strategic timeline of events</li>
+<li>Software engineering guidelines</li>
+<li>Suggestions of joint code review sessions</li>
+</ol>
+<p>I helped prepare the meeting minutes for this session since some members faced connection problems to join the Hangout. These are shared in <a href="https://docs.google.com/document/d/1jRhBnmjlMINCjwuomrE18BPTKnUO8974-I9qexb5TfQ/edit?usp=sharing">this document</a>.</p>
+<h2>Setup and Technologies</h2>
+<p><img alt="Husky Rover" src="../../../../../blog/2015/05/23/gsoc-15-community-bonding/images/husky1.jpe" />
+I have been exposed to an ample number of new concepts and technologies with this project. </p>
+<ul>
+<li><strong>Terrain Vehicle Rover</strong> - Clearpath Robotics' <strong>Husky robot</strong> which is ROS-based</li>
+<li><strong>Microsoft Kinect Sensor</strong> for obtaining body-tracking information</li>
+<li><strong>Minoru 3-d webcam</strong> for stereo video streaming</li>
+<li><strong>Oculus Rift Development Kit 2</strong> for augmented reality applications</li>
+</ul>
+<p>To this end, I set up my workstation for the <a href="https://docs.google.com/document/d/11iE-pQ8wEX8BUwbexGgULJddv0xWRN98MYRrd0iunOI/edit?usp=sharing">project requirements</a>.</p>
+<p>My current machine configuration for this GSoC project is as follows -
+- Ubuntu 14.04.2 (Trusty Tahr)
+- ROS Indigo
+- Python 3
+- Blender 2.74
+- Tango Controls 1.99
+- Linux Kernel 3.2
+- Mercurial 3.4
+- Hardware - 8 GB RAM, Intel Core i7 processor, Nvidia 2GB GPU GT650M</p>
+<p>In the last couple of weeks, I have been busy with setting up the various ROS packages which are required for <em>bodytracking based semi-autonmous teleoperation</em>. The list of ROS packages will be added to the project documentation soon.</p>
+<h2>Learning Experience so far</h2>
+<p><img alt="ffmpeg" src="../../../../../blog/2015/05/23/gsoc-15-community-bonding/images/ffmpeg.png" /></p>
+<p>I've learnt an unexpected great deal about a lot of different things during this project. I had to do a lot of reading to get up to speed with the existing state of V-ERAS. Franco pointed me to the <a href="https://eras.readthedocs.org/en/latest/index.html">project documentation pages</a>. I learned about Blender and Blender Game Engine after pulling an all-nighter. FFMPEG followed soon after that where I had to set up a MJPEG streaming server for the BGE client. That was followed by my first experience with PEP8, Mercurial, architecture diagrams, Tango Control system. My GSoC proposal has been an extensive piece of work with 61 revisions and brilliant feedback from my mentors. The proposal can be found <a href="http://erasproject.org/2015-gsoc/#2">here</a>. A more comprehensive description of the project is taken up in <a href="">this post</a>.</p>
+<p><strong>To be continued...about ROS, Software Testing, Mapping, algorithms, etc</strong></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -84,13 +117,13 @@
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2015-02-04T00:53:52+00:00" pubdate>Wed 04 February 2015</time>  <span class="categories">
-    <a class='category' href='../../../../../category/computer-science.html'>Computer Science</a>
+<time datetime="2015-05-23T00:53:52+00:00" pubdate>Sat 23 May 2015</time>  <span class="categories">
+    <a class='category' href='../../../../../category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
-    <a class="category" href="../../../../../tag/maths.html">maths</a>,    <a class="category" href="../../../../../tag/computers.html">computers</a>,    <a class="category" href="../../../../../tag/evolution.html">evolution</a>,    <a class="category" href="../../../../../tag/robots.html">robots</a>,    <a class="category" href="../../../../../tag/patterns.html">patterns</a>,    <a class="category" href="../../../../../tag/networks.html">networks</a>  </span>
+    <a class="category" href="../../../../../tag/gsoc.html">GSoC</a>,    <a class="category" href="../../../../../tag/python.html">Python</a>,    <a class="category" href="../../../../../tag/psf.html">PSF</a>,    <a class="category" href="../../../../../tag/computers.html">computers</a>,    <a class="category" href="../../../../../tag/science.html">science</a>,    <a class="category" href="../../../../../tag/exploration.html">exploration</a>,    <a class="category" href="../../../../../tag/space.html">space</a>,    <a class="category" href="../../../../../tag/mars.html">mars</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="../../../../../blog/2015/02/04/life-is-a-2-d-board-game/" data-via="siddhantcode" data-counturl="../../../../../blog/2015/02/04/life-is-a-2-d-board-game/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="../../../../../blog/2015/05/23/gsoc-15-community-bonding/" data-via="siddhantcode" data-counturl="../../../../../blog/2015/05/23/gsoc-15-community-bonding/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
@@ -182,9 +215,9 @@
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhantcode';
-          var disqus_identifier = '/blog/2015/02/04/life-is-a-2-d-board-game/';
-          var disqus_url = '../../../../../blog/2015/02/04/life-is-a-2-d-board-game/';
-          var disqus_title = 'Life is a 2-D board game!';
+          var disqus_identifier = '/blog/2015/05/23/gsoc-15-community-bonding/';
+          var disqus_url = '../../../../../blog/2015/05/23/gsoc-15-community-bonding/';
+          var disqus_title = 'GSoC '15 Community Bonding';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
