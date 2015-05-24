@@ -32,8 +32,8 @@
 &lt;li&gt;&lt;strong&gt;Oculus Rift Development Kit 2&lt;/strong&gt; for augmented reality applications&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To this end, I set up my workstation for the &lt;a href="https://docs.google.com/document/d/11iE-pQ8wEX8BUwbexGgULJddv0xWRN98MYRrd0iunOI/edit?usp=sharing"&gt;project requirements&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;My current machine configuration for this GSoC project is as follows -
--Ubuntu 14.04.2 (Trusty Tahr)
+&lt;p&gt;My current machine configuration for this GSoC project is as follows:&lt;/p&gt;
+&lt;p&gt;-Ubuntu 14.04.2 (Trusty Tahr)
 -ROS Indigo
 -Python 3
 -Blender 2.74

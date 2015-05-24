@@ -1,55 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-05-24T00:53:52+05:30</updated><entry><title>Room 276, Gandhi Bhawan, BITS Pilani</title><link href="http://siddhantsci.org/blog/2015/05/24/room-276-gandhi-bhawan-bits-pilani/" rel="alternate"></link><updated>2015-05-24T00:53:52+05:30</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-05-24:blog/2015/05/24/room-276-gandhi-bhawan-bits-pilani/</id><summary type="html">&lt;h2&gt;Why write a post about an indistinguishable dorm room?&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Gandhi 276&lt;/strong&gt; (Coordinates - 28.360874, 75.588507) ushers in a profuse stream of consciousness (and subconsciousness) for me.&lt;/p&gt;
-&lt;p&gt;I made it my home for two long academic years (that is four semesters (2013-2015) and a summer (2015).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gandhi 276&lt;/strong&gt; (Coordinates - 28.360874 N, 75.588507 E) ushers in a profuse stream of consciousness (and subconsciousness) for me.&lt;/p&gt;
+&lt;p&gt;I made it my home for &lt;strong&gt;two&lt;/strong&gt; long academic years (that is four semesters (2013-2015) and a summer (2015).&lt;/p&gt;
 &lt;p&gt;Today (24 June, 2015), I am leaving it as I complete the final phase of packing up the lightweight items. Incidentally, today is also the date when I took my BITSAT exam in 2012. It also happily collides with the end of the community bonding period and the start of the coding period for GSoC which I explained in &lt;a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/"&gt;this post&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;How I got this room?&lt;/h2&gt;
-&lt;p&gt;Out of pure whim. BITS Pilani allows students to choose their wings and rooms. The final wings are decided by a lottery system in cases of a collision. So yes, our wing (the &lt;em&gt;'ghot'&lt;/em&gt; wing) got this room.&lt;/p&gt;
-&lt;h2&gt;About Gandhi 276&lt;/h2&gt;
-&lt;h2&gt;Experiences with GN-276&lt;/h2&gt;
-&lt;p&gt;I stepped foot in this room on July 31, 2013. My ex-roomie, &lt;a href="https://in.linkedin.com/pub/lohi-uppalapati/2a/934/27a"&gt;U.R. Lohi&lt;/a&gt; was the president of BITS Pilani Student Union for the 2012-2013 session. So in a way, I got the president's room, out of pure whim. &lt;em&gt;A cool bragging right to start with.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Out of pure whim. BITS Pilani allows students to choose their wings and rooms. The final wings are decided by a lottery system in cases of a collision. So yes, our wing (the &lt;em&gt;'ghot'&lt;/em&gt; wing) got the upper back wing, and consequently I got this room.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;First Semester, 2013&lt;/strong&gt;
-- Best time of my CS program
-- Gel in with the new wingmates (called &lt;em&gt;wingies&lt;/em&gt; at BITS)
-- The distraction-free semester, even with the new laptop
-- Programmed extensively in Java, Prolog, C
-- The last semester with an advanced Mathematics course, which I enjoyed (&lt;strong&gt;Differential Equations&lt;/strong&gt;)
-- Worked hard as the &lt;strong&gt;Technical Team&lt;/strong&gt; member of &lt;a href=""&gt;&lt;strong&gt;BITSEmbryo&lt;/strong&gt;&lt;/a&gt;
-- Still a Windows user
-- The start of my Robotics career&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Second Semester, 2014&lt;/strong&gt; - The lowest point of my CS program
-- Watched more than 500 films
-- Avid Linux user (full-time Archer)
-- Active &lt;strong&gt;BITS Firefox Community&lt;/strong&gt; member. Spent a lot of time to motivate people to use Free software&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;First Semester, 2014&lt;/strong&gt; - The pleasant &lt;strong&gt;research labs&lt;/strong&gt; phase of my undergrad life. I also made some friends for life during this time.
-- The start of my Wearable and Pervasive Computing career
-- Extensive use of Arduino and Raspberry Pi
-- Positive change in attitude, thanks to new friends
-- Network Programming phase of life
-- My first Ping of Death to &lt;a href="https://www.quora.com/Shardul-Deshpande"&gt;Shardul&lt;/a&gt; (on the same wing subnet)
-- The start of internship applications
-- Embracing rejections&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Second Semester, 2015&lt;/strong&gt; - The most stressful period of my life
-- Embracing even more rejections
-- &lt;strong&gt;Compiler Design&lt;/strong&gt; semester
-- Selection in the &lt;a href="http://india.media.mit.edu/"&gt;MIT Media Lab Design Innovation Workshop 2015&lt;/a&gt;
-- Made some awesome friends from all over India(and the world)
-- Lost some awesome friends for stupid reasons
-- Working for the &lt;a href="https://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;Google Summer of Code&lt;/a&gt; as last respite
-- Project proposal getting selected for GSoC 2015
-- Juggling with Compilers, Robotics work, Computer Networks lab Teaching Assistantship, GSoC work, internship applications, Typeracing, Films
-- The semester when I was out of spacetime&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Summer 2015&lt;/strong&gt; - A hotchpotch of discipline and dust
-- Dusty times with the wing being cleaned out
-- Improved circadian rhythms and exercise
-- The "Getting shit done" phase&lt;/p&gt;
+&lt;p&gt;About Gandhi 276&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;The common denominator in all these eventful times - &lt;strong&gt;Gandhi 276&lt;/strong&gt;. 
-Thank You Gandhi 276. For standing by me. For becoming a home which I'd go on to love more than the one where my family lives. For sheltering me from the sweltering heat and the frosty chills of this university town. I learnt to touchtype as fast as 100 words per minute in this room. My first Git commit. My first pull request. My first blog post.&lt;/p&gt;
-&lt;h2&gt;Closing remarks&lt;/h2&gt;
-&lt;p&gt;This has been a long farewell post. And this experience wouldn't have been this awesome if not for the people around this room - Karan, Kunal, Gaurav, Sai Charan, Shreyansh, Priyank, Girish. Thank you room for all the experiences, sicknesses, treatments, soporific ambiences, all-nighters, Gtalk &amp;amp; IRC sessions, and above all - a nurturing environment where I grew up as a Computer Scientist.&lt;/p&gt;
+&lt;h2&gt;Experiences with GN-276&lt;/h2&gt;
+&lt;p&gt;I stepped foot in this room on &lt;strong&gt;July 31, 2013&lt;/strong&gt;. The previous room occupant, &lt;a href="https://in.linkedin.com/pub/lohi-uppalapati/2a/934/27a"&gt;U.R. Lohi&lt;/a&gt; was the president of BITS Pilani Student Union for the 2012-2013 session. So in a way, I got the president's room, out of pure whim. &lt;em&gt;A cool bragging right to start with.&lt;/em&gt;&lt;/p&gt;
 &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;First Semester, 2013&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Best time of my CS program&lt;/li&gt;
+&lt;li&gt;Gel in with the new wingmates (called &lt;em&gt;wingies&lt;/em&gt; at BITS)&lt;/li&gt;
+&lt;li&gt;The distraction-free semester, even with the new laptop&lt;/li&gt;
+&lt;li&gt;Programmed extensively in Java, Prolog, C&lt;/li&gt;
+&lt;li&gt;The last semester with an advanced Mathematics course, which I enjoyed (&lt;strong&gt;Differential Equations&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Worked hard as the &lt;strong&gt;Technical Team&lt;/strong&gt; member of &lt;a href="http://embryo.bits-pilani.ac.in"&gt;&lt;strong&gt;BITSEmbryo&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Still a Windows user&lt;/li&gt;
+&lt;li&gt;The start of my Robotics career&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Second Semester, 2014&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The lowest point of my CS program&lt;/li&gt;
+&lt;li&gt;Watched more than 500 films&lt;/li&gt;
+&lt;li&gt;Avid Linux user (full-time Archer)&lt;/li&gt;
+&lt;li&gt;Active &lt;strong&gt;BITS Firefox Community&lt;/strong&gt; member. Spent a lot of time to motivate people to use Free software&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;First Semester, 2014&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The room gets a revamp.&lt;/li&gt;
+&lt;li&gt;The pleasant &lt;strong&gt;research labs&lt;/strong&gt; phase of my undergrad life. I also made some friends for life during this time.&lt;/li&gt;
+&lt;li&gt;The start of my Wearable and Pervasive Computing career&lt;/li&gt;
+&lt;li&gt;Extensive use of Arduino and Raspberry Pi&lt;/li&gt;
+&lt;li&gt;Positive change in attitude, thanks to new friends&lt;/li&gt;
+&lt;li&gt;Network Programming phase of life&lt;/li&gt;
+&lt;li&gt;My first Ping of Death to &lt;a href="https://www.quora.com/Shardul-Deshpande"&gt;Shardul&lt;/a&gt; (on the same wing subnet)&lt;/li&gt;
+&lt;li&gt;The start of internship applications&lt;/li&gt;
+&lt;li&gt;Embracing rejections&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Second Semester, 2015&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;The most stressful period of my life&lt;/li&gt;
+&lt;li&gt;Embracing even more rejections&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compiler Design&lt;/strong&gt; semester&lt;/li&gt;
+&lt;li&gt;Selection in the &lt;a href="http://india.media.mit.edu/"&gt;MIT Media Lab Design Innovation Workshop 2015&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Made some awesome friends from all over India(and the world)&lt;/li&gt;
+&lt;li&gt;Lost some awesome friends for stupid reasons&lt;/li&gt;
+&lt;li&gt;Working for the &lt;a href="https://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;Google Summer of Code&lt;/a&gt; as last respite&lt;/li&gt;
+&lt;li&gt;Project proposal getting selected for GSoC 2015&lt;/li&gt;
+&lt;li&gt;Juggling with Compilers, Robotics work, Computer Networks lab Teaching Assistantship, GSoC work, internship applications, Typeracing, Films&lt;/li&gt;
+&lt;li&gt;The semester when I was out of spacetime&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Summer 2015&lt;/strong&gt; &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;A hotchpotch of discipline and dust&lt;/li&gt;
+&lt;li&gt;Dusty times with the wing being cleaned out&lt;/li&gt;
+&lt;li&gt;Improved circadian rhythms and exercise&lt;/li&gt;
+&lt;li&gt;The "Getting shit done" phase&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The common denominator in all these eventful times - &lt;strong&gt;Gandhi 276&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Thank You Gandhi 276.&lt;/h2&gt;
+&lt;p&gt;For standing by me. For becoming a home which I'd go on to endear more than my family home. For sheltering me from the sweltering heat and the frosty chills of this sleepy university town. I learnt to touchtype as fast as 100 words per minute in this room. My first Git commit. My first pull request. My first blog post. Thank you room for all the experiences, sicknesses, treatments, soporific ambiences, all-nighters, Gtalk &amp;amp; IRC sessions, and above all - a nurturing environment where I grew up as a Computer Scientist.&lt;/p&gt;
+&lt;h2&gt;Closing remarks&lt;/h2&gt;
+&lt;p&gt;This has been a long farewell post. And this experience wouldn't have been this awesome if not for the people around this room - Karan, Kunal, Gaurav, Sai Charan, Shreyansh, Priyank, Girish. I wish all the best in life and beyond to the future and past occupants of this room.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;"May the GN276 Force be with you!"&lt;/p&gt;
 &lt;p&gt;So long and thanks for all the fish.&lt;/p&gt;
 &lt;/blockquote&gt;</summary><category term="personal"></category><category term="retrospect"></category><category term="introspect"></category><category term="memorabilia"></category><category term="history"></category></entry><entry><title>GSoC '15 Community Bonding</title><link href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/" rel="alternate"></link><updated>2015-05-23T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-05-23:blog/2015/05/23/gsoc-15-community-bonding/</id><summary type="html">&lt;p&gt;Third Post in the GSoC 2015 series. Here I'll take you through the engaging community bonding experience.&lt;/p&gt;
 &lt;h2&gt;Introduction to Community Bonding&lt;/h2&gt;
@@ -84,8 +113,8 @@ Thank You Gandhi 276. For standing by me. For becoming a home which I'd go on to
 &lt;li&gt;&lt;strong&gt;Oculus Rift Development Kit 2&lt;/strong&gt; for augmented reality applications&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;To this end, I set up my workstation for the &lt;a href="https://docs.google.com/document/d/11iE-pQ8wEX8BUwbexGgULJddv0xWRN98MYRrd0iunOI/edit?usp=sharing"&gt;project requirements&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;My current machine configuration for this GSoC project is as follows -
--Ubuntu 14.04.2 (Trusty Tahr)
+&lt;p&gt;My current machine configuration for this GSoC project is as follows:&lt;/p&gt;
+&lt;p&gt;-Ubuntu 14.04.2 (Trusty Tahr)
 -ROS Indigo
 -Python 3
 -Blender 2.74
