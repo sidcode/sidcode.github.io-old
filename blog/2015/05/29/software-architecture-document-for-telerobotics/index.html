@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My first experience with Pelican &mdash; All Day I Dream About Science</title>
+  <title>Software Architecture Document for Telerobotics &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -57,48 +57,46 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">My first experience with Pelican</h1>
+      <h1 class="entry-title">Software Architecture Document for Telerobotics</h1>
     <p class="meta">
-<time datetime="2015-02-17T11:52:00+01:00" pubdate>Tue 17 February 2015</time>  &ndash; &#128339; 1 min read
+<time datetime="2015-05-29T00:53:52+00:00" pubdate>Fri 29 May 2015</time>  &ndash; &#128339; 3 min read
     </p>
 </header>
 
-  <div class="entry-content"><p>I am trying to set up Pelican here.</p>
-<p>Edit: The setup process was so much easier than Octopress that I could complete manual migration in less than half an hour.</p>
-<p>Thanks to the plugins and theme support, everything that a blogger might need is simply <em>battery included</em>.</p>
-<p>So here is a list of resources that I found indispensable:</p>
-<ol>
-<li>
-<h2>Octopress theme</h2>
-</li>
-</ol>
+  <div class="entry-content"><h2>The First Three Days</h2>
+<p>Hi! Last couple of days were quite hectic. I am still getting used to the <em>7-hours a day</em> schedule of GSoC. But the good thing about GSoC is you can adjust the programming schedule according to your own convenience which is one more reason which takes it a notch above other summer coding programs. But I am devoting about 10 hours every day in these initial days to ensure I am well-positioned with respect to my timeline and also keep learning stuff on the go.</p>
+<p>Rants aside, I recently completed the first draft of the Software Architecture Document for my project.</p>
+<h2>Software Architecture Document</h2>
+<p><strong>Software Architecture Document</strong> (quite funnily abbreviated as SAD) is an important (read very) piece of information which entails and ensures what a software project is going to look like when it is built and shipped. I must thank the Italian Mars Society for giving me the much-needed push into the world of Open Source Software Engineering.</p>
+<p>Architecture of any program, especially open-source programs, as described in the excellent book <a href="http://aosabook.org/en/index.html">Architecture of Open Source Applications</a> describes software in terms of <strong>different</strong> layers of abstraction components, depending on who wants to look and improve upon it. Open source applications are a product of efforts of multiple people working on different aspects of a project together. To facilitate effective and non-redundant collaboration with proper version control, a software architecture document comes in handy.</p>
+<p>To put it in one line - </p>
 <blockquote>
-<p>The readablity and functionality offered by this minimalist theme is brilliant.</p>
+<p><strong>SAD ensures all developers, testers, and users are on the same page.</strong></p>
 </blockquote>
+<h2>SAD for Telerobotics Application</h2>
+<p>Take my <strong>Telerobotics application</strong> for instance. It is made up of three <em>distinct</em> <strong>features</strong> or <strong>functional requirements</strong> - </p>
+<ul>
+<li>Mapping Human body-tracking information to rover motion instructions</li>
+<li>Allowing real-time streaming of the rover's stereo camera-feed to the ERAS application</li>
+<li>Providing an Augmented reality interface obtained from the processing the rover sensor data</li>
+</ul>
+<p>Although I am the only developer working on these aspects currently, I must ensure that the application is in a <strong>well-maintained state</strong> throughout the life of the project. I must also ensure that a developer with skills in Robotics gets relevant information to the Robotics subsystem of the application (ROS knowledge). I must separate the concerns of a Network Communications developer from the user (the astronaut) while working on Real-time streaming from the rover to the Head Mounted device.</p>
+<p>While the features describe the expected behaviour of the software system, they require a lot of background machinery which is essential for operation but not relevant for exposing to the end-user. These are <strong>non-functional requirements</strong>. To give an example, <strong>Robotics Operating System</strong> is used to manouver the Husky robot around. But the astronaut or the software system need not be concerned that robot communication, control, and command (C3 architecture) takes place using ROS or other robot platforms like YARP or Player/Stage. </p>
+<p>Non-functional requirements in turn are quite important for satisfying the performance requirements of the software system. For instance, the Real-time streaming protocol (RTSP) that I'll be working with soon directly impacts the performance requirement of <strong>Hard-Real Time streaming support.</strong></p>
+<p>The Software Architecture Document is generic in that it keeps in mind the evolving technology that may be used to cater to the application in focus. For instance, the <strong>Unmanned Ground Vehicle</strong> currently being considered is the <strong>Husky rover</strong>. It is my responsibilty to ensure that the logical layers are independent of the robot being used. The software should be <strong>extensible</strong> easily to a future ground vehicle that may use an altogether different control architecture than <strong>ROS</strong>.</p>
+<p>Finally, SAD is practical. It describes the timeline of development of the features.</p>
+<h2>My experience with SADs</h2>
+<p>Working on the SAD has been an immensely edifying experience for me for several reasons -</p>
 <ol>
-<li>
-<h2>Social Media Integration</h2>
-</li>
+<li>My first foray into Software Engineering literature.</li>
+<li>Learning <em>reStructuredText</em> as the documentation tool for SAD.</li>
+<li>Appreciating how finely ingrained software-engineering principles are with Programming Language design. For instance, the sections of a SAD directly imbue the features of Object Oriented Programming (abstraction, encapsulation, separation of concern) and Functional Programming (Side effects, Higher-order functions).</li>
 </ol>
-<blockquote>
-<p>The configuration files <em>pelicanconf.py</em> and <em>publishconf.py</em> have ample variables for linking with the popular social media platforms - Facebook, Twitter, G+.</p>
-</blockquote>
-<ol>
-<li>
-<h2>Google Analytics</h2>
-</li>
-</ol>
-<blockquote>
-<p>Open Source bloggers can use this to track hits and get visual visits-with-time feedback.</p>
-</blockquote>
-<ol>
-<li>
-<h2>Markdown</h2>
-</li>
-</ol>
-<blockquote>
-<p>I like this typesetting format for multiple reasons - touchtyping friendly characters, frugal use of tags, expressiveness, and the LaTeX-like non-WYSIWYG nature.</p>
-</blockquote></div>
+<h2>Links to the document</h2>
+<p>If you are interested, the link to my <a href="https://bitbucket.org/italianmarssociety/eras/src/132fff239c3ff892f7cfc8836d3a2921244e444e/servers/telerobotics/doc/?at=default">software architecture document source is this</a>.</p>
+<p>The documentation on readthedocs can be found <a href="eras.readthedocs.org/en/latest/servers/telerobotics/doc/sad.html">here</a>.</p>
+<p>Until my next post on my first week of coding.</p>
+<p>Ciao!</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -106,13 +104,13 @@
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2015-02-17T11:52:00+01:00" pubdate>Tue 17 February 2015</time>  <span class="categories">
-    <a class='category' href='http://siddhantsci.org/category/blog.html'>Blog</a>
+<time datetime="2015-05-29T00:53:52+00:00" pubdate>Fri 29 May 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
-    <a class="category" href="http://siddhantsci.org/tag/review.html">review</a>,    <a class="category" href="http://siddhantsci.org/tag/personal.html">personal</a>  </span>
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/02/17/my-first-experience-with-pelican/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/02/17/my-first-experience-with-pelican/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
@@ -204,9 +202,9 @@
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
-          var disqus_identifier = '/blog/2015/02/17/my-first-experience-with-pelican/';
-          var disqus_url = 'http://siddhantsci.org/blog/2015/02/17/my-first-experience-with-pelican/';
-          var disqus_title = 'My first experience with Pelican';
+          var disqus_identifier = '/blog/2015/05/29/software-architecture-document-for-telerobotics/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/';
+          var disqus_title = 'Software Architecture Document for Telerobotics';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
