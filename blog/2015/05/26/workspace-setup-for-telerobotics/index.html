@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Workspace Setup for Telerobotics &mdash; All Day I Dream About Science</title>
+  <meta name="author" content="Siddhant Shrivastava">
+
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+        title="All Day I Dream About Science Atom Feed" />
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="http://siddhantsci.org/favicon.png" rel="icon">
+
+  <link href="http://siddhantsci.org/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="http://siddhantsci.org/">All Day I Dream About Science</a></h1>
+    <h2>Where (Computer) Science meets everything</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-atom">Atom</a></li>
+</ul>
+
+
+<form action="//google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:siddhantsci.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+    <li><a href="/archives.html">Archives</a></li>
+    <li><a href="http://siddhantsci.org">Home Page</a></li>
+    <li><a href="http://siddhantsci.org/bfc-orientation">Mozilla FOSS Talk</a></li>
+    <li><a href="http://siddhantsci.org/rightthingtodo">Talk on Justice</a></li>
+    <li><a href="pdfs/resume_siddhant.pdf">Résumé</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Workspace Setup for Telerobotics</h1>
+    <p class="meta">
+<time datetime="2015-05-26T00:53:52+00:00" pubdate>Tue 26 May 2015</time>  &ndash; &#128339; 2 min read
+    </p>
+</header>
+
+  <div class="entry-content"><p>Fourth Post in the GSoC 2015 series. This post describes how I set up my computer to work on Virtual Reality based Telerobotics</p>
+<p>Hi! Yesterday was the start of the <strong>coding period</strong> which will continue for another 12 weeks. The <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">Community Bonding period</a> gave me enough time to install the required packages. This post explains those packages in sminimal detail.</p>
+<h2>Project Components</h2>
+<p>My work would heavily require the use of -</p>
+<ol>
+<li><strong>ROS (Robot Operating System)</strong> to work with the <a href="www.clearpathrobotics.com/husky/">Husky Rover</a></li>
+</ol>
+<p><img alt="ROS Logo" src="http://siddhantsci.org/images/roslogo.png" /></p>
+<p>ROS is the meta-operating system which is very popular with roboticists. My future posts would describe my work with ROS and the concepts that I am using, in detail.</p>
+<p>More specifically, I am working with ROS Indigo Igloo, which is a LTS (Long-term support) release</p>
+<p><img alt="Indigo Logo" src="http://siddhantsci.org/images/indigologo.png" /></p>
+<ol>
+<li><strong>Gazebo Simulation environment</strong> to test the programs written to drive the Husky around</li>
+</ol>
+<p><img alt="Gazebo Logo" src="http://siddhantsci.org/images/gazebologo.png" />
+I am working with version 2.2.3.</p>
+<ol>
+<li><strong>Tango-Controls</strong> Supervisory Control and Data Acquistion system
+If data from different devices is the blood of ERAS, then Tango is the circulatory system. It does an excellent job of handling multiple devices (Motivity treadmill, Kinect Sensors, Blender Game Engine Instances, and in my case a ROS machine with Husky interfaces)</li>
+</ol>
+<p><img alt="Tango Logo" src="http://siddhantsci.org/images/tangologo.png" /></p>
+<ol>
+<li><strong>Blender Game Engine</strong> to model the standalone V-ERAS application.</li>
+</ol>
+<p><img alt="Blender Logo" src="http://siddhantsci.org/images/blenderlogo.png" /></p>
+<p>The V-ERAS simulation of the spacecraft looks like this -</p>
+<p><img alt="V-ERAS simulation" src="http://siddhantsci.org/images/verassim.png" /></p>
+<p>In the second phase of the project, I will be involved in real-time streaming of rover stereo camera feed to the displays in the V-ERAS simulation.</p>
+<ol>
+<li><strong>Python</strong> (of course :D )</li>
+</ol>
+<p><img alt="Python Logo" src="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/images/python-logo.png" /></p>
+<ol>
+<li><strong>Ubuntu 14.04 (Trusty Tahr)</strong></li>
+</ol>
+<p>ROS Indigo offers complete support for this version of Ubuntu.</p>
+<p><img alt="Ubuntu Logo" src="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/images/ubuntulogo.png" /></p>
+<h2>Screenshots</h2>
+<p>To Python-ify my experience even further, I installed <strong>Terminator</strong>, a Python-based program which makes terminal arrangement as flexible as humanly possible on Linux.</p>
+<p>Working with ROS requires opening up a lot of terminal  and Terminator makes this hassle-free.</p>
+<p>Take a look for yourselves -</p>
+<p><img alt="Terminator" src="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/images/terminator.png" /></p>
+<p>I am using different text editors for different purposes.</p>
+<p>While working with <strong>Markdown</strong> and <strong>reStructuredText</strong>, I use Sublime Text.</p>
+<p><img alt="Sublime Text Logo" src="{attach}images/sublime-logo.png" /></p>
+<p>Vim is my editor of choice for all things Python. I have been using it for open-source development since last year.</p>
+<p>So, with this I wrap up this setup post.</p>
+<p>Just for kicks, this is what my desktop looks like -</p>
+<p><img alt="Desktop IMS" src="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/images/desktop.png" /></p>
+<p>I must admit it keeps me motivated to design software for Mars missions. Just in case you're wondering, the theme I use is the MacBuntu theme. It is pretty distraction-free.</p>
+<p>To Coding! </p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Siddhant Shrivastava
+    </span>
+  </span>
+<time datetime="2015-05-26T00:53:52+00:00" pubdate>Tue 26 May 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
+</p><div class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/" >Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+</div>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
+<aside class="sidebar">
+  <section>
+	  <img src="http://siddhantsci.org/images/sid_face.jpg" alt="Siddhant Shrivastava" width=""/> 
+  </section>
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/">Workspace Setup for Telerobotics</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/24/room-276-gandhi-bhawan-bits-pilani/">Room 276, Gandhi Bhawan, BITS Pilani</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">GSoC '15 Community Bonding</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/">GSoC '15 - About my Project</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/">GSoC 2015 with the Italian Mars Society</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="http://siddhantsci.org/category/analogy.html">Analogy</a></li>
+        <li><a href="http://siddhantsci.org/category/blog.html">Blog</a></li>
+        <li><a href="http://siddhantsci.org/category/computer-science.html">Computer Science</a></li>
+        <li><a href="http://siddhantsci.org/category/gsoc.html">GSoC</a></li>
+        <li><a href="http://siddhantsci.org/category/hacker-spirit.html">Hacker Spirit</a></li>
+        <li><a href="http://siddhantsci.org/category/internet.html">Internet</a></li>
+        <li><a href="http://siddhantsci.org/category/open-source.html">Open Source</a></li>
+        <li><a href="http://siddhantsci.org/category/personal.html">Personal</a></li>
+        <li><a href="http://siddhantsci.org/category/robotics.html">Robotics</a></li>
+        <li><a href="http://siddhantsci.org/category/science.html">Science</a></li>
+        <li><a href="http://siddhantsci.org/category/theoretical-computer-science.html">Theoretical Computer Science</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>  </section>
+
+
+
+<section>
+    <a href="http://twitter.com/siddhantcode" class="twitter-follow-button" data-show-count="true">Follow @siddhantcode</a>
+</section>
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SiddhantShrivastava?rel=author">
+      <img src="//www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2014&ndash;2015  Siddhant Shrivastava &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="http://siddhantsci.org/theme/js/modernizr-2.0.js"></script>
+  <script src="http://siddhantsci.org/theme/js/ender.js"></script>
+  <script src="http://siddhantsci.org/theme/js/octopress.js" type="text/javascript"></script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59415221-1', 'auto');
+
+    ga('send', 'pageview');
+    </script>
+	<script type="text/javascript">
+	  var disqus_shortname = 'siddhant';
+          var disqus_identifier = '/blog/2015/05/26/workspace-setup-for-telerobotics/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/';
+          var disqus_title = 'Workspace Setup for Telerobotics';
+	  (function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	   })();
+	</script>
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>
