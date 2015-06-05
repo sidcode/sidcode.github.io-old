@@ -64,15 +64,15 @@
 </header>
 
   <div class="entry-content"><p>Hi! This is the sixth post in my <a href="http://siddhantsci.org/category/gsoc.html">GSoC '15 blog series</a>.</p>
-<p>So the much awaited coding period began on 25th May, 2015. After a refreshing <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">Community Bonding</a> experience, <a href="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/">setting up my workspace</a>, and <a href="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/">creating a Software Architecture Document</a> - I was ready to code.</p>
+<p>So the much awaited coding period began on 25th May, 2015. After a refreshing <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">Community Bonding</a> experience, <a href="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/">setting up my workspace</a>, and <a href="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/">creating a Software Architecture Document</a> - I was in a position to start coding.</p>
 <h2>Aims and Milestones</h2>
 <p>This week, according to the <a href="http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/">timeline</a>, my aims were -</p>
 <ul>
-<li>To creating the initial set of ROS nodes for the Husky model for linear and angular motion </li>
+<li>Creating the initial set of ROS nodes for the Husky model for linear and angular motion </li>
 <li>Zeroing in on the basic interface for mapping the Kinect bodytracking information and Motivity interface being concurrently developed by Vito to teleoperation commands that Husky can understand</li>
-<li>Deciding a way to integrate ROS and Tango into ERAS</li>
+<li>Figuring out a way to integrate ROS and Tango into ERAS</li>
 </ul>
-<p>So far it has been a good week and I am on schedule. I am able to manipulate the motion of the Husky via two different sources - external stimuli</p>
+<p>So far it has been a good week and I am on schedule. I am able to manipulate the motion of the simulated Husky via an external stimuli.</p>
 <h2>Architecture</h2>
 <p>Before I describe my programs, let me first describe the high-level architecture with help of a simple diagram -</p>
 <p><img alt="Telerobotics Architecture" src="http://siddhantsci.org/images/arch2.png" /></p>
@@ -94,8 +94,8 @@ I banged my head against Python Streams. Message brokers like <a href="https://w
 <p>These requirements had to be reflected in the Software Architecture Document as well. To this end, I set up the excellent <a href="https://github.com/timonwong/OmniMarkupPreviewer">OmniMarkupPreviewer</a> for <em>Sublime Text</em> to preview the <strong>reStructuredText</strong> (<strong>.rst</strong>) documents that I created.</p>
 <h2>Tryst with ROS and Husky</h2>
 <p>I had never worked with an Unmanned Ground Vehicle before. I did use ROS for robotics experiments at my university lab but needed to quickly jog my memory about ROS programming with <strong>rospy</strong>. The excellent <a href="http://wiki.ros.org/ROS/Tutorials">ROS wiki</a> and the book <strong>ROS By Example</strong> - </p>
-<p><img alt="ROS By Example" src="http://siddhantsci.org/images/rbxlogo.png" />
-It is amazing for robot hobbyists like me and I'll continue to refer to it for time to come.</p>
+<p><img alt="ROS By Example" src="http://siddhantsci.org/images/rbxlogo.png" /></p>
+<p>It is a haven for robot hobbyists like me and I'll continue to refer to it for time to come.</p>
 <p>Alright, I started my week with ROS programming. My first job was to bring up the simulator and make sure that Husky model responds to commands -</p>
 <p>Husky (and other ROS robots) describes movements in the form of <a href="http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">Twist</a> messages -</p>
 <div class="highlight"><pre><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">]</span> <span class="n">where</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">is</span> <span class="n">linear</span> <span class="n">velocity</span> <span class="n">along</span> <span class="n">the</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">axes</span><span class="p">.</span> <span class="n">And</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="n">is</span> <span class="n">the</span> <span class="n">angular</span> <span class="n">velocity</span> <span class="n">about</span> <span class="n">the</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">axes</span><span class="p">.</span>
@@ -164,10 +164,9 @@ This is why ROS scales so well. Any number of publisher and subscriber nodes can
 <p>In this way, I proceeded in creating ROS nodes to accept Twist messages from any application and made a small teleoperation program on the lines of the <strong>Arrow</strong> server in ERAS. With the help of Franco, I set up the Arrow Tango server and obtained the attributes for distance and orientation.</p>
 <p>The next aim is to use the distance and orientation information on the Tango bus and map it to Husky commands so that it may move around appropriately on ground like this -</p>
 <p><img alt="Husky Nautilus" src="http://siddhantsci.org/images/husky_nautilus.png" /></p>
-<p>Random ROS Tidbit -</p>
-<p>While working with ROS, I came across this interesting command <code>source</code></p>
-<p>Why do I call it interesting?
-It does not have a <strong>man-page</strong>, it does not have a <strong>--help</strong> or <strong>-h</strong> argument. It has one simple purpose -</p>
+<p><em>Random ROS Tidbit</em> - While working with ROS, I came across this interesting command <code>source</code></p>
+<p>Why do I call it interesting?</p>
+<p>It does not have a <strong>man-page</strong>, it does not have a <strong>--help</strong> or <strong>-h</strong> argument. It has one simple purpose -</p>
 <blockquote>
 <p>Execute the content of the file passed as argument <strong>in the current shell</strong></p>
 </blockquote>
@@ -188,10 +187,10 @@ It does not have a <strong>man-page</strong>, it does not have a <strong>--help<
 <h2>The Week ahead</h2>
 <p>The following week, we'll have another meeting with all the students and possibly a joint code review session. I will be integrating ROS and Tango and adding support for different levels of Robot control through additional ROS nodes.</p>
 <h2>Summary</h2>
-<p>In hindsight, I was scared my GSoC coding experience would be like this before starting out -</p>
+<p>In hindsight, I was scared my GSoC coding experience would turn out be like this before the start of the <a href="">Coding period</a> -</p>
 <p><img alt="Coding By the Sill" src="http://siddhantsci.org/images/codingbythesill.jpg" />
-Source - <a href="">CLUE</a></p>
-<p>:) I faced nothing like that. I did have to reinstall ROS as a result of purging my MySQL configuration for Tango. Obviously there were the usual frustrations which crop up with computer programming and Linux, but nothing huge.
+Source - <a href="https://www.facebook.com/cluecomics">CLUE</a></p>
+<p>:) In fact I faced nothing like that (but the headphone and the loneliness is true :D ) There were minor setbacks. I had to reinstall ROS as a result of purging my MySQL configuration for Tango. Obviously these were the usual frustrations which crop up with computer programming and Linux, but nothing humongous.
 But this is where the Zen of Python kicks in! Using top-notch resources like the <code>logging</code> module, <code>rqt-graph</code>, and the inbuilt ROS logger; programming was a breeze. Add to it the awesomeness of Italian Mars Society. I faced a doubt in bodytracking, and six people decided on a Skype call to resolve the issues being faced, and resolve it we did, with gusto.</p>
 <p>It is proving to be a challenging and fun summer. Watch out for my next post!</p>
 <p>Ciao!</p></div>
