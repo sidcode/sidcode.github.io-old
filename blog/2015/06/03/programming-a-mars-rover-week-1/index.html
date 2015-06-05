@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Programming a Mars rover - Week 1! &mdash; All Day I Dream About Science</title>
+  <meta name="author" content="Siddhant Shrivastava">
+
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+        title="All Day I Dream About Science Atom Feed" />
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="http://siddhantsci.org/favicon.png" rel="icon">
+
+  <link href="http://siddhantsci.org/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="http://siddhantsci.org/">All Day I Dream About Science</a></h1>
+    <h2>Where (Computer) Science meets everything</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-atom">Atom</a></li>
+</ul>
+
+
+<form action="//google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:siddhantsci.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+    <li><a href="/archives.html">Archives</a></li>
+    <li><a href="http://siddhantsci.org">Home Page</a></li>
+    <li><a href="http://siddhantsci.org/bfc-orientation">Mozilla FOSS Talk</a></li>
+    <li><a href="http://siddhantsci.org/rightthingtodo">Talk on Justice</a></li>
+    <li><a href="pdfs/resume_siddhant.pdf">Résumé</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Programming a Mars rover - Week 1!</h1>
+    <p class="meta">
+<time datetime="2015-06-03T00:53:52+00:00" pubdate>Wed 03 June 2015</time>  &ndash; &#128339; 6 min read
+    </p>
+</header>
+
+  <div class="entry-content"><p>Hi! This is the sixth post in my <a href="http://siddhantsci.org/category/gsoc.html">GSoC '15 blog series</a>.</p>
+<p>So the much awaited coding period began on 25th May, 2015. After a refreshing <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">Community Bonding</a> experience, <a href="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/">setting up my workspace</a>, and <a href="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/">creating a Software Architecture Document</a> - I was ready to code.</p>
+<h2>Aims and Milestones</h2>
+<p>This week, according to the <a href="http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/">timeline</a>, my aims were -</p>
+<ul>
+<li>To creating the initial set of ROS nodes for the Husky model for linear and angular motion </li>
+<li>Zeroing in on the basic interface for mapping the Kinect bodytracking information and Motivity interface being concurrently developed by Vito to teleoperation commands that Husky can understand</li>
+<li>Deciding a way to integrate ROS and Tango into ERAS</li>
+</ul>
+<p>So far it has been a good week and I am on schedule. I am able to manipulate the motion of the Husky via two different sources - external stimuli</p>
+<h2>Architecture</h2>
+<p>Before I describe my programs, let me first describe the high-level architecture with help of a simple diagram -</p>
+<p><img alt="Telerobotics Architecture" src="http://siddhantsci.org/images/arch2.png" /></p>
+<p>As is evident from the diagram, there are <strong>two distributed systems</strong> involved - both fairly complicated. These are -</p>
+<ul>
+<li>Tango Controls</li>
+<li>ROS (Robot Operating System)</li>
+</ul>
+<p>This was by far the <strong>biggest challenge</strong> of the project. Interfacing data from one distributed system to the other while maintaining low latency and ensuring high performance.</p>
+<p>Another challenge was handling real-time streaming data.
+I banged my head against Python Streams. Message brokers like <a href="https://www.rabbitmq.com/">RabbitMQ</a> and <a href="http://zeromq.org/">ZeroMQ</a>. But as <strong>Albert Einstein</strong> said -</p>
+<blockquote>
+<p>“If you can't explain it to a six year old, you don't understand it yourself.” </p>
+</blockquote>
+<p>All this while, I was confused in transferring data over an <strong>additional</strong> inter-process communication structure between two distributed systems. Meh. Sounds complicated. It actually is. And that is why I chucked that idea out. After spending three full days on this, I realized a <strong>much simpler architecture</strong> -</p>
+<p><img alt="ROS and Tango" src="http://siddhantsci.org/images/rostango.png" /></p>
+<p><em>Voila!</em></p>
+<p>The good thing about this diagram is that it works at scale with as many ROS nodes one may like to add for the rover (Husky) without compromising on the data coming from the Tango bus. The <strong>missing piece</strong> of the <em>two distributed systems</em> puzzle is solved by a Tango ROS Node. Now I have a plan to work on in the second week of coding.</p>
+<p>These requirements had to be reflected in the Software Architecture Document as well. To this end, I set up the excellent <a href="https://github.com/timonwong/OmniMarkupPreviewer">OmniMarkupPreviewer</a> for <em>Sublime Text</em> to preview the <strong>reStructuredText</strong> (<strong>.rst</strong>) documents that I created.</p>
+<h2>Tryst with ROS and Husky</h2>
+<p>I had never worked with an Unmanned Ground Vehicle before. I did use ROS for robotics experiments at my university lab but needed to quickly jog my memory about ROS programming with <strong>rospy</strong>. The excellent <a href="http://wiki.ros.org/ROS/Tutorials">ROS wiki</a> and the book <strong>ROS By Example</strong> - </p>
+<p><img alt="ROS By Example" src="http://siddhantsci.org/images/rbxlogo.png" />
+It is amazing for robot hobbyists like me and I'll continue to refer to it for time to come.</p>
+<p>Alright, I started my week with ROS programming. My first job was to bring up the simulator and make sure that Husky model responds to commands -</p>
+<p>Husky (and other ROS robots) describes movements in the form of <a href="http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">Twist</a> messages -</p>
+<div class="highlight"><pre><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">]</span> <span class="n">where</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">is</span> <span class="n">linear</span> <span class="n">velocity</span> <span class="n">along</span> <span class="n">the</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">axes</span><span class="p">.</span> <span class="n">And</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="n">is</span> <span class="n">the</span> <span class="n">angular</span> <span class="n">velocity</span> <span class="n">about</span> <span class="n">the</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">axes</span><span class="p">.</span>
+</pre></div>
+
+
+<p>So to move in a circle, we issue [ (5,0,0) , (0,0,2) ]. This would result in a linear speed of 5 in the x direction and angular speed of 2 about the z axis, resulting in a circular motion.</p>
+<p>A simple way to explain the working is to use this command -</p>
+<div class="highlight"><pre><span class="n">rostopic</span> <span class="n">pub</span> <span class="o">/</span><span class="n">husky_velocity_controller</span><span class="o">/</span><span class="n">cmd_vel</span> <span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Twist</span> <span class="o">-</span><span class="n">r</span> <span class="mi">100</span> <span class="err">&#39;</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="sc">&#39; &#39;</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<p>This publishes a Twist message to the Terminal telling the <strong>/husky_velocity_controller/cmd_vel</strong> <em>ROS topic</em> that the <a href="http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">Twist</a> denotes a linear motion of 0.5 m/s along the x direction.</p>
+<p>This is Husky in action -</p>
+<p><img alt="Husky in action" src="http://siddhantsci.org/images/husky_in_action.png" /></p>
+<p>To do the same using rospy, the procedure is simple -</p>
+<ul>
+<li>Import the required libraries (to support <em>rospy</em>, logging, and <em>Twist</em> messages)</li>
+</ul>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">roslib</span>
+<span class="n">import</span> <span class="n">rospy</span>
+<span class="n">from</span> <span class="n">geometry_msgs</span><span class="p">.</span><span class="n">msg</span> <span class="n">import</span> <span class="n">Twist</span>
+</pre></div>
+
+
+<ul>
+<li>Set up a ROS node - in this case <strong>move</strong></li>
+</ul>
+<div class="highlight"><pre><span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="err">&#39;</span><span class="n">move</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>ROS nodes act as identifiers (source and destination of messages) in the ROS distributed system (modeled as a graph)</p>
+<p>For instance, this is the ROS graph while the Husky is moving about -</p>
+<p><img alt="ROS Graph" src="http://siddhantsci.org/images/rosgraph.png" />
+This is why ROS scales so well. Any number of publisher and subscriber nodes can be added to extend different applications.</p>
+<ul>
+<li>Set up a publisher to the appropriate ROS topic with the ROS message type </li>
+</ul>
+<div class="highlight"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="err">&#39;</span><span class="n">husky_velocity_controller</span><span class="o">/</span><span class="n">cmd_vel</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The <code>queue_size</code> argument specifies the message buffer length, and allows for asynchronous transfer of messages on the ROS meesage queue.</p>
+<ul>
+<li>Construct a Twist Message</li>
+</ul>
+<div class="highlight"><pre><span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+<span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>                   
+<span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     
+<span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    
+</pre></div>
+
+
+<ul>
+<li>Publish the message</li>
+</ul>
+<div class="highlight"><pre><span class="n">p</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span>
+</pre></div>
+
+
+<p>That was easy, isn't it?</p>
+<p>Changing the attributes can allow the Husky to move in a circle and nautilus shape -</p>
+<p><img alt="Husky Circle" src="http://siddhantsci.org/images/husky_circle.png" /></p>
+<p>In this way, I proceeded in creating ROS nodes to accept Twist messages from any application and made a small teleoperation program on the lines of the <strong>Arrow</strong> server in ERAS. With the help of Franco, I set up the Arrow Tango server and obtained the attributes for distance and orientation.</p>
+<p>The next aim is to use the distance and orientation information on the Tango bus and map it to Husky commands so that it may move around appropriately on ground like this -</p>
+<p><img alt="Husky Nautilus" src="http://siddhantsci.org/images/husky_nautilus.png" /></p>
+<p>Random ROS Tidbit -</p>
+<p>While working with ROS, I came across this interesting command <code>source</code></p>
+<p>Why do I call it interesting?
+It does not have a <strong>man-page</strong>, it does not have a <strong>--help</strong> or <strong>-h</strong> argument. It has one simple purpose -</p>
+<blockquote>
+<p>Execute the content of the file passed as argument <strong>in the current shell</strong></p>
+</blockquote>
+<p>Note that it is not the same as <strong>./</strong> which creates a new shell to run the command. Shells are nifty processes which allow other program processes to run. I wrote a shell from scratch for a Network Programming course assignment. You may find it <a href="https://github.com/sidcode/sigshell">here</a>.</p>
+<h2>Skype Meeting for Bodytracking</h2>
+<p>Franco, Yuval, Fabio, Ezio, Vito and I had an important meeting on 2nd May( a couple of hours before writing this post). The purpose of the meeting was <strong>Mapping Bodytracking with Telerobotics</strong>. The whole point of the project is to allow complete virtual and augmented reality immersion of the astronaut and the rover. This is what it means. The robot (a humanoid or a rover) should be able to mimic human action as much as possible. How? If the astronaut runs fast on the Motivity treadmill at a particular angle, the robot should move faster with that angle relative to the moving base position. This would make use of Vito's Kinect-based bodytracking module for determining incremental distance and orientation.</p>
+<p>Since Husky understands velocity in the Twist message, the distance/orientation information must be transformed into linear/angular velocity. I'll be working on it this week. </p>
+<p>Fabio brought up the important aspect of autonomy-control in the robotic system. He pressed upon the need of having three different stimuli to the robot -</p>
+<ul>
+<li>From the <strong>Bodytracking application</strong> (external)</li>
+<li>From the <strong>robot's onboard sensors</strong> (internal)</li>
+<li>From an external source</li>
+</ul>
+<p>This suggestion definitely adds robustness to the entire design, it will help the robot to avoid hitting a rock and override an astronaut's command in case of danger. I will look into it this week and keep semi-autonomy in Telerobotics in mind.</p>
+<p>Yuval talked about contacting the team in Canada which facilitated Husky during V-ERAS 14. The work that I do will be tested on a real Husky eventually. </p>
+<p>Adding a UR10 robotic arm to the Husky to facilitate manipulation and imitation of the human hand was also proposed. I'll look into that after the work on steering is complete.</p>
+<p>In this way, the meeting was <strong>quite important</strong> and a bunch of <strong>crucial decisions</strong> regarding <strong>Telerobotics and Bodytracking</strong> were taken.</p>
+<h2>The Week ahead</h2>
+<p>The following week, we'll have another meeting with all the students and possibly a joint code review session. I will be integrating ROS and Tango and adding support for different levels of Robot control through additional ROS nodes.</p>
+<h2>Summary</h2>
+<p>In hindsight, I was scared my GSoC coding experience would be like this before starting out -</p>
+<p><img alt="Coding By the Sill" src="http://siddhantsci.org/images/codingbythesill.jpg" />
+Source - <a href="">CLUE</a></p>
+<p>:) I faced nothing like that. I did have to reinstall ROS as a result of purging my MySQL configuration for Tango. Obviously there were the usual frustrations which crop up with computer programming and Linux, but nothing huge.
+But this is where the Zen of Python kicks in! Using top-notch resources like the <code>logging</code> module, <code>rqt-graph</code>, and the inbuilt ROS logger; programming was a breeze. Add to it the awesomeness of Italian Mars Society. I faced a doubt in bodytracking, and six people decided on a Skype call to resolve the issues being faced, and resolve it we did, with gusto.</p>
+<p>It is proving to be a challenging and fun summer. Watch out for my next post!</p>
+<p>Ciao!</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Siddhant Shrivastava
+    </span>
+  </span>
+<time datetime="2015-06-03T00:53:52+00:00" pubdate>Wed 03 June 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
+</p><div class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/06/03/programming-a-mars-rover-week-1/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/06/03/programming-a-mars-rover-week-1/" >Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+</div>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
+<aside class="sidebar">
+  <section>
+	  <img src="http://siddhantsci.org/images/sid_face.jpg" alt="Siddhant Shrivastava" width=""/> 
+  </section>
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/06/03/programming-a-mars-rover-week-1/">Programming a Mars rover - Week 1!</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/">Software Architecture Document for Telerobotics</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/">Workspace Setup for Telerobotics</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/24/room-276-gandhi-bhawan-bits-pilani/">Room 276, Gandhi Bhawan, BITS Pilani</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">GSoC '15 Community Bonding</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="http://siddhantsci.org/category/analogy.html">Analogy</a></li>
+        <li><a href="http://siddhantsci.org/category/blog.html">Blog</a></li>
+        <li><a href="http://siddhantsci.org/category/computer-science.html">Computer Science</a></li>
+        <li><a href="http://siddhantsci.org/category/gsoc.html">GSoC</a></li>
+        <li><a href="http://siddhantsci.org/category/hacker-spirit.html">Hacker Spirit</a></li>
+        <li><a href="http://siddhantsci.org/category/internet.html">Internet</a></li>
+        <li><a href="http://siddhantsci.org/category/open-source.html">Open Source</a></li>
+        <li><a href="http://siddhantsci.org/category/personal.html">Personal</a></li>
+        <li><a href="http://siddhantsci.org/category/robotics.html">Robotics</a></li>
+        <li><a href="http://siddhantsci.org/category/science.html">Science</a></li>
+        <li><a href="http://siddhantsci.org/category/theoretical-computer-science.html">Theoretical Computer Science</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>  </section>
+
+
+
+<section>
+    <a href="http://twitter.com/siddhantcode" class="twitter-follow-button" data-show-count="true">Follow @siddhantcode</a>
+</section>
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SiddhantShrivastava?rel=author">
+      <img src="//www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2014&ndash;2015  Siddhant Shrivastava &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="http://siddhantsci.org/theme/js/modernizr-2.0.js"></script>
+  <script src="http://siddhantsci.org/theme/js/ender.js"></script>
+  <script src="http://siddhantsci.org/theme/js/octopress.js" type="text/javascript"></script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59415221-1', 'auto');
+
+    ga('send', 'pageview');
+    </script>
+	<script type="text/javascript">
+	  var disqus_shortname = 'siddhant';
+          var disqus_identifier = '/blog/2015/06/03/programming-a-mars-rover-week-1/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/06/03/programming-a-mars-rover-week-1/';
+          var disqus_title = 'Programming a Mars rover - Week 1!';
+	  (function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	   })();
+	</script>
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>
