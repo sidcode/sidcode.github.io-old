@@ -80,7 +80,7 @@
 <li>Allowing real-time streaming of the rover's stereo camera-feed to the ERAS application</li>
 <li>Providing an Augmented reality interface obtained from the processing the rover sensor data</li>
 </ul>
-<p>Although I am the only developer working on these aspects currently, I must ensure that the application is in a <strong>well-maintained state</strong> throughout the life of the project. I must also ensure that a developer with skills in Robotics gets relevant information to the Robotics subsystem of the application (ROS knowledge). I must separate the concerns of a Network Communications developer from the user (the astronaut) while working on Real-time streaming from the rover to the Head Mounted device.</p>
+<p>Although I am the only developer working on these aspects currently, I must ensure that the application is in a <strong>well-maintained state</strong> throughout the life of the project. I must also ensure that a developer with skills in Robotics gets relevant information to the Robotics subsystem of the application (ROS knowledge). I must separate the concerns of a Network Communications developer from the user (the astronaut) while working on Real-time streaming from the rover to the Head Mounted Virtual Reality device.</p>
 <p>While the features describe the expected behaviour of the software system, they require a lot of background machinery which is essential for operation but not relevant for exposing to the end-user. These are <strong>non-functional requirements</strong>. To give an example, <strong>Robotics Operating System</strong> is used to manouver the Husky robot around. But the astronaut or the software system need not be concerned that robot communication, control, and command (C3 architecture) takes place using ROS or other robot platforms like YARP or Player/Stage. </p>
 <p>Non-functional requirements in turn are quite important for satisfying the performance requirements of the software system. For instance, the Real-time streaming protocol (RTSP) that I'll be working with soon directly impacts the performance requirement of <strong>Hard-Real Time streaming support.</strong></p>
 <p>The Software Architecture Document is generic in that it keeps in mind the evolving technology that may be used to cater to the application in focus. For instance, the <strong>Unmanned Ground Vehicle</strong> currently being considered is the <strong>Husky rover</strong>. It is my responsibilty to ensure that the logical layers are independent of the robot being used. The software should be <strong>extensible</strong> easily to a future ground vehicle that may use an altogether different control architecture than <strong>ROS</strong>.</p>
@@ -129,6 +129,9 @@
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/">Tango-ing with ROS- Week 2!</a>
+      </li>
+      <li class="post">
           <a href="http://siddhantsci.org/blog/2015/06/03/programming-a-mars-rover-week-1/">Programming a Mars rover - Week 1!</a>
       </li>
       <li class="post">
@@ -139,9 +142,6 @@
       </li>
       <li class="post">
           <a href="http://siddhantsci.org/blog/2015/05/24/room-276-gandhi-bhawan-bits-pilani/">Room 276, Gandhi Bhawan, BITS Pilani</a>
-      </li>
-      <li class="post">
-          <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">GSoC '15 Community Bonding</a>
       </li>
     </ul>
   </section>
