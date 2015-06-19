@@ -1,5 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-06-12T19:53:52+00:00</updated><entry><title>All for Docker; Docker for all!</title><link href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" rel="alternate"></link><updated>2015-06-12T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-06-12:blog/2015/06/12/all-for-docker-docker-for-all/</id><summary type="html">&lt;p&gt;Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my &lt;a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/"&gt;last post&lt;/a&gt;, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-06-18T19:53:52+00:00</updated><entry><title>When two Distributed Systems meet!</title><link href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/" rel="alternate"></link><updated>2015-06-18T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-06-18:blog/2015/06/18/when-two-distributed-systems-meet/</id><summary type="html">&lt;p&gt;Hi! This post is meant to be an insight into the experience and progress of the third and fourth weeks of my (a)vocation with the Google Summer of Code Program. Things got much pacier and smooth in the past two weeks. I've been able to get a stable codebase up and running with respect to the aims discussed in the timeline.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://siddhantsci.org/images/workspace2.png"&gt;Sublime Text Workspace&lt;/a&gt;)
+&lt;the usual rant&gt; I had to totally restructure my programming workspace for the second time to support Intelligent IDE like features since the Python packages I am working with (ROS and Tango) have a fair number of modules whose documentation I need to read on the fly while coding away. Thus I set up both my &lt;strong&gt;Vim and Sublime Text&lt;/strong&gt; environments to support  &lt;em&gt;intelli-sense&lt;/em&gt;, &lt;em&gt;code completion&lt;/em&gt;, &lt;em&gt;block syntax completion&lt;/em&gt;, etc. I also added a dual monitor setup with the unused LCD television at my home to make for an efficient programming ambience.
+&lt;usual rant&gt;&lt;/p&gt;
+&lt;h2&gt;Telerobotics Code Pushed&lt;/h2&gt;
+&lt;p&gt;As I mentioned in my &lt;a href="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/"&gt;first post&lt;/a&gt;, the contributors of the &lt;strong&gt;Italian Mars Society&lt;/strong&gt; are given &lt;em&gt;write access&lt;/em&gt; to the online Bitbucket repository. This is a tremendous responsibility to ensure that the updates don't disturb the stability of the project. To work with this, I follow the simple and effective advice of my mentors -&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;hg&lt;/span&gt; &lt;span class="n"&gt;pull&lt;/span&gt;
+&lt;span class="n"&gt;hg&lt;/span&gt; &lt;span class="n"&gt;update&lt;/span&gt;
+&lt;span class="n"&gt;hg&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;hg&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;My awesome Commit Message&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;hg&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This simple algorithm ensures that all students can work at their pace without breaking the system. &lt;a href="http://hginit.com/"&gt;This simple tutorial&lt;/a&gt; can help the uninitiated to understand what I just said.&lt;/p&gt;
+&lt;p&gt;So while working with Tango servers for my project, I had to constantly use the bundled GUI - &lt;strong&gt;Jive&lt;/strong&gt; which works as a one-stop solution for &lt;a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/quicktour.html"&gt;Device Servers&lt;/a&gt;. But my primordial hacker instincts prompted me to write a &lt;a href="https://en.wikipedia.org/wiki/Command-line_interface"&gt;CLI&lt;/a&gt; solution to add and remove device servers using the amazing &lt;a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/#"&gt;PyTango API&lt;/a&gt;. Thanks to Ezio's excellent comments on my commits, I've been able to contribute a Pythonic solution for working with Device Servers in a jiffy. The script can be found &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/2da8222593354228a1eb426bef556654e794365c/servers/telerobotics/utility/setup-device.py?at=default"&gt;here&lt;/a&gt;. It has a nice UI to help the user figure out what he/she needs to enter. I have yet to correct some formatting errors to make it more consistent with PEP8 and the &lt;a href="http://docs.python.org//glossary.html#term-eafp"&gt;EAFP&lt;/a&gt; idiom. The current stage of argument validation is more like LBYL (Look Before You Leap) which is slow for the script's use-case.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The second module&lt;/strong&gt; I pushed is the &lt;strong&gt;Husky Test&lt;/strong&gt; script to ensure if the Husky installation works or not on a particular setup. The &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/2da8222593354228a1eb426bef556654e794365c/servers/telerobotics/utility/test_husky.py?at=default"&gt;test script&lt;/a&gt; which allows a Husky to move with a particular linear and angular velocity. The &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/2da8222593354228a1eb426bef556654e794365c/servers/telerobotics/doc/sad.rst?at=default"&gt;Software Architecture Document&lt;/a&gt; was also updated to account for the new changes in the ROS-Tango interface architecture. A better understanding of the SAD can be had in &lt;a href="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/"&gt;an earlier post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Docker&lt;/h2&gt;
+&lt;p&gt;I explained the Docker setup and distribution in a &lt;a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/"&gt;quick mini-post&lt;/a&gt;. I tested that the X-errors don't impede with the scripts that I have been developing since ROS topics can be accessed from the command line as well. This is a good thing. The Docker repository for my workspace can be found &lt;a href="https://registry.hub.docker.com/u/sidcode/ros-eras/"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Python Reading&lt;/h2&gt;
+&lt;p&gt;I have been voraciously consulting the following sources for getting the knack of Python and PyTango programming -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python Docs for &lt;a href="http://docs.python.org/2/"&gt;Python 2&lt;/a&gt; and &lt;a href="http://docs.python.org/3/"&gt;Python 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://shop.oreilly.com/product/0636920027072.do"&gt;Python Cookbook&lt;/a&gt; by O'Reilly Publishers&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://shop.oreilly.com/product/0636920032519.do"&gt;Fluent Python&lt;/a&gt; (early access) again by O'Reilly Publishers&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/index.html"&gt;PyTango documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The happiest point of all this reading kicked in when I could help Vito to reduce &lt;strong&gt;fifty lines of code to just two&lt;/strong&gt; with the use of the &lt;code&gt;exec&lt;/code&gt; construct in Python. In case you're wondering, this is the &lt;a href="https://bitbucket.org/italianmarssociety/eras/commits/2da8222593354228a1eb426bef556654e794365c#Lservers/body_tracker/tracker/tracker.pyT40"&gt;code written by Vito&lt;/a&gt; -&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;   &lt;span class="nt"&gt;joints&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="cp"&gt;[&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_head&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_neck&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_left_shoulder&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_right_shoulder&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_left_elbow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_right_elbow&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_left_hand&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_right_hand&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_torso&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_left_hip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_right_hip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_left_knee&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_right_knee&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_left_foot&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;&amp;#39;skeleton_right_foot&amp;#39;&lt;/span&gt;
+    &lt;span class="cp"&gt;]&lt;/span&gt;
+
+    &lt;span class="nt"&gt;attr_init_params&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nt"&gt;dict&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;
+        &lt;span class="nt"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;float32&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,),&lt;/span&gt;
+        &lt;span class="nt"&gt;unit&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;m&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;max_dim_x&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;3&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+        &lt;span class="nt"&gt;polling_period&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;POLLING&lt;/span&gt;
+    &lt;span class="o"&gt;)&lt;/span&gt;
+
+    &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;joint&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;joints&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+        &lt;span class="nt"&gt;exec&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;%s = attribute(**attr_init_params)&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="nt"&gt;joint&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that without the &lt;code&gt;exec&lt;/code&gt; usage, each line would've to be manually written for each of the joint that we see in the &lt;code&gt;joints&lt;/code&gt; list.&lt;/p&gt;
+&lt;h2&gt;Ongoing Stuff&lt;/h2&gt;
+&lt;p&gt;There are certain deliverables in the pipeline currently waiting to be pushed to the online repository over the course of the next week. I have been working on -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ROS-feedback Aggregator Device Server for Tango&lt;/li&gt;
+&lt;li&gt;ROS Commander Node for the Husky&lt;/li&gt;
+&lt;li&gt;Tango Client to understand Husky status (battery levels, sensor monitor, etc.)&lt;/li&gt;
+&lt;li&gt;Mathematical Transformations and Named Tuples for different structures that Telerobotics requires.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GSoC with PSF and Italian Mars Society is turning out to be fun-and-challenging. Midterm Evaluations start in a week. Lots of work to do. I strongly hope my next post will be a celebratory one highlighting the pushed code I described in &lt;em&gt;Ongoing Stuff&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Until then, Ciao!&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category><category term="IMS"></category><category term="Italian Mars Society"></category></entry><entry><title>All for Docker; Docker for all!</title><link href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" rel="alternate"></link><updated>2015-06-12T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-06-12:blog/2015/06/12/all-for-docker-docker-for-all/</id><summary type="html">&lt;p&gt;Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my &lt;a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/"&gt;last post&lt;/a&gt;, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Docker
 &lt;img alt="Docker Logo" src="http://siddhantsci.org/images/docker-logo.png" /&gt;&lt;/li&gt;

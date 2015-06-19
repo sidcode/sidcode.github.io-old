@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>All for Docker; Docker for all! &mdash; All Day I Dream About Science</title>
+  <title>When two Distributed Systems meet! &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -57,33 +57,81 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">All for Docker; Docker for all!</h1>
+      <h1 class="entry-title">When two Distributed Systems meet!</h1>
     <p class="meta">
-<time datetime="2015-06-12T19:53:52+00:00" pubdate>Fri 12 June 2015</time>  &ndash; &#128339; 2 min read
+<time datetime="2015-06-18T19:53:52+00:00" pubdate>Thu 18 June 2015</time>  &ndash; &#128339; 4 min read
     </p>
 </header>
 
-  <div class="entry-content"><p>Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my <a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/">last post</a>, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -</p>
-<ol>
-<li>Docker
-<img alt="Docker Logo" src="http://siddhantsci.org/images/docker-logo.png" /></li>
-<li>Tango-Controls
-<img alt="Tango Controls logo" src="http://siddhantsci.org/images/tangologo.png" /></li>
-</ol>
-<p>I used the <a href="https://registry.hub.docker.com/_/ubuntu/">Ubuntu 14.04</a> <em>Docker Container</em> to setup my system which can be used by anyone in the world as a common platform to test the applications that I am working on. This has multiple advantages -</p>
+  <div class="entry-content"><p>Hi! This post is meant to be an insight into the experience and progress of the third and fourth weeks of my (a)vocation with the Google Summer of Code Program. Things got much pacier and smooth in the past two weeks. I've been able to get a stable codebase up and running with respect to the aims discussed in the timeline.</p>
+<p><a href="http://siddhantsci.org/images/workspace2.png">Sublime Text Workspace</a>)
+<the usual rant> I had to totally restructure my programming workspace for the second time to support Intelligent IDE like features since the Python packages I am working with (ROS and Tango) have a fair number of modules whose documentation I need to read on the fly while coding away. Thus I set up both my <strong>Vim and Sublime Text</strong> environments to support  <em>intelli-sense</em>, <em>code completion</em>, <em>block syntax completion</em>, etc. I also added a dual monitor setup with the unused LCD television at my home to make for an efficient programming ambience.
+<usual rant></p>
+<h2>Telerobotics Code Pushed</h2>
+<p>As I mentioned in my <a href="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/">first post</a>, the contributors of the <strong>Italian Mars Society</strong> are given <em>write access</em> to the online Bitbucket repository. This is a tremendous responsibility to ensure that the updates don't disturb the stability of the project. To work with this, I follow the simple and effective advice of my mentors -</p>
+<div class="highlight"><pre><span class="n">hg</span> <span class="n">pull</span>
+<span class="n">hg</span> <span class="n">update</span>
+<span class="n">hg</span> <span class="n">add</span> <span class="p">.</span>
+<span class="n">hg</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;My awesome Commit Message&quot;</span>
+<span class="n">hg</span> <span class="n">push</span>
+</pre></div>
+
+
+<p>This simple algorithm ensures that all students can work at their pace without breaking the system. <a href="http://hginit.com/">This simple tutorial</a> can help the uninitiated to understand what I just said.</p>
+<p>So while working with Tango servers for my project, I had to constantly use the bundled GUI - <strong>Jive</strong> which works as a one-stop solution for <a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/quicktour.html">Device Servers</a>. But my primordial hacker instincts prompted me to write a <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> solution to add and remove device servers using the amazing <a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/#">PyTango API</a>. Thanks to Ezio's excellent comments on my commits, I've been able to contribute a Pythonic solution for working with Device Servers in a jiffy. The script can be found <a href="https://bitbucket.org/italianmarssociety/eras/src/2da8222593354228a1eb426bef556654e794365c/servers/telerobotics/utility/setup-device.py?at=default">here</a>. It has a nice UI to help the user figure out what he/she needs to enter. I have yet to correct some formatting errors to make it more consistent with PEP8 and the <a href="http://docs.python.org//glossary.html#term-eafp">EAFP</a> idiom. The current stage of argument validation is more like LBYL (Look Before You Leap) which is slow for the script's use-case.</p>
+<p><strong>The second module</strong> I pushed is the <strong>Husky Test</strong> script to ensure if the Husky installation works or not on a particular setup. The <a href="https://bitbucket.org/italianmarssociety/eras/src/2da8222593354228a1eb426bef556654e794365c/servers/telerobotics/utility/test_husky.py?at=default">test script</a> which allows a Husky to move with a particular linear and angular velocity. The <a href="https://bitbucket.org/italianmarssociety/eras/src/2da8222593354228a1eb426bef556654e794365c/servers/telerobotics/doc/sad.rst?at=default">Software Architecture Document</a> was also updated to account for the new changes in the ROS-Tango interface architecture. A better understanding of the SAD can be had in <a href="http://siddhantsci.org/blog/2015/05/29/software-architecture-document-for-telerobotics/">an earlier post</a>.</p>
+<h2>Docker</h2>
+<p>I explained the Docker setup and distribution in a <a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/">quick mini-post</a>. I tested that the X-errors don't impede with the scripts that I have been developing since ROS topics can be accessed from the command line as well. This is a good thing. The Docker repository for my workspace can be found <a href="https://registry.hub.docker.com/u/sidcode/ros-eras/">here</a>.</p>
+<h2>Python Reading</h2>
+<p>I have been voraciously consulting the following sources for getting the knack of Python and PyTango programming -</p>
 <ul>
-<li>Setup-time for collaborators is null. The developer sets up the Docker container and the community members can use it directly.</li>
-<li>Host platform-independent. It doesn't matter whether the collaborator's host system is Arch Linux, Windows 8, or a specific version of Ubuntu. Docker uses <a href="http://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces">Linux namespaces</a> and ensures a separation of concerns.</li>
-<li>Revision control mechanism. The developer plays around with a Docker Image just as he/she would do with any other <strong>Distribution Revision Control system</strong>. I <strong>push</strong> my changes to the repository (Docker image) and my mentors can simply <strong>pull the updates</strong> to get the new system configuration.</li>
+<li>Python Docs for <a href="http://docs.python.org/2/">Python 2</a> and <a href="http://docs.python.org/3/">Python 3</a></li>
+<li><a href="http://shop.oreilly.com/product/0636920027072.do">Python Cookbook</a> by O'Reilly Publishers</li>
+<li><a href="http://shop.oreilly.com/product/0636920032519.do">Fluent Python</a> (early access) again by O'Reilly Publishers</li>
+<li><a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/index.html">PyTango documentation</a></li>
 </ul>
-<p>So far, I have setup Tango-Controls, ROS Indigo, and the Husky libraries for my Docker image. These can be found in the <a href="https://registry.hub.docker.com/u/sidcode/ros-eras/">Docker Registry Hub</a></p>
-<p>The issues that I am currently facing are -</p>
+<p>The happiest point of all this reading kicked in when I could help Vito to reduce <strong>fifty lines of code to just two</strong> with the use of the <code>exec</code> construct in Python. In case you're wondering, this is the <a href="https://bitbucket.org/italianmarssociety/eras/commits/2da8222593354228a1eb426bef556654e794365c#Lservers/body_tracker/tracker/tracker.pyT40">code written by Vito</a> -</p>
+<div class="highlight"><pre>   <span class="nt">joints</span> <span class="o">=</span> <span class="cp">[</span>
+        <span class="s1">&#39;skeleton_head&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_neck&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_shoulder&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_shoulder&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_elbow&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_elbow&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_hand&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_hand&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_torso&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_hip&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_hip&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_knee&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_knee&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_foot&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_foot&#39;</span>
+    <span class="cp">]</span>
+
+    <span class="nt">attr_init_params</span> <span class="o">=</span> <span class="nt">dict</span><span class="o">(</span>
+        <span class="nt">dtype</span><span class="o">=(</span><span class="s1">&#39;float32&#39;</span><span class="o">,),</span>
+        <span class="nt">unit</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="o">,</span>
+        <span class="nt">max_dim_x</span><span class="o">=</span><span class="nt">3</span><span class="o">,</span>
+        <span class="nt">polling_period</span><span class="o">=</span><span class="nt">POLLING</span>
+    <span class="o">)</span>
+
+    <span class="nt">for</span> <span class="nt">joint</span> <span class="nt">in</span> <span class="nt">joints</span><span class="o">:</span>
+        <span class="nt">exec</span> <span class="s2">&quot;%s = attribute(**attr_init_params)&quot;</span> <span class="o">%</span> <span class="nt">joint</span>
+</pre></div>
+
+
+<p>Note that without the <code>exec</code> usage, each line would've to be manually written for each of the joint that we see in the <code>joints</code> list.</p>
+<h2>Ongoing Stuff</h2>
+<p>There are certain deliverables in the pipeline currently waiting to be pushed to the online repository over the course of the next week. I have been working on -</p>
 <ul>
-<li>Graphics Problems. X-server Bad Drawing errors. A way to get around this will be to better understand how ROS applications use the X-server and then provide Docker the appropriate graphics capabilities. But this does not impede with the Command Line applications of ROS and Tango which I have been working on.</li>
-<li>MySQL connection problems. The workaround currently is to use the Host OS's Tango HOST. I observed that it works fine that way.</li>
+<li>ROS-feedback Aggregator Device Server for Tango</li>
+<li>ROS Commander Node for the Husky</li>
+<li>Tango Client to understand Husky status (battery levels, sensor monitor, etc.)</li>
+<li>Mathematical Transformations and Named Tuples for different structures that Telerobotics requires.</li>
 </ul>
-<p>This is it for this post. I mainly discussed about Docker in this post, which was an important thing that we discussed in the <strong>All-hands meeting on 8th June</strong>. I'll go into much more detail with Tango Controls in the upcoming blog posts and the biweekly reports.</p>
-<p>Ciao!</p></div>
+<p>GSoC with PSF and Italian Mars Society is turning out to be fun-and-challenging. Midterm Evaluations start in a week. Lots of work to do. I strongly hope my next post will be a celebratory one highlighting the pushed code I described in <em>Ongoing Stuff</em>.</p>
+<p>Until then, Ciao!</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -91,13 +139,13 @@
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2015-06-12T19:53:52+00:00" pubdate>Fri 12 June 2015</time>  <span class="categories">
+<time datetime="2015-06-18T19:53:52+00:00" pubdate>Thu 18 June 2015</time>  <span class="categories">
     <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
     <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
@@ -189,9 +237,9 @@
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
-          var disqus_identifier = '/blog/2015/06/12/all-for-docker-docker-for-all/';
-          var disqus_url = 'http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/';
-          var disqus_title = 'All for Docker; Docker for all!';
+          var disqus_identifier = '/blog/2015/06/18/when-two-distributed-systems-meet/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/';
+          var disqus_title = 'When two Distributed Systems meet!';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
