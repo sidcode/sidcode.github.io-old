@@ -20,7 +20,9 @@
 &lt;li&gt;&lt;strong&gt; Soft Real-time network streaming&lt;/strong&gt; FFMPEG server and Blender Client for a single camera video stream. This can be found &lt;a href="https://bitbucket.org/italianmarssociety/v-eras-blender/src/42063c0b489152a9f124f80824ad095a752c29ff/scripts/webstream/single%20camera/?at=default"&gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2&gt;Under &lt;strong&gt;heavy&lt;/strong&gt; Development&lt;/h2&gt;
-&lt;h2&gt;- Integration of Bodytracking with Telerobotics. The following message format has been decided upon by the mentors and students:&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Integration of Bodytracking with Telerobotics. The following message format has been decided upon by the mentors and students:&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# Attribute definitions for various diagnostic messages&lt;/span&gt;
   &lt;span class="n"&gt;moves&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;attribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Linear and angular displacement&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;float&lt;/span&gt;&lt;span class="p"&gt;,),&lt;/span&gt;
                               &lt;span class="n"&gt;display_level&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DispLevel&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;EXPERT&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
