@@ -65,7 +65,7 @@
 
   <div class="entry-content"><p>Hi all! I made it through the first half of the <a href="http://siddhantsci.org/category/gsoc.html">GSoC 2015 program</a>). This is the <strong>evaluation week</strong> of the <a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015">Google Summer of Code 2015 program</a> with the <a href="https://www.python.org/psf/">Python Software Foundation</a> and the <a href="http://erasproject.org/">Italian Mars Society ERAS Project</a>. Mentors and students evaluate the journey so far in the program by answering some questions about their students and mentors respectively.</p>
 <blockquote>
-<p>My entire project can be visualized in the following diagram.</p>
+<p>My entire project can be visualized in the following diagram -</p>
 </blockquote>
 <p><img alt="Project Architecture" src="http://siddhantsci.org/images/telerobotics-diagram.png" /></p>
 <h2>Achievements-</h2>
@@ -74,7 +74,7 @@
 <li><strong>ROS-Tango interfaces</strong> to connect the <strong>Telerobotics</strong> module with the <strong>rest of ERAS</strong>.</li>
 <li>
 <p>ROS Interfaces for Navigation and Control of Husky
-<img alt="Husky Navigation" src="{filename}images/navigate-ros.png" /></p>
+<img alt="Husky Navigation" src="http://siddhantsci.org/images/navigate-ros.png" /></p>
 </li>
 <li>
 <p><a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/">Logging Diagnostics</a> of the robot to the Tango Bus</p>
@@ -144,10 +144,10 @@
 <p><strong>Remote Husky testing</strong> - Matt (from <strong>Canada</strong>), Franco (from <strong>Italy</strong>), and I (from <strong>India</strong>) tested whether we could remotely control Husky. The main issue we faced was <strong>Network Connectivity</strong>. We were all on different networks geographically, which the ROS in our machines could not resolve. Thus some messages (like GPS) were accessible  whereas the others (like Husky Status messages) were not. The solution we sought is to create a <strong>Virtual Private Network</strong> for our computers for future testing.</p>
 </li>
 <li>
-<p>Minoru Camera <strong>Performance differences</strong> - Since the Minoru's performance varies with the Kernel version, I had to bump down the frames per second to <em>15 fps</em> for both cameras and stream them in the Blender Game Engine. This temporary hack should be resolved as ERAS moves to newer Linux versions.</p>
+<p><strong>Minoru Camera Performance differences</strong> - Since the Minoru's performance varies with the Kernel version, I had to bump down the frames per second to <em>15 fps</em> for both cameras and stream them in the Blender Game Engine. This temporary hack should be resolved as ERAS moves to newer Linux versions.</p>
 </li>
 <li>
-<p>Tango related - Tango-controls is a sophisticated piece of SCADA library with a server database for maintaining device server lists. It was painful to use the provided GUI - Jive to configure the device servers. To make the process in line with other development activities, I wrote a little CLI-based Device server registration and de-registration interactive script. A <a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/">blog post</a> which explains this in detail.</p>
+<p><strong>Tango related</strong> - Tango-controls is a sophisticated piece of SCADA library with a server database for maintaining device server lists. It was painful to use the provided GUI - Jive to configure the device servers. To make the process in line with other development activities, I wrote a little CLI-based Device server registration and de-registration interactive script. A <a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/">blog post</a> which explains this in detail.</p>
 </li>
 <li>
 <p><strong>Common testing platform</strong> -  I needed to use ROS Indigo, which is supported only on Ubuntu 14.04. ERAS is currently using Ubuntu 14.10. In order to enable Italian Mars Society and the members to execute my scripts, they needed my version of Ubuntu. <strong>Solution</strong> - Virtual Linux Containers. We are using a <strong>Docker Image</strong> which my mentors can use on their machine regarding of their native OS. <a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/">This post</a> explains this point.</p>

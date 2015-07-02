@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-07-01T19:53:52+00:00</updated><entry><title>Mid-term Report - GSoC '15</title><link href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/" rel="alternate"></link><updated>2015-07-01T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-07-01:blog/2015/07/01/mid-term-report-gsoc-15/</id><summary type="html">&lt;p&gt;Hi all! I made it through the first half of the &lt;a href="http://siddhantsci.org/category/gsoc.html"&gt;GSoC 2015 program&lt;/a&gt;). This is the &lt;strong&gt;evaluation week&lt;/strong&gt; of the &lt;a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;Google Summer of Code 2015 program&lt;/a&gt; with the &lt;a href="https://www.python.org/psf/"&gt;Python Software Foundation&lt;/a&gt; and the &lt;a href="http://erasproject.org/"&gt;Italian Mars Society ERAS Project&lt;/a&gt;. Mentors and students evaluate the journey so far in the program by answering some questions about their students and mentors respectively.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;My entire project can be visualized in the following diagram.&lt;/p&gt;
+&lt;p&gt;My entire project can be visualized in the following diagram -&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;img alt="Project Architecture" src="http://siddhantsci.org/images/telerobotics-diagram.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Achievements-&lt;/h2&gt;
@@ -10,7 +10,7 @@
 &lt;li&gt;&lt;strong&gt;ROS-Tango interfaces&lt;/strong&gt; to connect the &lt;strong&gt;Telerobotics&lt;/strong&gt; module with the &lt;strong&gt;rest of ERAS&lt;/strong&gt;.&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;ROS Interfaces for Navigation and Control of Husky
-&lt;img alt="Husky Navigation" src="{filename}images/navigate-ros.png" /&gt;&lt;/p&gt;
+&lt;img alt="Husky Navigation" src="http://siddhantsci.org/images/navigate-ros.png" /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/"&gt;Logging Diagnostics&lt;/a&gt; of the robot to the Tango Bus&lt;/p&gt;
@@ -80,10 +80,10 @@
 &lt;p&gt;&lt;strong&gt;Remote Husky testing&lt;/strong&gt; - Matt (from &lt;strong&gt;Canada&lt;/strong&gt;), Franco (from &lt;strong&gt;Italy&lt;/strong&gt;), and I (from &lt;strong&gt;India&lt;/strong&gt;) tested whether we could remotely control Husky. The main issue we faced was &lt;strong&gt;Network Connectivity&lt;/strong&gt;. We were all on different networks geographically, which the ROS in our machines could not resolve. Thus some messages (like GPS) were accessible  whereas the others (like Husky Status messages) were not. The solution we sought is to create a &lt;strong&gt;Virtual Private Network&lt;/strong&gt; for our computers for future testing.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Minoru Camera &lt;strong&gt;Performance differences&lt;/strong&gt; - Since the Minoru's performance varies with the Kernel version, I had to bump down the frames per second to &lt;em&gt;15 fps&lt;/em&gt; for both cameras and stream them in the Blender Game Engine. This temporary hack should be resolved as ERAS moves to newer Linux versions.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Minoru Camera Performance differences&lt;/strong&gt; - Since the Minoru's performance varies with the Kernel version, I had to bump down the frames per second to &lt;em&gt;15 fps&lt;/em&gt; for both cameras and stream them in the Blender Game Engine. This temporary hack should be resolved as ERAS moves to newer Linux versions.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Tango related - Tango-controls is a sophisticated piece of SCADA library with a server database for maintaining device server lists. It was painful to use the provided GUI - Jive to configure the device servers. To make the process in line with other development activities, I wrote a little CLI-based Device server registration and de-registration interactive script. A &lt;a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/"&gt;blog post&lt;/a&gt; which explains this in detail.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tango related&lt;/strong&gt; - Tango-controls is a sophisticated piece of SCADA library with a server database for maintaining device server lists. It was painful to use the provided GUI - Jive to configure the device servers. To make the process in line with other development activities, I wrote a little CLI-based Device server registration and de-registration interactive script. A &lt;a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/"&gt;blog post&lt;/a&gt; which explains this in detail.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Common testing platform&lt;/strong&gt; -  I needed to use ROS Indigo, which is supported only on Ubuntu 14.04. ERAS is currently using Ubuntu 14.10. In order to enable Italian Mars Society and the members to execute my scripts, they needed my version of Ubuntu. &lt;strong&gt;Solution&lt;/strong&gt; - Virtual Linux Containers. We are using a &lt;strong&gt;Docker Image&lt;/strong&gt; which my mentors can use on their machine regarding of their native OS. &lt;a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/"&gt;This post&lt;/a&gt; explains this point.&lt;/p&gt;
