@@ -1,5 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>All Day I Dream About Science</title><link>http://siddhantsci.org/</link><description>Where (Computer) Science meets everything</description><atom:link href="/feeds/siddhant-shrivastava.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 24 Jun 2015 19:53:52 +0000</lastBuildDate><item><title>The Half-Life of Telerobotics</title><link>http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/</link><description>&lt;p&gt;Hi all! If you've been following my &lt;a href="http://siddhantsci.org/category/gsoc.html"&gt;previous posts&lt;/a&gt;, you'd have known that the Telerobotics module has been simmering for a couple of weeks. I'm happy to announce that it is almost complete and would hopefully be integrated with Vito's Bodytracking module.&lt;/p&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>All Day I Dream About Science</title><link>http://siddhantsci.org/</link><description>Where (Computer) Science meets everything</description><atom:link href="/feeds/siddhant-shrivastava.rss.xml" rel="self"></atom:link><lastBuildDate>Wed, 01 Jul 2015 19:53:52 +0000</lastBuildDate><item><title>Mid-term Report - GSoC '15</title><link>http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/</link><description>&lt;p&gt;Hi all! I made it through the first half of the &lt;a href="http://siddhantsci.org/category/gsoc.html"&gt;GSoC 2015 program&lt;/a&gt;). This is the &lt;strong&gt;evaluation week&lt;/strong&gt; of the &lt;a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;Google Summer of Code 2015 program&lt;/a&gt; with the &lt;a href="https://www.python.org/psf/"&gt;Python Software Foundation&lt;/a&gt; and the &lt;a href="http://erasproject.org/"&gt;Italian Mars Society ERAS Project&lt;/a&gt;. Mentors and students evaluate the journey so far in the program by answering some questions about their students and mentors respectively.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;My entire project can be visualized in the following diagram.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img alt="Project Architecture" src="http://siddhantsci.org/images/telerobotics-diagram.png" /&gt;&lt;/p&gt;
+&lt;h2&gt;Achievements-&lt;/h2&gt;
+&lt;h3&gt;Husky-ROS-Tango Interface&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ROS-Tango interfaces&lt;/strong&gt; to connect the &lt;strong&gt;Telerobotics&lt;/strong&gt; module with the &lt;strong&gt;rest of ERAS&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ROS Interfaces for Navigation and Control of Husky
+&lt;img alt="Husky Navigation" src="{filename}images/navigate-ros.png" /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/"&gt;Logging Diagnostics&lt;/a&gt; of the robot to the Tango Bus&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Driving the Husky around using human commands
+&lt;img alt="Husky Commands" src="http://siddhantsci.org/images/husky-command.png" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Video Streaming&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Single Camera Video streaming to Blender Game Engine&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is how it works. &lt;strong&gt;ffmpeg&lt;/strong&gt; is used as the streaming server to which Blender Game Engine subscribes.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;ffserver.conf&lt;/code&gt; file is configured as follows which describes the characterstics of the stream:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nb"&gt;Port&lt;/span&gt; &lt;span class="mi"&gt;8190&lt;/span&gt;
+&lt;span class="nx"&gt;BindAddress&lt;/span&gt; &lt;span class="mf"&gt;0.0.0.0&lt;/span&gt;
+&lt;span class="nx"&gt;MaxClients&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
+&lt;span class="nx"&gt;MaxBandwidth&lt;/span&gt; &lt;span class="mi"&gt;50000&lt;/span&gt;
+&lt;span class="nx"&gt;NoDaemon&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Feed&lt;/span&gt; &lt;span class="nx"&gt;webcam.ffm&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nb"&gt;file&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;tmp&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;webcam.ffm&lt;/span&gt;
+&lt;span class="nx"&gt;FileMaxSize&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="nx"&gt;M&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nx"&gt;Feed&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;Stream&lt;/span&gt; &lt;span class="nx"&gt;webcam.mjpeg&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="nx"&gt;Feed&lt;/span&gt; &lt;span class="nx"&gt;webcam.ffm&lt;/span&gt;
+&lt;span class="nb"&gt;Format&lt;/span&gt; &lt;span class="nx"&gt;mjpeg&lt;/span&gt;
+&lt;span class="nx"&gt;VideoSize&lt;/span&gt; &lt;span class="mi"&gt;640&lt;/span&gt;&lt;span class="nx"&gt;x480&lt;/span&gt;
+&lt;span class="nx"&gt;VideoFrameRate&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;
+&lt;span class="nx"&gt;VideoBitRate&lt;/span&gt; &lt;span class="mi"&gt;24300&lt;/span&gt;
+&lt;span class="nx"&gt;VideoQMin&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="nx"&gt;VideoQMax&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nx"&gt;Stream&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then the Blender Game Engine and its associated Python library &lt;code&gt;bge&lt;/code&gt; kicks in to display the stream on the &lt;strong&gt;Video Texture&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="cp"&gt;# Get an instance of the video texture&lt;/span&gt;
+&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;texture&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Texture&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ID&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="cp"&gt;# a ffmpeg server is streaming the feed on the IP:PORT/FILE&lt;/span&gt;
+&lt;span class="cp"&gt;# specified in FFMPEG_PARAM,&lt;/span&gt;
+&lt;span class="cp"&gt;# BGE reads the stream from the mjpeg file.&lt;/span&gt;
+
+&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;texture&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VideoFFmpeg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;FFMPEG_PARAM&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;play&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;refresh&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;The entire source code for single camera streaming can be found &lt;a href="https://bitbucket.org/italianmarssociety/v-eras-blender/src/42063c0b489152a9f124f80824ad095a752c29ff/scripts/webstream/single%20camera/?at=default"&gt;in this repository&lt;/a&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting up the &lt;strong&gt;Minoru Camera&lt;/strong&gt; for stereo vision
+&lt;img alt="Minoru Camera" src="http://siddhantsci.org/images/minoru.jpg" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It turns out this camera can stream at &lt;strong&gt;30 frames per second&lt;/strong&gt; for both cameras. The last week has been particularly challenging to figure out the optimal settings for the Minoru Webcam to work. It depends on the Video Buffer Memory allocated by the &lt;strong&gt;Linux Kernel&lt;/strong&gt; for &lt;code&gt;libuvc&lt;/code&gt; and &lt;code&gt;v4l2&lt;/code&gt; compatible webcams. Different kernel versions result in different performances. I am unable to stream&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Setting up the Oculus Rift DK1 for the &lt;strong&gt;Virtual Reality&lt;/strong&gt; work in the upcoming second term
+&lt;img alt="Oculus Rift" src="http://siddhantsci.org/images/oculus-rift.jpg" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Crash-testing and Roadblocks&lt;/h2&gt;
+&lt;p&gt;This project was not without its share of obstacles. A few memorable roadblocks come to mind-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Remote Husky testing&lt;/strong&gt; - Matt (from &lt;strong&gt;Canada&lt;/strong&gt;), Franco (from &lt;strong&gt;Italy&lt;/strong&gt;), and I (from &lt;strong&gt;India&lt;/strong&gt;) tested whether we could remotely control Husky. The main issue we faced was &lt;strong&gt;Network Connectivity&lt;/strong&gt;. We were all on different networks geographically, which the ROS in our machines could not resolve. Thus some messages (like GPS) were accessible  whereas the others (like Husky Status messages) were not. The solution we sought is to create a &lt;strong&gt;Virtual Private Network&lt;/strong&gt; for our computers for future testing.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Minoru Camera &lt;strong&gt;Performance differences&lt;/strong&gt; - Since the Minoru's performance varies with the Kernel version, I had to bump down the frames per second to &lt;em&gt;15 fps&lt;/em&gt; for both cameras and stream them in the Blender Game Engine. This temporary hack should be resolved as ERAS moves to newer Linux versions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Tango related - Tango-controls is a sophisticated piece of SCADA library with a server database for maintaining device server lists. It was painful to use the provided GUI - Jive to configure the device servers. To make the process in line with other development activities, I wrote a little CLI-based Device server registration and de-registration interactive script. A &lt;a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/"&gt;blog post&lt;/a&gt; which explains this in detail.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Common testing platform&lt;/strong&gt; -  I needed to use ROS Indigo, which is supported only on Ubuntu 14.04. ERAS is currently using Ubuntu 14.10. In order to enable Italian Mars Society and the members to execute my scripts, they needed my version of Ubuntu. &lt;strong&gt;Solution&lt;/strong&gt; - Virtual Linux Containers. We are using a &lt;strong&gt;Docker Image&lt;/strong&gt; which my mentors can use on their machine regarding of their native OS. &lt;a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/"&gt;This post&lt;/a&gt; explains this point.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Expectations from the second term&lt;/h2&gt;
+&lt;p&gt;This is a huge project in that I have to deal with &lt;em&gt;many different technologies&lt;/em&gt; like -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Robot Operating System&lt;/li&gt;
+&lt;li&gt;FFmpeg&lt;/li&gt;
+&lt;li&gt;Blender Game Engine&lt;/li&gt;
+&lt;li&gt;Oculus VR SDK&lt;/li&gt;
+&lt;li&gt;Tango-Controls&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So far, the journey has been exciting and there has been a lot of learning and development. The second term will be intense, challenging, and above all, fun.&lt;/p&gt;
+&lt;p&gt;To-do list -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Get Minoru webcam to work with ffmpeg streaming&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use Oculus for an Augmented Reality application
+&lt;img alt="Oculus Rift" src="http://siddhantsci.org/images/oculus-mars.jpg" /&gt;
+&lt;a href="https://vimeo.com/111243246"&gt;Source&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Integrate Bodytracking with Telerobotics&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;Automation in Husky movement and using a UR5 manipulator&lt;/li&gt;
+&lt;li&gt;Set up a &lt;a href="http://pptpclient.sourceforge.net/"&gt;PPTP&lt;/a&gt; or &lt;a href="https://openvpn.net/"&gt;OpenVPN&lt;/a&gt; for ERAS&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Time really flies by fast when I am learning new things. GSoC so far has taught me how to not be a &lt;a href="https://www.quora.com/What-are-the-characteristics-of-a-bad-software-engineer"&gt;bad software engineer&lt;/a&gt;, but also how to be a good open source community contributor. That is what the spirit of Google Summer of Code is about and I have imbibed a lot. Besides, working with the Italian Mars Society has also motivated me to learn the Italian language. So Python is not the only language that I'm practicing over this summer ;)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Here's to the second term of Google Summer of Code 2015!
+&lt;img alt="GSoC Banner" src="http://siddhantsci.org/images/gsoc-banner.png" /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Ciao :)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Wed, 01 Jul 2015 19:53:52 +0000</pubDate><guid>tag:siddhantsci.org,2015-07-01:blog/2015/07/01/mid-term-report-gsoc-15/</guid><category>GSoC</category><category>Python</category><category>PSF</category><category>computers</category><category>science</category><category>exploration</category><category>space</category><category>mars</category><category>IMS</category><category>Italian Mars Society</category></item><item><title>The Half-Life of Telerobotics</title><link>http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/</link><description>&lt;p&gt;Hi all! If you've been following my &lt;a href="http://siddhantsci.org/category/gsoc.html"&gt;previous posts&lt;/a&gt;, you'd have known that the Telerobotics module has been simmering for a couple of weeks. I'm happy to announce that it is almost complete and would hopefully be integrated with Vito's Bodytracking module.&lt;/p&gt;
 &lt;p&gt;The last week (week four and five) were the busiest weeks of GSoC for me.&lt;/p&gt;
 &lt;h2&gt;Learning Experience&lt;/h2&gt;
 &lt;ul&gt;
@@ -38,7 +157,7 @@
 &lt;ul&gt;
 &lt;li&gt;Extension of Camera Streaming to a dual camera setup. I am extending the streaming capabilty for a stereo camera.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Midsemester evaluations start tomorrow! Eagerly looking forward to them. It has been an eventful and productive half summer of code. I hope the next half is even more exciting and challenging as the one that passed.&lt;/p&gt;
+&lt;p&gt;Mid-term evaluations start tomorrow! Eagerly looking forward to them. It has been an eventful and productive half summer of code. I hope the next half is even more exciting and challenging as the one that passed.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Ciao&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Wed, 24 Jun 2015 19:53:52 +0000</pubDate><guid>tag:siddhantsci.org,2015-06-24:blog/2015/06/24/the-half-life-of-telerobotics/</guid><category>GSoC</category><category>Python</category><category>PSF</category><category>computers</category><category>science</category><category>exploration</category><category>space</category><category>mars</category><category>IMS</category><category>Italian Mars Society</category></item><item><title>When two Distributed Systems meet!</title><link>http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/</link><description>&lt;p&gt;Hi! This post is meant to be an insight into the experience and progress of the third and fourth weeks of my (a)vocation with the Google Summer of Code Program. Things got much pacier and smooth in the past two weeks. I've been able to get a stable codebase up and running with respect to the aims discussed in the timeline.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Sublime Text Workspace" src="http://siddhantsci.org/images/workspace2.png" /&gt;
 &lt;the usual rant&gt; I had to totally restructure my programming workspace for the second time to support Intelligent IDE like features since the Python packages I am working with (ROS and Tango) have a fair number of modules whose documentation I need to read on the fly while coding away. Thus I set up both my &lt;strong&gt;Vim and Sublime Text&lt;/strong&gt; environments to support  &lt;em&gt;intelli-sense&lt;/em&gt;, &lt;em&gt;code completion&lt;/em&gt;, &lt;em&gt;block syntax completion&lt;/em&gt;, etc. I also added a dual monitor setup with the unused LCD television at my home to make for an efficient programming ambience.
@@ -106,7 +225,7 @@
 &lt;li&gt;Tango Client to understand Husky status (battery levels, sensor monitor, etc.)&lt;/li&gt;
 &lt;li&gt;Mathematical Transformations and Named Tuples for different structures that Telerobotics requires.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;GSoC with PSF and Italian Mars Society is turning out to be fun-and-challenging. Midterm Evaluations start in a week. Lots of work to do. I strongly hope my next post will be a celebratory one highlighting the pushed code I described in &lt;em&gt;Ongoing Stuff&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;GSoC with PSF and Italian Mars Society is turning out to be fun-and-challenging. Mid-term Evaluations start in a week. Lots of work to do. I strongly hope my next post will be a celebratory one highlighting the pushed code I described in &lt;em&gt;Ongoing Stuff&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;Until then, Ciao!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Thu, 18 Jun 2015 19:53:52 +0000</pubDate><guid>tag:siddhantsci.org,2015-06-18:blog/2015/06/18/when-two-distributed-systems-meet/</guid><category>GSoC</category><category>Python</category><category>PSF</category><category>computers</category><category>science</category><category>exploration</category><category>space</category><category>mars</category><category>IMS</category><category>Italian Mars Society</category></item><item><title>All for Docker; Docker for all!</title><link>http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/</link><description>&lt;p&gt;Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my &lt;a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/"&gt;last post&lt;/a&gt;, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Docker
@@ -505,7 +624,7 @@ But this is where the &lt;strong&gt;Zen of Python&lt;/strong&gt; kicks in! Using
 &lt;p&gt;&lt;em&gt;To be continued...about ROS, Software Testing, Mapping, algorithms, etc&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Sat, 23 May 2015 00:53:52 +0000</pubDate><guid>tag:siddhantsci.org,2015-05-23:blog/2015/05/23/gsoc-15-community-bonding/</guid><category>GSoC</category><category>Python</category><category>PSF</category><category>computers</category><category>science</category><category>exploration</category><category>space</category><category>mars</category></item><item><title>GSoC '15 - About my Project</title><link>http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/</link><description>&lt;p&gt;Second Post in the GSoC 2015 series. This post is intended to explain my project proposal.&lt;/p&gt;
 &lt;p&gt;The project proposal that I submitted can be found &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="ERAS Station" src="http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/images/eras-station.jpg" /&gt;
-&lt;em&gt;to be continued...&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Thu, 07 May 2015 00:53:52 +0000</pubDate><guid>tag:siddhantsci.org,2015-05-07:blog/2015/05/07/gsoc-15-about-my-project/</guid><category>GSoC</category><category>Python</category><category>PSF</category><category>computers</category><category>science</category><category>exploration</category><category>space</category><category>mars</category></item><item><title>GSoC 2015 with the Italian Mars Society</title><link>http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/</link><description>&lt;p&gt;&lt;img alt="GSoC Banner" src="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/images/gsoc-banner.png" /&gt;&lt;/p&gt;
+&lt;em&gt;to be continued...&lt;/em&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Siddhant Shrivastava</dc:creator><pubDate>Thu, 07 May 2015 00:53:52 +0000</pubDate><guid>tag:siddhantsci.org,2015-05-07:blog/2015/05/07/gsoc-15-about-my-project/</guid><category>GSoC</category><category>Python</category><category>PSF</category><category>computers</category><category>science</category><category>exploration</category><category>space</category><category>mars</category></item><item><title>GSoC 2015 with the Italian Mars Society</title><link>http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/</link><description>&lt;p&gt;&lt;img alt="GSoC Banner" src="http://siddhantsci.org/images/gsoc-banner.png" /&gt;&lt;/p&gt;
 &lt;p&gt;I got accepted into the eleventh edition of the &lt;strong&gt;Google Summer of Code&lt;/strong&gt; program (&lt;a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015"&gt;GSoC 2015&lt;/a&gt;) with the &lt;strong&gt;Python Software Foundation&lt;/strong&gt; umbrella organization. The list of selected students was announced on 28th April, 2015.&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Python Logo" src="http://siddhantsci.org/blog/2015/05/26/workspace-setup-for-telerobotics/images/python-logo.png" /&gt;&lt;/p&gt;
 &lt;p&gt;More specifically, I'll be working with the Italian Mars Society under the ERAS (European MaRs Analogue Station) project. 

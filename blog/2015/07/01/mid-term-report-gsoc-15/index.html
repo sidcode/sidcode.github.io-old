@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>All for Docker; Docker for all! &mdash; All Day I Dream About Science</title>
+  <title>Mid-term Report - GSoC '15 &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -57,33 +57,132 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">All for Docker; Docker for all!</h1>
+      <h1 class="entry-title">Mid-term Report - GSoC '15</h1>
     <p class="meta">
-<time datetime="2015-06-12T19:53:52+00:00" pubdate>Fri 12 June 2015</time>  &ndash; &#128339; 2 min read
+<time datetime="2015-07-01T19:53:52+00:00" pubdate>Wed 01 July 2015</time>  &ndash; &#128339; 4 min read
     </p>
 </header>
 
-  <div class="entry-content"><p>Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my <a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/">last post</a>, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -</p>
+  <div class="entry-content"><p>Hi all! I made it through the first half of the <a href="http://siddhantsci.org/category/gsoc.html">GSoC 2015 program</a>). This is the <strong>evaluation week</strong> of the <a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015">Google Summer of Code 2015 program</a> with the <a href="https://www.python.org/psf/">Python Software Foundation</a> and the <a href="http://erasproject.org/">Italian Mars Society ERAS Project</a>. Mentors and students evaluate the journey so far in the program by answering some questions about their students and mentors respectively.</p>
+<blockquote>
+<p>My entire project can be visualized in the following diagram.</p>
+</blockquote>
+<p><img alt="Project Architecture" src="http://siddhantsci.org/images/telerobotics-diagram.png" /></p>
+<h2>Achievements-</h2>
+<h3>Husky-ROS-Tango Interface</h3>
+<ul>
+<li><strong>ROS-Tango interfaces</strong> to connect the <strong>Telerobotics</strong> module with the <strong>rest of ERAS</strong>.</li>
+<li>
+<p>ROS Interfaces for Navigation and Control of Husky
+<img alt="Husky Navigation" src="{filename}images/navigate-ros.png" /></p>
+</li>
+<li>
+<p><a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/">Logging Diagnostics</a> of the robot to the Tango Bus</p>
+</li>
+<li>Driving the Husky around using human commands
+<img alt="Husky Commands" src="http://siddhantsci.org/images/husky-command.png" /></li>
+</ul>
+<h3>Video Streaming</h3>
+<ul>
+<li>Single Camera Video streaming to Blender Game Engine</li>
+</ul>
+<p>This is how it works. <strong>ffmpeg</strong> is used as the streaming server to which Blender Game Engine subscribes.</p>
+<p>The <code>ffserver.conf</code> file is configured as follows which describes the characterstics of the stream:</p>
+<div class="highlight"><pre><span class="nb">Port</span> <span class="mi">8190</span>
+<span class="nx">BindAddress</span> <span class="mf">0.0.0.0</span>
+<span class="nx">MaxClients</span> <span class="mi">10</span>
+<span class="nx">MaxBandwidth</span> <span class="mi">50000</span>
+<span class="nx">NoDaemon</span>
+
+<span class="o">&lt;</span><span class="nx">Feed</span> <span class="nx">webcam.ffm</span><span class="o">&gt;</span>
+<span class="nb">file</span> <span class="p">/</span><span class="nx">tmp</span><span class="p">/</span><span class="nx">webcam.ffm</span>
+<span class="nx">FileMaxSize</span> <span class="mi">2000</span><span class="nx">M</span>
+<span class="o">&lt;/</span><span class="nx">Feed</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">Stream</span> <span class="nx">webcam.mjpeg</span><span class="o">&gt;</span>
+<span class="nx">Feed</span> <span class="nx">webcam.ffm</span>
+<span class="nb">Format</span> <span class="nx">mjpeg</span>
+<span class="nx">VideoSize</span> <span class="mi">640</span><span class="nx">x480</span>
+<span class="nx">VideoFrameRate</span> <span class="mi">30</span>
+<span class="nx">VideoBitRate</span> <span class="mi">24300</span>
+<span class="nx">VideoQMin</span> <span class="mi">1</span>
+<span class="nx">VideoQMax</span> <span class="mi">5</span>
+<span class="o">&lt;/</span><span class="nx">Stream</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<p>Then the Blender Game Engine and its associated Python library <code>bge</code> kicks in to display the stream on the <strong>Video Texture</strong>:</p>
+<div class="highlight"><pre><span class="cp"># Get an instance of the video texture</span>
+<span class="n">bge</span><span class="p">.</span><span class="n">logic</span><span class="p">.</span><span class="n">video</span> <span class="o">=</span> <span class="n">bge</span><span class="p">.</span><span class="n">texture</span><span class="p">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">ID</span><span class="p">)</span>
+
+<span class="cp"># a ffmpeg server is streaming the feed on the IP:PORT/FILE</span>
+<span class="cp"># specified in FFMPEG_PARAM,</span>
+<span class="cp"># BGE reads the stream from the mjpeg file.</span>
+
+<span class="n">bge</span><span class="p">.</span><span class="n">logic</span><span class="p">.</span><span class="n">video</span><span class="p">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">bge</span><span class="p">.</span><span class="n">texture</span><span class="p">.</span><span class="n">VideoFFmpeg</span><span class="p">(</span><span class="n">FFMPEG_PARAM</span><span class="p">)</span>
+<span class="n">bge</span><span class="p">.</span><span class="n">logic</span><span class="p">.</span><span class="n">video</span><span class="p">.</span><span class="n">source</span><span class="p">.</span><span class="n">play</span><span class="p">()</span>
+<span class="n">bge</span><span class="p">.</span><span class="n">logic</span><span class="p">.</span><span class="n">video</span><span class="p">.</span><span class="n">refresh</span><span class="p">(</span><span class="n">True</span><span class="p">)</span>
+</pre></div>
+
+
+<blockquote>
+<p>The entire source code for single camera streaming can be found <a href="https://bitbucket.org/italianmarssociety/v-eras-blender/src/42063c0b489152a9f124f80824ad095a752c29ff/scripts/webstream/single%20camera/?at=default">in this repository</a>.</p>
+</blockquote>
+<ul>
+<li>Setting up the <strong>Minoru Camera</strong> for stereo vision
+<img alt="Minoru Camera" src="http://siddhantsci.org/images/minoru.jpg" /></li>
+</ul>
+<p>It turns out this camera can stream at <strong>30 frames per second</strong> for both cameras. The last week has been particularly challenging to figure out the optimal settings for the Minoru Webcam to work. It depends on the Video Buffer Memory allocated by the <strong>Linux Kernel</strong> for <code>libuvc</code> and <code>v4l2</code> compatible webcams. Different kernel versions result in different performances. I am unable to stream</p>
+<ul>
+<li>Setting up the Oculus Rift DK1 for the <strong>Virtual Reality</strong> work in the upcoming second term
+<img alt="Oculus Rift" src="http://siddhantsci.org/images/oculus-rift.jpg" /></li>
+</ul>
+<h2>Crash-testing and Roadblocks</h2>
+<p>This project was not without its share of obstacles. A few memorable roadblocks come to mind-</p>
 <ol>
-<li>Docker
-<img alt="Docker Logo" src="http://siddhantsci.org/images/docker-logo.png" /></li>
-<li>Tango-Controls
-<img alt="Tango Controls logo" src="http://siddhantsci.org/images/tangologo.png" /></li>
+<li>
+<p><strong>Remote Husky testing</strong> - Matt (from <strong>Canada</strong>), Franco (from <strong>Italy</strong>), and I (from <strong>India</strong>) tested whether we could remotely control Husky. The main issue we faced was <strong>Network Connectivity</strong>. We were all on different networks geographically, which the ROS in our machines could not resolve. Thus some messages (like GPS) were accessible  whereas the others (like Husky Status messages) were not. The solution we sought is to create a <strong>Virtual Private Network</strong> for our computers for future testing.</p>
+</li>
+<li>
+<p>Minoru Camera <strong>Performance differences</strong> - Since the Minoru's performance varies with the Kernel version, I had to bump down the frames per second to <em>15 fps</em> for both cameras and stream them in the Blender Game Engine. This temporary hack should be resolved as ERAS moves to newer Linux versions.</p>
+</li>
+<li>
+<p>Tango related - Tango-controls is a sophisticated piece of SCADA library with a server database for maintaining device server lists. It was painful to use the provided GUI - Jive to configure the device servers. To make the process in line with other development activities, I wrote a little CLI-based Device server registration and de-registration interactive script. A <a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/">blog post</a> which explains this in detail.</p>
+</li>
+<li>
+<p><strong>Common testing platform</strong> -  I needed to use ROS Indigo, which is supported only on Ubuntu 14.04. ERAS is currently using Ubuntu 14.10. In order to enable Italian Mars Society and the members to execute my scripts, they needed my version of Ubuntu. <strong>Solution</strong> - Virtual Linux Containers. We are using a <strong>Docker Image</strong> which my mentors can use on their machine regarding of their native OS. <a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/">This post</a> explains this point.</p>
+</li>
 </ol>
-<p>I used the <a href="https://registry.hub.docker.com/_/ubuntu/">Ubuntu 14.04</a> <em>Docker Container</em> to setup my system which can be used by anyone in the world as a common platform to test the applications that I am working on. This has multiple advantages -</p>
-<ul>
-<li>Setup-time for collaborators is null. The developer sets up the Docker container and the community members can use it directly.</li>
-<li>Host platform-independent. It doesn't matter whether the collaborator's host system is Arch Linux, Windows 8, or a specific version of Ubuntu. Docker uses <a href="http://www.toptal.com/linux/separation-anxiety-isolating-your-system-with-linux-namespaces">Linux namespaces</a> and ensures a separation of concerns.</li>
-<li>Revision control mechanism. The developer plays around with a Docker Image just as he/she would do with any other <strong>Distribution Revision Control system</strong>. I <strong>push</strong> my changes to the repository (Docker image) and my mentors can simply <strong>pull the updates</strong> to get the new system configuration.</li>
-</ul>
-<p>So far, I have setup Tango-Controls, ROS Indigo, and the Husky libraries for my Docker image. These can be found in the <a href="https://registry.hub.docker.com/u/sidcode/ros-eras/">Docker Registry Hub</a></p>
-<p>The issues that I am currently facing are -</p>
-<ul>
-<li>Graphics Problems. X-server Bad Drawing errors. A way to get around this will be to better understand how ROS applications use the X-server and then provide Docker the appropriate graphics capabilities. But this does not impede with the Command Line applications of ROS and Tango which I have been working on.</li>
-<li>MySQL connection problems. The workaround currently is to use the Host OS's Tango HOST. I observed that it works fine that way.</li>
-</ul>
-<p>This is it for this post. I mainly discussed about Docker in this post, which was an important thing that we discussed in the <strong>All-hands meeting on 8th June</strong>. I'll go into much more detail with Tango Controls in the upcoming blog posts and the biweekly reports.</p>
-<p>Ciao!</p></div>
+<h2>Expectations from the second term</h2>
+<p>This is a huge project in that I have to deal with <em>many different technologies</em> like -</p>
+<ol>
+<li>Robot Operating System</li>
+<li>FFmpeg</li>
+<li>Blender Game Engine</li>
+<li>Oculus VR SDK</li>
+<li>Tango-Controls</li>
+</ol>
+<p>So far, the journey has been exciting and there has been a lot of learning and development. The second term will be intense, challenging, and above all, fun.</p>
+<p>To-do list -</p>
+<ol>
+<li>Get Minoru webcam to work with ffmpeg streaming</li>
+<li>
+<p>Use Oculus for an Augmented Reality application
+<img alt="Oculus Rift" src="http://siddhantsci.org/images/oculus-mars.jpg" />
+<a href="https://vimeo.com/111243246">Source</a></p>
+</li>
+<li>
+<p>Integrate Bodytracking with Telerobotics</p>
+</li>
+<li>Automation in Husky movement and using a UR5 manipulator</li>
+<li>Set up a <a href="http://pptpclient.sourceforge.net/">PPTP</a> or <a href="https://openvpn.net/">OpenVPN</a> for ERAS</li>
+</ol>
+<p>Time really flies by fast when I am learning new things. GSoC so far has taught me how to not be a <a href="https://www.quora.com/What-are-the-characteristics-of-a-bad-software-engineer">bad software engineer</a>, but also how to be a good open source community contributor. That is what the spirit of Google Summer of Code is about and I have imbibed a lot. Besides, working with the Italian Mars Society has also motivated me to learn the Italian language. So Python is not the only language that I'm practicing over this summer ;)</p>
+<blockquote>
+<p>Here's to the second term of Google Summer of Code 2015!
+<img alt="GSoC Banner" src="http://siddhantsci.org/images/gsoc-banner.png" /></p>
+</blockquote>
+<p>Ciao :)</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -91,13 +190,13 @@
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2015-06-12T19:53:52+00:00" pubdate>Fri 12 June 2015</time>  <span class="categories">
+<time datetime="2015-07-01T19:53:52+00:00" pubdate>Wed 01 July 2015</time>  <span class="categories">
     <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
     <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
@@ -189,9 +288,9 @@
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
-          var disqus_identifier = '/blog/2015/06/12/all-for-docker-docker-for-all/';
-          var disqus_url = 'http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/';
-          var disqus_title = 'All for Docker; Docker for all!';
+          var disqus_identifier = '/blog/2015/07/01/mid-term-report-gsoc-15/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/';
+          var disqus_title = 'Mid-term Report - GSoC '15';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
