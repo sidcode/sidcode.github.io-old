@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>All Day I Dream About Science</title>
+  <title>Remote tests in Telerobotics &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -54,163 +54,81 @@
 </ul></nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">GSoC '15 Community Bonding</a>
-      </h1>
+      <h1 class="entry-title">Remote tests in Telerobotics</h1>
     <p class="meta">
-<time datetime="2015-05-23T00:53:52+00:00" pubdate>Sat 23 May 2015</time>  &ndash; &#128339; 4 min read
+<time datetime="2015-07-08T19:53:52+00:00" pubdate>Wed 08 July 2015</time>  &ndash; &#128339; 4 min read
     </p>
 </header>
 
-  <div class="entry-content"><p><img alt="GSoC Banner" src="http://siddhantsci.org/images/gsoc-banner.png" /></p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/05/23/gsoc-15-community-bonding/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/">GSoC '15 - About my Project</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-05-07T00:53:52+00:00" pubdate>Thu 07 May 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
+  <div class="entry-content"><p><em>Ciao :) * The </em>sixth week<em> of GSoC 2015 got over. According to the <a href="http://erasproject.org/2015-gsoc/#2">Telerobotics project timeline</a>, this week was supposed to be the <strong>Buffer Week</strong> to account for any unforeseen work that may pop up. We at the <strong>Italian Mars Society</strong> were trying to get ROS communication possible over a </em>large* network. After effective discussion via mail and prioritizing on Trello, the <strong>first Husky test</strong> was scheduled on July 1, <strong>second test</strong> on July 7 and the <strong>third test</strong> on July 8. It was an international effort spanning timezones in UTC-5:00, UTC+2:00, and UTC+5:30 regions. So zeroing in on a common time was an interesting sub-challenge in itself.</p>
+<blockquote>
+<p>By a <strong>large</strong> network, I mean this -</p>
+</blockquote>
+<p><img alt="Remote Testing" src="{filename}images/remote-problem.png" /></p>
+<p>On visceral observation, the problem statement looks quite tractable and practical. But like all problems in Computer Networks, this one looked easy in theory, but frustrated the budding Computer Scientist in me as the solutions proposed didn't work out.</p>
+<blockquote>
+<p>Husky Test 1</p>
+</blockquote>
+<p>Matt (from the Space Research Systems Group, Carleton University), Franco, and I were trying to get the Husky UGV in Canada to respond to the commands sent from the three parts of world involved (Canada, India, Italy). The few problems we came across -</p>
+<ol>
+<li>
+<p>ROS version issues caused a minor problem. The Husky robot was running an older version of ROS (Hydro) while Franco and I were using the newer version (Indigo). This caused problems in reading certain Husky messages. Solution - Upgrade ROS version on the Husky robot OR downgrade our version to ROS Hydro and Ubuntu 12.04.</p>
+</li>
+<li>
+<p>Network Issues - Unable to communicate with all three computers in all cases. There was no bidirectional communication between the ROS computers and ports were blocked.</p>
+</li>
+<li>
+<p><strong>Success</strong> - GPS Messages and status messages were received from the Husky robot laptop set as the ROS Master. But the Husky laptop was unable to receive Teleoperation messages from Franco's computer and my computer (even though it detected that we were publishing messages). Again a Network problem.</p>
+</li>
+</ol>
+<blockquote>
+<p>Solution - <strong>Virtual Private Networks</strong>, well almost...</p>
+</blockquote>
+<p>At first, I had to ensure that the TP-Link WiFi Router at home was not creating problems. To ensure this, I added my laptop interface in the <strong>Demilitarized Zone (DMZ)</strong>, and enabled <strong>Port Forwarding</strong> for all the ports of interest.</p>
+<blockquote>
+<p><em>Success</em> with Blender Game Engine Streaming</p>
+</blockquote>
+<p>Now, this solved quite a few problems - my public IP could now behave like one. To prove this, Franco and I held a Web-Stream session in which his laptop in Italy behaved as the Blender Game Engine Client while I provided a live video feed from the Minoru Camera while using a <strong>FFMpeg Server</strong>. His words - "You are live. I can see the stream." provided the much-needed boost I required to tackle the pending Computer Networks problems I had to solve in the following couple of days.</p>
+<p>Coming to the VPN problem, I first read about the various VPN Server solutions available, like -</p>
+<ul>
+<li>OpenVPN</li>
+<li>PPTP (Point-to-Point Tunneling Protocol)</li>
+<li>IPSec</li>
+<li>SSH Tunneling</li>
+</ul>
+<p>The second Husky test was done with a PPTP VPN setup which wasn't quite succesful. The reason being - ROS requires bidirectional communication between the peers, and I couldn't become a peer while I was the VPN server. It caused a slew of other pesky problems like <code>REQ TIMEOUTS</code>, Disconnected ROS Nodes, disabling Internet on the VPN server, etc. But as a start, it was assuring that the problem could be solved. I realized that the learning curve for working with computers at the scale of the Internet is no child's play. But there was another takeaway with the second Husky test. Andrea (from the Husky team) could work with my remote node as the ROS master and still get the Husky up and running. This means that all the Husky traffic and node maintenance could be relegated through my PC and transferred to the Husky. <em>Much assuring.</em></p>
+<p>Armed with the Computer Networks concepts I learnt at my college, I set on to set up the slightly tougher OpenVPN server. This is a snapshot of the OpenVPN access server that I set up -</p>
+<p><img alt="OpenVPN users" src="{filename}images/openvpn-users.png" /></p>
+<p>I was not only able to set up a world-wide VPN, but also able to set up communication among the peers. But the firewalls on the Husky computer network were strong for it and sent Andrea's laptop in a continous <em>Trying to Reconnect</em> loop. There went our hopes with OpenVPN. I am still looking into this issue. The main issue was that the UDP channel of OpenVPN was accessible in the Husky network but not the TCP channels. This caused intermittent connection losses and the OpenVPN client couldn't figure out what to do. There must be a solution to this and I'll find it.</p>
+<p>Throughout this experience, I learnt a lot of new things about practical Computer Networks. Once I'm able to crack the VPN problem, I could put it to use in diverse scenarios (remote robotics testing, as a road warrior, Internet of Things applications, creating a network of friends, etc. ). VPN brings everyone on the same page (or logical subnet). I also did quite a bit of work with the Stereo Video Streaming which would be the theme of my next post. Stay tuned.</p>
+<p><em>Ciao!</em></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Siddhant Shrivastava
+    </span>
+  </span>
+<time datetime="2015-07-08T19:53:52+00:00" pubdate>Wed 08 July 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
+</p><div class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/" >Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+</div>    </footer>
+  </article>
 
-  <div class="entry-content"><p><img alt="GSoC Banner" src="http://siddhantsci.org/images/gsoc-banner.png" /></p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/05/07/gsoc-15-about-my-project/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/">GSoC 2015 with the Italian Mars Society</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-04-29T00:53:52+00:00" pubdate>Wed 29 April 2015</time>  &ndash; &#128339; 2 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p><img alt="GSoC Banner" src="http://siddhantsci.org/images/gsoc-banner.png" /> Introductory Post for my GSoC 2015 developments  with the <strong>Python Software Foundation</strong> and <strong>Italian Mars Society</strong></p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/04/16/gsoc-rss-feed-test-post/">GSoC RSS Feed Test Post</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-04-16T18:10:52+05:30" pubdate>Thu 16 April 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p>First post in the RSS feed for my future GSoC progress</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/04/16/gsoc-rss-feed-test-post/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/04/01/notes-for-this-blog/">Notes for this blog</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-04-01T00:53:52+00:00" pubdate>Wed 01 April 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p>A to-do list and topics to write on for this blog</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/04/01/notes-for-this-blog/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/03/16/tonights-robot-tars-from-interstellar/">Tonight's Robot : TARS from Interstellar</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-03-16T18:10:52+05:30" pubdate>Mon 16 March 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p>What TARS, CASE, and KIPPS have to teach us in Robotics?</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/03/16/tonights-robot-tars-from-interstellar/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/03/11/soft-intelligent-bots/">Soft Intelligent Bots</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-03-11T00:53:52+00:00" pubdate>Wed 11 March 2015</time>  &ndash; &#128339; 4 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p><strong>Big Hero 6</strong> - Celebrating the <strong>best</strong> sci-fi film of all time</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/03/11/soft-intelligent-bots/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/02/17/my-first-experience-with-pelican/">My first experience with Pelican</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-02-17T11:52:00+01:00" pubdate>Tue 17 February 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p>The bloghiker's guide to the Pelican galaxy</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/02/17/my-first-experience-with-pelican/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/02/17/beautifulsoup-for-coursera/">BeautifulSoup for Coursera</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-02-17T00:53:52+00:00" pubdate>Tue 17 February 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p>Circumventing the recent changes in Coursera video links structure</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/02/17/beautifulsoup-for-coursera/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://siddhantsci.org/blog/2015/02/15/human-sensor-network-and-fusion/">Human Sensor Network and Fusion</a>
-      </h1>
-    <p class="meta">
-<time datetime="2015-02-15T00:53:52+00:00" pubdate>Sun 15 February 2015</time>  &ndash; &#128339; 1 min read
-    </p>
-</header>
-
-  <div class="entry-content"><p>Comparing Sensor Networks with the Human Sensory System</p></div>
-  <footer>
-    <a rel="full-article" href="http://siddhantsci.org/blog/2015/02/15/human-sensor-network-and-fusion/">Read On &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
-    <a class="prev" href="http://siddhantsci.org/index3.html">&larr; Older</a>
-
-    <a class="next" href="http://siddhantsci.org/index.html">Newer &rarr;</a>
-  <br />
-</div></div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
   <section>
 	  <img src="http://siddhantsci.org/images/sid_face.jpg" alt="Siddhant Shrivastava" width=""/> 
@@ -292,6 +210,9 @@
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
+          var disqus_identifier = '/blog/2015/07/08/remote-tests-in-telerobotics/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/';
+          var disqus_title = 'Remote tests in Telerobotics';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';

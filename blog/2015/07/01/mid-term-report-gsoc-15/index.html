@@ -63,9 +63,9 @@
     </p>
 </header>
 
-  <div class="entry-content"><p>Hi all! I made it through the first half of the <a href="http://siddhantsci.org/category/gsoc.html">GSoC 2015 program</a>). This is the <strong>evaluation week</strong> of the <a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015">Google Summer of Code 2015 program</a> with the <a href="https://www.python.org/psf/">Python Software Foundation</a> and the <a href="http://erasproject.org/">Italian Mars Society ERAS Project</a>. Mentors and students evaluate the journey so far in the program by answering some questions about their students and mentors respectively.</p>
+  <div class="entry-content"><p>Hi all! I made it through the first half of the <a href="http://siddhantsci.org/category/gsoc.html">GSoC 2015 program</a>. This is the <strong>evaluation week</strong> of the <a href="http://www.google-melange.com/gsoc/homepage/google/gsoc2015">Google Summer of Code 2015 program</a> with the <a href="https://www.python.org/psf/">Python Software Foundation</a> and the <a href="http://erasproject.org/">Italian Mars Society ERAS Project</a>. Mentors and students evaluate the journey so far in the program by answering some questions about their students and mentors respectively. On comparing with the timeline, I reckoned that I am on track with the project so far.</p>
 <blockquote>
-<p>My entire project can be visualized in the following diagram -</p>
+<p>The entire <strong>Telerobotics with Virtual Reality</strong> project can be visualized in the following diagram -</p>
 </blockquote>
 <p><img alt="Project Architecture" src="http://siddhantsci.org/images/telerobotics-diagram.png" /></p>
 <h2>Achievements-</h2>
@@ -132,7 +132,7 @@
 <li>Setting up the <strong>Minoru Camera</strong> for stereo vision
 <img alt="Minoru Camera" src="http://siddhantsci.org/images/minoru.jpg" /></li>
 </ul>
-<p>It turns out this camera can stream at <strong>30 frames per second</strong> for both cameras. The last week has been particularly challenging to figure out the optimal settings for the Minoru Webcam to work. It depends on the Video Buffer Memory allocated by the <strong>Linux Kernel</strong> for <code>libuvc</code> and <code>v4l2</code> compatible webcams. Different kernel versions result in different performances. I am unable to stream</p>
+<p>It turns out this camera can stream at <strong>30 frames per second</strong> for both cameras. The last week has been particularly challenging to figure out the optimal settings for the Minoru Webcam to work. It depends on the Video Buffer Memory allocated by the <strong>Linux Kernel</strong> for <code>libuvc</code> and <code>v4l2</code> compatible webcams. Different kernel versions result in different performances. It is inefficient to stream the left and right cameras at a frame rate greater than 15 fps with the kernel version that I am using.</p>
 <ul>
 <li>Setting up the Oculus Rift DK1 for the <strong>Virtual Reality</strong> work in the upcoming second term
 <img alt="Oculus Rift" src="http://siddhantsci.org/images/oculus-rift.jpg" /></li>
@@ -215,6 +215,9 @@
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/">Remote tests in Telerobotics</a>
+      </li>
+      <li class="post">
           <a href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/">Mid-term Report - GSoC '15</a>
       </li>
       <li class="post">
@@ -225,9 +228,6 @@
       </li>
       <li class="post">
           <a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/">All for Docker; Docker for all!</a>
-      </li>
-      <li class="post">
-          <a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/">Tango-ing with ROS- Week 2!</a>
       </li>
     </ul>
   </section>
