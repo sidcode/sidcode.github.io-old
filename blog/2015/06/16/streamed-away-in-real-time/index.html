@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Streamed away (in Real-Time)! &mdash; All Day I Dream About Science</title>
+  <meta name="author" content="Siddhant Shrivastava">
+
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+        title="All Day I Dream About Science Atom Feed" />
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="http://siddhantsci.org/favicon.png" rel="icon">
+
+  <link href="http://siddhantsci.org/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="http://siddhantsci.org/">All Day I Dream About Science</a></h1>
+    <h2>Where (Computer) Science meets everything</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-atom">Atom</a></li>
+</ul>
+
+
+<form action="//google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:siddhantsci.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+    <li><a href="/archives.html">Archives</a></li>
+    <li><a href="http://siddhantsci.org">Home Page</a></li>
+    <li><a href="http://siddhantsci.org/bfc-orientation">Mozilla FOSS Talk</a></li>
+    <li><a href="http://siddhantsci.org/rightthingtodo">Talk on Justice</a></li>
+    <li><a href="pdfs/resume_siddhant.pdf">Résumé</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Streamed away (in Real-Time)!</h1>
+    <p class="meta">
+<time datetime="2015-06-16T19:53:52+00:00" pubdate>Tue 16 June 2015</time>  &ndash; &#128339; 8 min read
+    </p>
+</header>
+
+  <div class="entry-content"><p>Hi! This post is <em>all</em> about <strong>Video Streaming and Cameras</strong> :-) If you've wondered how services like YouTube Live or twitch.tv work, then this post is for you. After the <em>Innsbruck experiments</em> and <a href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/">Remote tests in Telerobotics</a>, it was time for me to create a full-fledged Real Time Video Streaming solution for the ERAS project. After a lot of frustration and learning, I've been able to achieve the following milestones - </p>
+<ol>
+<li>Stream losslessly from a single camera in real-time to a Blender Game Engine instance.</li>
+<li>Create example Blender projects to test <em>multiple video sources</em> streaming over a network.</li>
+<li>Record a <strong>live stream</strong> from a <strong>stereoscopic camera</strong> into a side-by-side video encoded on the fly. </li>
+</ol>
+<p>It's going to be a very long post as I've been playing around with lots of video streaming stuff. All this experience has turned me into a confident Multimedia streamer.</p>
+<h2>Why am I doing this?</h2>
+<p>Integrating <em>Augmented</em> and <em>Virtual Reality</em> requires one to know the nitty-gritty of <strong>Multimedia Streaming</strong>. This week was spent in learning and tinkering with the various options provided by <a href="https://ffmpeg.org/">FFmpeg</a> and <a href="linuxtv.org/downloads/v4l-dvb-apis/">Video4Linux2</a>. One of the aims of the Telerobotics project is to allow streaming of Rover Camera input to the Astronaut's Head-Mounted Device (<strong>Minoru 3D</strong> camera and <strong>Oculus Rift</strong> in my case). The streamed video has multiple uses -</p>
+<ol>
+<li>It is used by the various Tango servers (Planning, Vision, Telerobotics, etc) and processed to obtain Semantic relationships between objects in the Martian environment.</li>
+<li>The video, in addition to the LIDAR and other sensing devices are the interface of the Human world in the ERAS habitat on Mars. The video stream provides a window to Mars.</li>
+<li>The real-time stream helps the astronaut and the simulated astronaut to guide the rover and the simulated rover around on Mars.</li>
+<li>Streaming is an integral component of both ERAS and V-ERAS which we at the Italian Mars Society are currently working on. </li>
+</ol>
+<h2>Initial Impressions</h2>
+<p>When I started with 3D streaming, it <em>appeared</em> easy. "I did it with a single camera, two cameras can't be a huge deal, right!". <em>I had never been so wrong</em>. I found myself stuck in the usual embedded device vs the Linux kernel interface -</p>
+<ul>
+<li>The hardware of desktop machines are unsuitable for Streaming applications. </li>
+<li>The Kernel is not configured to use multiple webcams</li>
+<li>This results in lots of <strong>memory-related</strong> errors - <code>insufficient memory</code>, <code>rt_underflow</code></li>
+</ul>
+<p>To tweak the Minoru camera and strike an optimum settings agreement with this cute little stereo camera, I began to dig into the core software components involved -</p>
+<h2>Video4Linux2 saves the day!</h2>
+<p>The Video4Linux is an important driver framework which makes it possible for Linux users to use Video Capture devices (webcams and streaming equipment). It supports multiple features. The ones that this project is concerned with are -</p>
+<ul>
+<li>Video Capture/Output and Tuning (<code>/dev/videoX</code>, streaming and control)</li>
+<li>Video Capture and Output overlay (<code>/dev/videoX</code>, control)</li>
+<li>Memory-to-Memory (Codec) devices (<code>/dev/videoX</code>)</li>
+</ul>
+<p><a href="https://archive.fosdem.org/2014/schedule/event/v4l_intro/">These slides</a> by Hans Verkuil (Cisco Systems) are and informative entry point for understanding how Video4Linux works.</p>
+<p>The different Streaming Modes supported by Video4Linux are -</p>
+<ul>
+<li>Read/Write (<strong>Supported by Minoru</strong>) </li>
+<li>Memory Mapped Streaming I/O (<strong>Supported by Minoru</strong>)</li>
+<li>User Pointer Streaming I/O</li>
+<li>DMA (Direct Memory Access) Buffer Streaming I/O</li>
+</ul>
+<p>The take-away from Video4Linux is understanding how streaming works. So a Stream requires the following - queue setup, preparing the buffer, start streaming, stop streaming, wait to prepare, wait to finish, compression and encoding of the input stream, transmission/feeding on a channel, decompression and decoding the received stream, and facilities for playback and time-seek.</p>
+<p>The Qt frontend to <code>v4l2</code> made me realize where the problem with the camera lied -</p>
+<p><img alt="Qv4l2 Minoru" src="http://siddhantsci.org/images/minoru-qv4l2.jpg" /></p>
+<p>The <code>video4linux2</code> specification allows for querying and configuring <strong>everything</strong> about Video Capture Cards. The nifty command-line utitlity <code>v4l2-ctl</code> is a lifesaver while debugging cameras.</p>
+<p>For instance, with the Stereo Camera connected, <code>`v4l2-ctl --list-devices</code> gives -</p>
+<div class="highlight"><pre>Vimicro USB2.0 PC Camera (usb-0000:00:14.0-1.1):
+        /dev/video1
+
+Vimicro USB2.0 PC Camera (usb-0000:00:14.0-1.4):
+        /dev/video2
+
+WebCam SC-13HDL11939N (usb-0000:00:1a.0-1.4):
+        /dev/video0
+</pre></div>
+
+
+<div class="highlight"><pre>v4l2-ctl --list-frameintervals=width=640,height=480,pixelformat=&#39;YUYV&#39;
+</pre></div>
+
+
+<p>gives</p>
+<div class="highlight"><pre><span class="n">ioctl</span><span class="o">:</span> <span class="n">VIDIOC_ENUM_FRAMEINTERVALS</span>
+        <span class="n">Interval</span><span class="o">:</span> <span class="n">Discrete</span> <span class="mf">0.033</span><span class="n">s</span> <span class="o">(</span><span class="mf">30.000</span> <span class="n">fps</span><span class="o">)</span>
+        <span class="n">Interval</span><span class="o">:</span> <span class="n">Discrete</span> <span class="mf">0.067</span><span class="n">s</span> <span class="o">(</span><span class="mf">15.000</span> <span class="n">fps</span><span class="o">)</span>
+</pre></div>
+
+
+<p>This means that I've to use one of these settings for getting input from the camera, and then transcode them into the desired stream characteristics.</p>
+<h2>Knowing your stereoscopic Camera</h2>
+<p><img alt="Stereo" src="{filename}images/stereo-1.jpg" /></p>
+<p>VLC carefully configured to stream the Left and Right Minoru Cameras/</p>
+<p><a href="http://www.minoru3d.com/">Minoru 3D</a> webcam uses the following <em>Color Spaces</em> -</p>
+<ol>
+<li>RGB3</li>
+<li>YU12</li>
+<li>YV12</li>
+<li>YUYV</li>
+<li>BGR3</li>
+</ol>
+<p>Explanations ahead...</p>
+<blockquote>
+<p>When colors meet computers and humans</p>
+</blockquote>
+<p>Color Spaces are models of 'Color Organization' that enable reproducible representations of color in different media (analog, digital). Color is a human subjective visual perceptual property. Recursing these definitions on Wikipedia took me back to Middle School. Color is a physical (observable and measurable) property. The way us humans see it is not the same as a color sensing photodiodes see it and the computer monitors reproduce it. Translating color from one base to another requires a data structure known as the <strong>color space</strong>. The signals from the webcam are encoded into one of the color spaces. Just in case you're wondering - YUV model describes colors in terms of a <strong>Luma (luminance)</strong> component and two chrominance components (U and V). The 2-D UV plane can describe all colors. YUV can be converted into RGB and vice-versa. The YUV422 data format shares U and V values between two pixels. As a result, these values are transmitted to the PC image buffer only once for every two pixels, resulting in an average transmission rate of 16 bits per pixel.
+Capturing on the YUV 4:2:2 format is more efficient than RGB formats whereas color reproduction on a pixel array is more convenient via RGB.
+For the purposes of Video Streaming from a Stereo Camera System like Minoru, using a RGB color space is the best option because it results in faster performance with a codec like MJPEG (Multi-part JPEG) which is the final requirement for the Blender Game Engine stream. I hope this theoretical explanation superveniently describes the challenge I've been trying to crack.</p>
+<p>FFmpeg built with <code>v4l2-utils</code> support is used for the Stereo Streaming.</p>
+<h2>Experiments with Blender</h2>
+<p>I tried capturing the two video devices directly from the Blender Game Engine application. It was a good experience learning about creating basic Blender Games.</p>
+<p><img alt="Blender Game" src="http://siddhantsci.org/images/blender-try-two-sources.jpg" /></p>
+<p>The workflow to this end was -</p>
+<ul>
+<li>Create two Cube Meshes</li>
+<li>Enable GLSL shading mode</li>
+<li>Set Object Shading to <code>Shadeless</code> to enhance brightness</li>
+<li>Add Image Textures to both images</li>
+<li>Add a <code>sensor</code> that is triggered to <code>True</code> <strong>always</strong>.</li>
+<li>Add a Python script controller corresponding to each sensor.</li>
+<li>The script to control the right camera of the stereo system is -</li>
+</ul>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">VideoTexture</span>
+<span class="kn">import</span> <span class="nn">bge</span>
+
+<span class="n">contr</span> <span class="o">=</span> <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">getCurrentController</span><span class="p">()</span>
+<span class="n">obj</span> <span class="o">=</span> <span class="n">contr</span><span class="o">.</span><span class="n">owner</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="p">,</span> <span class="s">&#39;video&#39;</span><span class="p">):</span>
+    <span class="n">matID</span> <span class="o">=</span> <span class="n">VideoTexture</span><span class="o">.</span><span class="n">materialID</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="s">&#39;IMimage.png&#39;</span><span class="p">)</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span> <span class="o">=</span> <span class="n">VideoTexture</span><span class="o">.</span><span class="n">Texture</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">matID</span><span class="p">)</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">VideoTexture</span><span class="o">.</span><span class="n">VideoFFmpeg</span><span class="p">(</span><span class="s">&quot;/dev/video2&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">flip</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">framerate</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">repeat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;In Video 2 fps: &quot;</span><span class="p">,</span> <span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">framerate</span><span class="p">)</span>    
+<span class="n">bge</span><span class="o">.</span><span class="n">logic</span><span class="o">.</span><span class="n">video</span><span class="o">.</span><span class="n">refresh</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>But it turns out Blender Game Engine does not provide extensive Video Device control. It relies on the default settings provided by Video4Linux. Since the Minoru camera is unable to stream both camera outputs at 30 frames per second - Blender simply gives in and compromises by playing the first camera output that it receives. Video4Linux simply reports <code>Insufficient Memory</code> for the other stream.</p>
+<p>The output could only support one camera at a time -
+<img alt="Blender cameras" src="http://siddhantsci.org/images/blender-try-two-cameras.jpg" /></p>
+<p>The BGE documentation is ambiguous in the use of the VideoTexture command while controlling webcam devices.</p>
+<p>It was an exciting learning experience about contemporary game design nevertheless. The take-away was that Blender Game Engine is unable to handle cameras at the hardware level. Network Streaming with FFmpeg was the only option. </p>
+<h2>FFmpeg - the one-stop-shop for Multimedia</h2>
+<p>My search for the perfect tool for streaming ended with FFmpeg. It amazes me how versatile this software is. Some people even call it the <a href="https://sonnati.wordpress.com/2011/08/08/ffmpeg-%E2%80%93-the-swiss-army-knife-of-internet-streaming-%E2%80%93-part-ii/">Swiss-army knife of Internet streaming</a>. So I had to basically work with Streams.
+Streams are essentially Multimedia resources which are identified with the help of a <em>Media Resource Locator</em> (<strong>MRL</strong>). A combination of <code>ffmpeg</code> and <code>ffserver</code> is what I used to achieve the desired results. The stereoscopic stream produced will be used by multiple applications-</p>
+<ol>
+<li>Streaming to the Head-Mounted Device (currently Oculus Rift)</li>
+<li>Processing Martian environment's video.</li>
+<li>View in the ERAS application from ground control.</li>
+</ol>
+<blockquote>
+<p>Why FFmpeg?</p>
+</blockquote>
+<ul>
+<li>It is fast, reliable, and free.</li>
+<li>It provides a complete solution from streaming and transcoding to media playback, conversion, and probe analysis.</li>
+</ul>
+<p>Quoting from its <a href="http://ffmpeg.org/ffmpeg.html">documentation</a> -</p>
+<blockquote>
+<p>ffmpeg reads from an arbitrary number of input "files" (which can be regular files, pipes, network streams, grabbing devices, etc.), specified by the -i option, and writes to an arbitrary number of output "files", which are specified by a plain output filename. Anything found on the command line which cannot be interpreted as an option is considered to be an output filename. </p>
+</blockquote>
+<p>I tinkered with loads of <code>ffmpeg</code> options and created a lot of useful junkcode. The good thing about GSoC is that it makes you aware of the open-source influences out there. Throughout this work on streaming, I was motivated by the philosophy of <strong>Andrew Tridgell</strong> who says that <a href="http://samba.org/ftp/tridge/talks/junkcode.pdf">"junkcode can be an important learning tool"</a>.</p>
+<div class="highlight"><pre>ffmpeg -f v4l2 -framerate 15 -video_size 640x480 -i /dev/video1 outp1.mp4 -framerate 15 -i /dev/video2 outp2.mp4
+</pre></div>
+
+
+<p>This resulted in a steady video stream -</p>
+<p>A sample of three different frames at </p>
+<div class="highlight"><pre>frame= 1064 fps= 16 q=27.0 q=27.0 size=631kB time=00:01:07.06
+frame= 1072 fps= 16 q=27.0 q=27.0 size=723kB time=00:01:07.60
+frame= 1079 fps= 16 q=27.0 q=27.0 size=750kB time=00:01:08.06
+</pre></div>
+
+
+<p>Learning about the <code>ffmpeg-filters</code> made this experience worthwhile. I was not able to overlay videos side-by-side and combine them in real-time. This is the script that I used -</p>
+<div class="highlight"><pre><span class="nt">ffmpeg</span> <span class="nt">-s</span> <span class="nt">320x240</span> <span class="nt">-r</span> <span class="nt">24</span> <span class="nt">-f</span> <span class="nt">video4linux2</span> <span class="nt">-i</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">video1</span> <span class="nt">-s</span> <span class="nt">320x240</span> <span class="nt">-r</span> <span class="nt">24</span> <span class="nt">-f</span> <span class="nt">video4linux2</span> <span class="nt">-i</span> <span class="o">/</span><span class="nt">dev</span><span class="o">/</span><span class="nt">video2</span> <span class="nt">-filter_complex</span> <span class="s2">&quot;</span><span class="cp">[</span><span class="mi">0</span><span class="p">:</span><span class="nx">v</span><span class="cp">]</span><span class="s2">setpts=PTS-STARTPTS, pad=iw*2:ih</span><span class="cp">[</span><span class="nx">bg</span><span class="cp">]</span><span class="s2">;</span><span class="cp">[</span><span class="mi">1</span><span class="p">:</span><span class="nx">v</span><span class="cp">]</span><span class="s2">setpts=PTS-STARTPTS</span><span class="cp">[</span><span class="nx">fg</span><span class="cp">]</span><span class="s2">; </span><span class="cp">[</span><span class="nx">bg</span><span class="cp">][</span><span class="nx">fg</span><span class="cp">]</span><span class="s2">overlay=w&quot;</span> <span class="nt">-c</span><span class="nd">:v</span> <span class="nt">libx264</span> <span class="nt">-crf</span> <span class="nt">23</span> <span class="nt">-preset</span> <span class="nt">medium</span> <span class="nt">-movflags</span> <span class="nt">faststart</span> <span class="nt">nerf</span><span class="nc">.mp4</span>
+</pre></div>
+
+
+<p>It basically tells ffmpeg to use a resolution of 320x240 and 24 fps for each of the camera devices and apply an overlay filter to enable side-by-side video output. <code>PTS-STARTPTS</code> allows for time synchronization of the two streams and the presets enable efficient encoding.</p>
+<p>I shot a video using the Minoru video camera. After applying the Overlay filter, I got a nice video with the Left and Right video streams arranged side-by-side. In this screenshot, I am pointing my little brother's Nerf guns towards each of the Minoru's two cameras -</p>
+<p><img alt="Minoru Nerf Gun" src="http://siddhantsci.org/images/minoru-nerf.png" /></p>
+<p>I can experiment with the <strong>Stereoscopic anaglyph filters</strong> to extend it to a single-screen 3D live stream. But the present task involves streaming to the Oculus Rift which is what I'll be working on next. In addition to <code>ffmpeg</code>, I also made use of <code>ffserver</code> and <code>ffplay</code> in my Streaming workflow. These have been explained in a <a href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/">previous post</a>.</p>
+<h2>Experiments with <code>v4l2stereo</code></h2>
+<p>Working with stereoscopic cameras is atypical to a traditional Computer Vision workflow. Each of the cameras require calibration in order for Range-Imaging applications like depth maps and point clouds to work. I calibrated my camera using the excellent <a href="https://github.com/bashrc/v4l2stereo">v4l2stereo</a> tool.</p>
+<p>Here are some screenshots -</p>
+<p><img alt="Minoru Calibration" src="http://siddhantsci.org/images/minoru-calibration.jpg" /></p>
+<p>Basic Feature detection -</p>
+<p><img alt="Minoru Calibration" src="http://siddhantsci.org/images/minoru-features.jpg" /></p>
+<h2>Closing remarks</h2>
+<p>This was a very hectic couple of weeks. The output I produced pales in comparison to the tinkering that I had been doing. I'll be using all the important scripts that did not make it to the final repository in the documentation so that future students won't have to wade through the insurmountable learning curve of Multimedia Streaming. All the work regarding this can be found <a href="https://bitbucket.org/italianmarssociety/eras/src/a31a7a135eb0315c4d3aa4d968e0832666af14eb/servers/telerobotics/streams/?at=default">here</a>. I realized the overwhelming importance of IRC channels when I got help from #ffmpeg and #v4l2 channels when I was stuck with no end in sight. I gathered a GREAT DEAL of experience in Video Streaming which I hope will go a long way.</p>
+<p>This has been one giant bi-weekly report. Thank you for reading. <em>Ciao!</em></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Siddhant Shrivastava
+    </span>
+  </span>
+<time datetime="2015-06-16T19:53:52+00:00" pubdate>Tue 16 June 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
+</p><div class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/06/16/streamed-away-in-real-time/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/06/16/streamed-away-in-real-time/" >Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+</div>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
+<aside class="sidebar">
+  <section>
+	  <img src="http://siddhantsci.org/images/sid_face.jpg" alt="Siddhant Shrivastava" width=""/> 
+  </section>
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/">Remote tests in Telerobotics</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/">Mid-term Report - GSoC '15</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/">The Half-Life of Telerobotics</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/">When two Distributed Systems meet!</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/06/16/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="http://siddhantsci.org/category/analogy.html">Analogy</a></li>
+        <li><a href="http://siddhantsci.org/category/blog.html">Blog</a></li>
+        <li><a href="http://siddhantsci.org/category/computer-science.html">Computer Science</a></li>
+        <li><a href="http://siddhantsci.org/category/gsoc.html">GSoC</a></li>
+        <li><a href="http://siddhantsci.org/category/hacker-spirit.html">Hacker Spirit</a></li>
+        <li><a href="http://siddhantsci.org/category/internet.html">Internet</a></li>
+        <li><a href="http://siddhantsci.org/category/open-source.html">Open Source</a></li>
+        <li><a href="http://siddhantsci.org/category/personal.html">Personal</a></li>
+        <li><a href="http://siddhantsci.org/category/robotics.html">Robotics</a></li>
+        <li><a href="http://siddhantsci.org/category/science.html">Science</a></li>
+        <li><a href="http://siddhantsci.org/category/theoretical-computer-science.html">Theoretical Computer Science</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>  </section>
+
+
+
+<section>
+    <a href="http://twitter.com/siddhantcode" class="twitter-follow-button" data-show-count="true">Follow @siddhantcode</a>
+</section>
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SiddhantShrivastava?rel=author">
+      <img src="//www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2014&ndash;2015  Siddhant Shrivastava &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="http://siddhantsci.org/theme/js/modernizr-2.0.js"></script>
+  <script src="http://siddhantsci.org/theme/js/ender.js"></script>
+  <script src="http://siddhantsci.org/theme/js/octopress.js" type="text/javascript"></script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59415221-1', 'auto');
+
+    ga('send', 'pageview');
+    </script>
+	<script type="text/javascript">
+	  var disqus_shortname = 'siddhant';
+          var disqus_identifier = '/blog/2015/06/16/streamed-away-in-real-time/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/06/16/streamed-away-in-real-time/';
+          var disqus_title = 'Streamed away (in Real-Time)!';
+	  (function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	   })();
+	</script>
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>
