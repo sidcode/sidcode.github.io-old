@@ -1,5 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-07-08T19:53:52+00:00</updated><entry><title>Remote tests in Telerobotics</title><link href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/" rel="alternate"></link><updated>2015-07-08T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-07-08:blog/2015/07/08/remote-tests-in-telerobotics/</id><summary type="html">&lt;p&gt;Ciao :)  The &lt;em&gt;sixth week&lt;/em&gt; of GSoC 2015 got over. According to the &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;Telerobotics project timeline&lt;/a&gt;, this week was supposed to be the &lt;strong&gt;Buffer Week&lt;/strong&gt; to account for any unforeseen work that may pop up. We at the &lt;strong&gt;Italian Mars Society&lt;/strong&gt; were trying to get ROS communication possible over a &lt;em&gt;large&lt;/em&gt; network. After effective discussion via mail and prioritizing on Trello, the &lt;strong&gt;first Husky test&lt;/strong&gt; was scheduled on July 1, &lt;strong&gt;second test&lt;/strong&gt; on July 7 and the &lt;strong&gt;third test&lt;/strong&gt; on July 8. It was an international effort spanning timezones in UTC-5:00, UTC+2:00, and UTC+5:30 regions. So zeroing in on a common time was an interesting sub-challenge in itself.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-07-16T19:53:52+00:00</updated><entry><title>Streamed away (in Real-Time)!</title><link href="http://siddhantsci.org/blog/2015/07/16/streamed-away-in-real-time/" rel="alternate"></link><updated>2015-07-16T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-07-16:blog/2015/07/16/streamed-away-in-real-time/</id><summary type="html">&lt;p&gt;Hi! This post is &lt;em&gt;all&lt;/em&gt; about &lt;strong&gt;Video Streaming and Cameras&lt;/strong&gt; :-) If you've wondered how services like YouTube Live or twitch.tv work, then this post is for you. After the &lt;em&gt;Innsbruck experiments&lt;/em&gt; and &lt;a href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/"&gt;Remote tests in Telerobotics&lt;/a&gt;, it was time for me to create a full-fledged Real Time Video Streaming solution for the ERAS project. After a lot of frustration and learning, I've been able to achieve the following milestones - &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Stream losslessly from a single camera in real-time to a Blender Game Engine instance.&lt;/li&gt;
+&lt;li&gt;Create example Blender projects to test &lt;em&gt;multiple video sources&lt;/em&gt; streaming over a network.&lt;/li&gt;
+&lt;li&gt;Record a &lt;strong&gt;live stream&lt;/strong&gt; from a &lt;strong&gt;stereoscopic camera&lt;/strong&gt; into a side-by-side video encoded on the fly. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;It's going to be a very long post as I've been playing around with lots of video streaming stuff. All this experience has turned me into a confident Multimedia streamer.&lt;/p&gt;
+&lt;h2&gt;Why am I doing this?&lt;/h2&gt;
+&lt;p&gt;Integrating &lt;em&gt;Augmented&lt;/em&gt; and &lt;em&gt;Virtual Reality&lt;/em&gt; requires one to know the nitty-gritty of &lt;strong&gt;Multimedia Streaming&lt;/strong&gt;. This week was spent in learning and tinkering with the various options provided by &lt;a href="https://ffmpeg.org/"&gt;FFmpeg&lt;/a&gt; and &lt;a href="linuxtv.org/downloads/v4l-dvb-apis/"&gt;Video4Linux2&lt;/a&gt;. One of the aims of the Telerobotics project is to allow streaming of Rover Camera input to the Astronaut's Head-Mounted Device (&lt;strong&gt;Minoru 3D&lt;/strong&gt; camera and &lt;strong&gt;Oculus Rift&lt;/strong&gt; in my case). The streamed video has multiple uses -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;It is used by the various Tango servers (Planning, Vision, Telerobotics, etc) and processed to obtain Semantic relationships between objects in the Martian environment.&lt;/li&gt;
+&lt;li&gt;The video, in addition to the LIDAR and other sensing devices are the interface of the Human world in the ERAS habitat on Mars. The video stream provides a window to Mars.&lt;/li&gt;
+&lt;li&gt;The real-time stream helps the astronaut and the simulated astronaut to guide the rover and the simulated rover around on Mars.&lt;/li&gt;
+&lt;li&gt;Streaming is an integral component of both ERAS and V-ERAS which we at the Italian Mars Society are currently working on. &lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Initial Impressions&lt;/h2&gt;
+&lt;p&gt;When I started with 3D streaming, it &lt;em&gt;appeared&lt;/em&gt; easy. "I did it with a single camera, two cameras can't be a huge deal, right!". &lt;em&gt;I had never been so wrong&lt;/em&gt;. I found myself stuck in the usual embedded device vs the Linux kernel interface -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The hardware of desktop machines are unsuitable for Streaming applications. &lt;/li&gt;
+&lt;li&gt;The Kernel is not configured to use multiple webcams&lt;/li&gt;
+&lt;li&gt;This results in lots of &lt;strong&gt;memory-related&lt;/strong&gt; errors - &lt;code&gt;insufficient memory&lt;/code&gt;, &lt;code&gt;rt_underflow&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To tweak the Minoru camera and strike an optimum settings agreement with this cute little stereo camera, I began to dig into the core software components involved -&lt;/p&gt;
+&lt;h2&gt;Video4Linux2 saves the day!&lt;/h2&gt;
+&lt;p&gt;The Video4Linux is an important driver framework which makes it possible for Linux users to use Video Capture devices (webcams and streaming equipment). It supports multiple features. The ones that this project is concerned with are -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Video Capture/Output and Tuning (&lt;code&gt;/dev/videoX&lt;/code&gt;, streaming and control)&lt;/li&gt;
+&lt;li&gt;Video Capture and Output overlay (&lt;code&gt;/dev/videoX&lt;/code&gt;, control)&lt;/li&gt;
+&lt;li&gt;Memory-to-Memory (Codec) devices (&lt;code&gt;/dev/videoX&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://archive.fosdem.org/2014/schedule/event/v4l_intro/"&gt;These slides&lt;/a&gt; by Hans Verkuil (Cisco Systems) are and informative entry point for understanding how Video4Linux works.&lt;/p&gt;
+&lt;p&gt;The different Streaming Modes supported by Video4Linux are -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Read/Write (&lt;strong&gt;Supported by Minoru&lt;/strong&gt;) &lt;/li&gt;
+&lt;li&gt;Memory Mapped Streaming I/O (&lt;strong&gt;Supported by Minoru&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;User Pointer Streaming I/O&lt;/li&gt;
+&lt;li&gt;DMA (Direct Memory Access) Buffer Streaming I/O&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The take-away from Video4Linux is understanding how streaming works. So a Stream requires the following - queue setup, preparing the buffer, start streaming, stop streaming, wait to prepare, wait to finish, compression and encoding of the input stream, transmission/feeding on a channel, decompression and decoding the received stream, and facilities for playback and time-seek.&lt;/p&gt;
+&lt;p&gt;The Qt frontend to &lt;code&gt;v4l2&lt;/code&gt; made me realize where the problem with the camera lied -&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Qv4l2 Minoru" src="http://siddhantsci.org/images/minoru-qv4l2.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;video4linux2&lt;/code&gt; specification allows for querying and configuring &lt;strong&gt;everything&lt;/strong&gt; about Video Capture Cards. The nifty command-line utitlity &lt;code&gt;v4l2-ctl&lt;/code&gt; is a lifesaver while debugging cameras.&lt;/p&gt;
+&lt;p&gt;For instance, with the Stereo Camera connected, &lt;code&gt;`v4l2-ctl --list-devices&lt;/code&gt; gives -&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;Vimicro USB2.0 PC Camera (usb-0000:00:14.0-1.1):
+        /dev/video1
+
+Vimicro USB2.0 PC Camera (usb-0000:00:14.0-1.4):
+        /dev/video2
+
+WebCam SC-13HDL11939N (usb-0000:00:1a.0-1.4):
+        /dev/video0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;v4l2-ctl --list-frameintervals=width=640,height=480,pixelformat=&amp;#39;YUYV&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;gives&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ioctl&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VIDIOC_ENUM_FRAMEINTERVALS&lt;/span&gt;
+        &lt;span class="n"&gt;Interval&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Discrete&lt;/span&gt; &lt;span class="mf"&gt;0.033&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;30.000&lt;/span&gt; &lt;span class="n"&gt;fps&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+        &lt;span class="n"&gt;Interval&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Discrete&lt;/span&gt; &lt;span class="mf"&gt;0.067&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;15.000&lt;/span&gt; &lt;span class="n"&gt;fps&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This means that I've to use one of these settings for getting input from the camera, and then transcode them into the desired stream characteristics.&lt;/p&gt;
+&lt;h2&gt;Knowing your stereoscopic Camera&lt;/h2&gt;
+&lt;p&gt;&lt;img alt="Stereo" src="{filename}images/stereo-1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;VLC carefully configured to stream the Left and Right Minoru Cameras/&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://www.minoru3d.com/"&gt;Minoru 3D&lt;/a&gt; webcam uses the following &lt;em&gt;Color Spaces&lt;/em&gt; -&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;RGB3&lt;/li&gt;
+&lt;li&gt;YU12&lt;/li&gt;
+&lt;li&gt;YV12&lt;/li&gt;
+&lt;li&gt;YUYV&lt;/li&gt;
+&lt;li&gt;BGR3&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Explanations ahead...&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When colors meet computers and humans&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Color Spaces are models of 'Color Organization' that enable reproducible representations of color in different media (analog, digital). Color is a human subjective visual perceptual property. Recursing these definitions on Wikipedia took me back to Middle School. Color is a physical (observable and measurable) property. The way us humans see it is not the same as a color sensing photodiodes see it and the computer monitors reproduce it. Translating color from one base to another requires a data structure known as the &lt;strong&gt;color space&lt;/strong&gt;. The signals from the webcam are encoded into one of the color spaces. Just in case you're wondering - YUV model describes colors in terms of a &lt;strong&gt;Luma (luminance)&lt;/strong&gt; component and two chrominance components (U and V). The 2-D UV plane can describe all colors. YUV can be converted into RGB and vice-versa. The YUV422 data format shares U and V values between two pixels. As a result, these values are transmitted to the PC image buffer only once for every two pixels, resulting in an average transmission rate of 16 bits per pixel.
+Capturing on the YUV 4:2:2 format is more efficient than RGB formats whereas color reproduction on a pixel array is more convenient via RGB.
+For the purposes of Video Streaming from a Stereo Camera System like Minoru, using a RGB color space is the best option because it results in faster performance with a codec like MJPEG (Multi-part JPEG) which is the final requirement for the Blender Game Engine stream. I hope this theoretical explanation superveniently describes the challenge I've been trying to crack.&lt;/p&gt;
+&lt;p&gt;FFmpeg built with &lt;code&gt;v4l2-utils&lt;/code&gt; support is used for the Stereo Streaming.&lt;/p&gt;
+&lt;h2&gt;Experiments with Blender&lt;/h2&gt;
+&lt;p&gt;I tried capturing the two video devices directly from the Blender Game Engine application. It was a good experience learning about creating basic Blender Games.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Blender Game" src="http://siddhantsci.org/images/blender-try-two-sources.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The workflow to this end was -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create two Cube Meshes&lt;/li&gt;
+&lt;li&gt;Enable GLSL shading mode&lt;/li&gt;
+&lt;li&gt;Set Object Shading to &lt;code&gt;Shadeless&lt;/code&gt; to enhance brightness&lt;/li&gt;
+&lt;li&gt;Add Image Textures to both images&lt;/li&gt;
+&lt;li&gt;Add a &lt;code&gt;sensor&lt;/code&gt; that is triggered to &lt;code&gt;True&lt;/code&gt; &lt;strong&gt;always&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Add a Python script controller corresponding to each sensor.&lt;/li&gt;
+&lt;li&gt;The script to control the right camera of the stereo system is -&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;VideoTexture&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bge&lt;/span&gt;
+
+&lt;span class="n"&gt;contr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getCurrentController&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;contr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;video&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;matID&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VideoTexture&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;materialID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;IMimage.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VideoTexture&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Texture&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matID&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VideoTexture&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VideoFFmpeg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/dev/video2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;framerate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.2&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;repeat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;play&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;In Video 2 fps: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;framerate&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    
+&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;refresh&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;But it turns out Blender Game Engine does not provide extensive Video Device control. It relies on the default settings provided by Video4Linux. Since the Minoru camera is unable to stream both camera outputs at 30 frames per second - Blender simply gives in and compromises by playing the first camera output that it receives. Video4Linux simply reports &lt;code&gt;Insufficient Memory&lt;/code&gt; for the other stream.&lt;/p&gt;
+&lt;p&gt;The output could only support one camera at a time -
+&lt;img alt="Blender cameras" src="http://siddhantsci.org/images/blender-try-two-cameras.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;The BGE documentation is ambiguous in the use of the VideoTexture command while controlling webcam devices.&lt;/p&gt;
+&lt;p&gt;It was an exciting learning experience about contemporary game design nevertheless. The take-away was that Blender Game Engine is unable to handle cameras at the hardware level. Network Streaming with FFmpeg was the only option. &lt;/p&gt;
+&lt;h2&gt;FFmpeg - the one-stop-shop for Multimedia&lt;/h2&gt;
+&lt;p&gt;My search for the perfect tool for streaming ended with FFmpeg. It amazes me how versatile this software is. Some people even call it the &lt;a href="https://sonnati.wordpress.com/2011/08/08/ffmpeg-%E2%80%93-the-swiss-army-knife-of-internet-streaming-%E2%80%93-part-ii/"&gt;Swiss-army knife of Internet streaming&lt;/a&gt;. So I had to basically work with Streams.
+Streams are essentially Multimedia resources which are identified with the help of a &lt;em&gt;Media Resource Locator&lt;/em&gt; (&lt;strong&gt;MRL&lt;/strong&gt;). A combination of &lt;code&gt;ffmpeg&lt;/code&gt; and &lt;code&gt;ffserver&lt;/code&gt; is what I used to achieve the desired results. The stereoscopic stream produced will be used by multiple applications-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Streaming to the Head-Mounted Device (currently Oculus Rift)&lt;/li&gt;
+&lt;li&gt;Processing Martian environment's video.&lt;/li&gt;
+&lt;li&gt;View in the ERAS application from ground control.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Why FFmpeg?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;It is fast, reliable, and free.&lt;/li&gt;
+&lt;li&gt;It provides a complete solution from streaming and transcoding to media playback, conversion, and probe analysis.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Quoting from its &lt;a href="http://ffmpeg.org/ffmpeg.html"&gt;documentation&lt;/a&gt; -&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ffmpeg reads from an arbitrary number of input "files" (which can be regular files, pipes, network streams, grabbing devices, etc.), specified by the -i option, and writes to an arbitrary number of output "files", which are specified by a plain output filename. Anything found on the command line which cannot be interpreted as an option is considered to be an output filename. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I tinkered with loads of &lt;code&gt;ffmpeg&lt;/code&gt; options and created a lot of useful junkcode. The good thing about GSoC is that it makes you aware of the open-source influences out there. Throughout this work on streaming, I was motivated by the philosophy of &lt;strong&gt;Andrew Tridgell&lt;/strong&gt; who says that &lt;a href="http://samba.org/ftp/tridge/talks/junkcode.pdf"&gt;"junkcode can be an important learning tool"&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;ffmpeg -f v4l2 -framerate 15 -video_size 640x480 -i /dev/video1 outp1.mp4 -framerate 15 -i /dev/video2 outp2.mp4
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This resulted in a steady video stream -&lt;/p&gt;
+&lt;p&gt;A sample of three different frames at &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;frame= 1064 fps= 16 q=27.0 q=27.0 size=631kB time=00:01:07.06
+frame= 1072 fps= 16 q=27.0 q=27.0 size=723kB time=00:01:07.60
+frame= 1079 fps= 16 q=27.0 q=27.0 size=750kB time=00:01:08.06
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Learning about the &lt;code&gt;ffmpeg-filters&lt;/code&gt; made this experience worthwhile. I was not able to overlay videos side-by-side and combine them in real-time. This is the script that I used -&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;ffmpeg&lt;/span&gt; &lt;span class="nt"&gt;-s&lt;/span&gt; &lt;span class="nt"&gt;320x240&lt;/span&gt; &lt;span class="nt"&gt;-r&lt;/span&gt; &lt;span class="nt"&gt;24&lt;/span&gt; &lt;span class="nt"&gt;-f&lt;/span&gt; &lt;span class="nt"&gt;video4linux2&lt;/span&gt; &lt;span class="nt"&gt;-i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;video1&lt;/span&gt; &lt;span class="nt"&gt;-s&lt;/span&gt; &lt;span class="nt"&gt;320x240&lt;/span&gt; &lt;span class="nt"&gt;-r&lt;/span&gt; &lt;span class="nt"&gt;24&lt;/span&gt; &lt;span class="nt"&gt;-f&lt;/span&gt; &lt;span class="nt"&gt;video4linux2&lt;/span&gt; &lt;span class="nt"&gt;-i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;video2&lt;/span&gt; &lt;span class="nt"&gt;-filter_complex&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;setpts=PTS-STARTPTS, pad=iw*2:ih&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;bg&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;;&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;setpts=PTS-STARTPTS&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;fg&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;; &lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;bg&lt;/span&gt;&lt;span class="cp"&gt;][&lt;/span&gt;&lt;span class="nx"&gt;fg&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;overlay=w&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;-c&lt;/span&gt;&lt;span class="nd"&gt;:v&lt;/span&gt; &lt;span class="nt"&gt;libx264&lt;/span&gt; &lt;span class="nt"&gt;-crf&lt;/span&gt; &lt;span class="nt"&gt;23&lt;/span&gt; &lt;span class="nt"&gt;-preset&lt;/span&gt; &lt;span class="nt"&gt;medium&lt;/span&gt; &lt;span class="nt"&gt;-movflags&lt;/span&gt; &lt;span class="nt"&gt;faststart&lt;/span&gt; &lt;span class="nt"&gt;nerf&lt;/span&gt;&lt;span class="nc"&gt;.mp4&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It basically tells ffmpeg to use a resolution of 320x240 and 24 fps for each of the camera devices and apply an overlay filter to enable side-by-side video output. &lt;code&gt;PTS-STARTPTS&lt;/code&gt; allows for time synchronization of the two streams and the presets enable efficient encoding.&lt;/p&gt;
+&lt;p&gt;I shot a video using the Minoru video camera. After applying the Overlay filter, I got a nice video with the Left and Right video streams arranged side-by-side. In this screenshot, I am pointing my little brother's Nerf guns towards each of the Minoru's two cameras -&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Minoru Nerf Gun" src="http://siddhantsci.org/images/minoru-nerf.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I can experiment with the &lt;strong&gt;Stereoscopic anaglyph filters&lt;/strong&gt; to extend it to a single-screen 3D live stream. But the present task involves streaming to the Oculus Rift which is what I'll be working on next. In addition to &lt;code&gt;ffmpeg&lt;/code&gt;, I also made use of &lt;code&gt;ffserver&lt;/code&gt; and &lt;code&gt;ffplay&lt;/code&gt; in my Streaming workflow. These have been explained in a &lt;a href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/"&gt;previous post&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Experiments with &lt;code&gt;v4l2stereo&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Working with stereoscopic cameras is atypical to a traditional Computer Vision workflow. Each of the cameras require calibration in order for Range-Imaging applications like depth maps and point clouds to work. I calibrated my camera using the excellent &lt;a href="https://github.com/bashrc/v4l2stereo"&gt;v4l2stereo&lt;/a&gt; tool.&lt;/p&gt;
+&lt;p&gt;Here are some screenshots -&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Minoru Calibration" src="http://siddhantsci.org/images/minoru-calibration.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;Basic Feature detection -&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Minoru Calibration" src="http://siddhantsci.org/images/minoru-features.jpg" /&gt;&lt;/p&gt;
+&lt;h2&gt;Closing remarks&lt;/h2&gt;
+&lt;p&gt;This was a very hectic couple of weeks. The output I produced pales in comparison to the tinkering that I had been doing. I'll be using all the important scripts that did not make it to the final repository in the documentation so that future students won't have to wade through the insurmountable learning curve of Multimedia Streaming. All the work regarding this can be found &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/a31a7a135eb0315c4d3aa4d968e0832666af14eb/servers/telerobotics/streams/?at=default"&gt;here&lt;/a&gt;. I realized the overwhelming importance of IRC channels when I got help from #ffmpeg and #v4l2 channels when I was stuck with no end in sight. I gathered a GREAT DEAL of experience in Video Streaming which I hope will go a long way.&lt;/p&gt;
+&lt;p&gt;This has been one giant bi-weekly report. Thank you for reading. &lt;em&gt;Ciao!&lt;/em&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category><category term="IMS"></category><category term="Italian Mars Society"></category></entry><entry><title>Remote tests in Telerobotics</title><link href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/" rel="alternate"></link><updated>2015-07-08T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-07-08:blog/2015/07/08/remote-tests-in-telerobotics/</id><summary type="html">&lt;p&gt;Ciao :)  The &lt;em&gt;sixth week&lt;/em&gt; of GSoC 2015 got over. According to the &lt;a href="http://erasproject.org/2015-gsoc/#2"&gt;Telerobotics project timeline&lt;/a&gt;, this week was supposed to be the &lt;strong&gt;Buffer Week&lt;/strong&gt; to account for any unforeseen work that may pop up. We at the &lt;strong&gt;Italian Mars Society&lt;/strong&gt; were trying to get ROS communication possible over a &lt;em&gt;large&lt;/em&gt; network. After effective discussion via mail and prioritizing on Trello, the &lt;strong&gt;first Husky test&lt;/strong&gt; was scheduled on July 1, &lt;strong&gt;second test&lt;/strong&gt; on July 7 and the &lt;strong&gt;third test&lt;/strong&gt; on July 8. It was an international effort spanning timezones in UTC-5:00, UTC+2:00, and UTC+5:30 regions. So zeroing in on a common time was an interesting sub-challenge in itself.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;By a &lt;strong&gt;large&lt;/strong&gt; network, I mean this -&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -267,179 +439,7 @@ hg push
 &lt;li&gt;Mathematical Transformations and Named Tuples for different structures that Telerobotics requires.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;GSoC with PSF and Italian Mars Society is turning out to be fun-and-challenging. Mid-term Evaluations start in a week. Lots of work to do. I strongly hope my next post will be a celebratory one highlighting the pushed code I described in &lt;em&gt;Ongoing Stuff&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Until then, Ciao!&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category><category term="IMS"></category><category term="Italian Mars Society"></category></entry><entry><title>Streamed away (in Real-Time)!</title><link href="http://siddhantsci.org/blog/2015/06/16/streamed-away-in-real-time/" rel="alternate"></link><updated>2015-06-16T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-06-16:blog/2015/06/16/streamed-away-in-real-time/</id><summary type="html">&lt;p&gt;Hi! This post is &lt;em&gt;all&lt;/em&gt; about &lt;strong&gt;Video Streaming and Cameras&lt;/strong&gt; :-) If you've wondered how services like YouTube Live or twitch.tv work, then this post is for you. After the &lt;em&gt;Innsbruck experiments&lt;/em&gt; and &lt;a href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/"&gt;Remote tests in Telerobotics&lt;/a&gt;, it was time for me to create a full-fledged Real Time Video Streaming solution for the ERAS project. After a lot of frustration and learning, I've been able to achieve the following milestones - &lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Stream losslessly from a single camera in real-time to a Blender Game Engine instance.&lt;/li&gt;
-&lt;li&gt;Create example Blender projects to test &lt;em&gt;multiple video sources&lt;/em&gt; streaming over a network.&lt;/li&gt;
-&lt;li&gt;Record a &lt;strong&gt;live stream&lt;/strong&gt; from a &lt;strong&gt;stereoscopic camera&lt;/strong&gt; into a side-by-side video encoded on the fly. &lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;It's going to be a very long post as I've been playing around with lots of video streaming stuff. All this experience has turned me into a confident Multimedia streamer.&lt;/p&gt;
-&lt;h2&gt;Why am I doing this?&lt;/h2&gt;
-&lt;p&gt;Integrating &lt;em&gt;Augmented&lt;/em&gt; and &lt;em&gt;Virtual Reality&lt;/em&gt; requires one to know the nitty-gritty of &lt;strong&gt;Multimedia Streaming&lt;/strong&gt;. This week was spent in learning and tinkering with the various options provided by &lt;a href="https://ffmpeg.org/"&gt;FFmpeg&lt;/a&gt; and &lt;a href="linuxtv.org/downloads/v4l-dvb-apis/"&gt;Video4Linux2&lt;/a&gt;. One of the aims of the Telerobotics project is to allow streaming of Rover Camera input to the Astronaut's Head-Mounted Device (&lt;strong&gt;Minoru 3D&lt;/strong&gt; camera and &lt;strong&gt;Oculus Rift&lt;/strong&gt; in my case). The streamed video has multiple uses -&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;It is used by the various Tango servers (Planning, Vision, Telerobotics, etc) and processed to obtain Semantic relationships between objects in the Martian environment.&lt;/li&gt;
-&lt;li&gt;The video, in addition to the LIDAR and other sensing devices are the interface of the Human world in the ERAS habitat on Mars. The video stream provides a window to Mars.&lt;/li&gt;
-&lt;li&gt;The real-time stream helps the astronaut and the simulated astronaut to guide the rover and the simulated rover around on Mars.&lt;/li&gt;
-&lt;li&gt;Streaming is an integral component of both ERAS and V-ERAS which we at the Italian Mars Society are currently working on. &lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2&gt;Initial Impressions&lt;/h2&gt;
-&lt;p&gt;When I started with 3D streaming, it &lt;em&gt;appeared&lt;/em&gt; easy. "I did it with a single camera, two cameras can't be a huge deal, right!". &lt;em&gt;I had never been so wrong&lt;/em&gt;. I found myself stuck in the usual embedded device vs the Linux kernel interface -&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The hardware of desktop machines are unsuitable for Streaming applications. &lt;/li&gt;
-&lt;li&gt;The Kernel is not configured to use multiple webcams&lt;/li&gt;
-&lt;li&gt;This results in lots of &lt;strong&gt;memory-related&lt;/strong&gt; errors - &lt;code&gt;insufficient memory&lt;/code&gt;, &lt;code&gt;rt_underflow&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;To tweak the Minoru camera and strike an optimum settings agreement with this cute little stereo camera, I began to dig into the core software components involved -&lt;/p&gt;
-&lt;h2&gt;Video4Linux2 saves the day!&lt;/h2&gt;
-&lt;p&gt;The Video4Linux is an important driver framework which makes it possible for Linux users to use Video Capture devices (webcams and streaming equipment). It supports multiple features. The ones that this project is concerned with are -&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Video Capture/Output and Tuning (&lt;code&gt;/dev/videoX&lt;/code&gt;, streaming and control)&lt;/li&gt;
-&lt;li&gt;Video Capture and Output overlay (&lt;code&gt;/dev/videoX&lt;/code&gt;, control)&lt;/li&gt;
-&lt;li&gt;Memory-to-Memory (Codec) devices (&lt;code&gt;/dev/videoX&lt;/code&gt;)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href="https://archive.fosdem.org/2014/schedule/event/v4l_intro/"&gt;These slides&lt;/a&gt; by Hans Verkuil (Cisco Systems) are and informative entry point for understanding how Video4Linux works.&lt;/p&gt;
-&lt;p&gt;The different Streaming Modes supported by Video4Linux are -&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Read/Write (&lt;strong&gt;Supported by Minoru&lt;/strong&gt;) &lt;/li&gt;
-&lt;li&gt;Memory Mapped Streaming I/O (&lt;strong&gt;Supported by Minoru&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;User Pointer Streaming I/O&lt;/li&gt;
-&lt;li&gt;DMA (Direct Memory Access) Buffer Streaming I/O&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The take-away from Video4Linux is understanding how streaming works. So a Stream requires the following - queue setup, preparing the buffer, start streaming, stop streaming, wait to prepare, wait to finish, compression and encoding of the input stream, transmission/feeding on a channel, decompression and decoding the received stream, and facilities for playback and time-seek.&lt;/p&gt;
-&lt;p&gt;The Qt frontend to &lt;code&gt;v4l2&lt;/code&gt; made me realize where the problem with the camera lied -&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Qv4l2 Minoru" src="http://siddhantsci.org/images/minoru-qv4l2.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;The &lt;code&gt;video4linux2&lt;/code&gt; specification allows for querying and configuring &lt;strong&gt;everything&lt;/strong&gt; about Video Capture Cards. The nifty command-line utitlity &lt;code&gt;v4l2-ctl&lt;/code&gt; is a lifesaver while debugging cameras.&lt;/p&gt;
-&lt;p&gt;For instance, with the Stereo Camera connected, &lt;code&gt;`v4l2-ctl --list-devices&lt;/code&gt; gives -&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;Vimicro USB2.0 PC Camera (usb-0000:00:14.0-1.1):
-        /dev/video1
-
-Vimicro USB2.0 PC Camera (usb-0000:00:14.0-1.4):
-        /dev/video2
-
-WebCam SC-13HDL11939N (usb-0000:00:1a.0-1.4):
-        /dev/video0
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;div class="highlight"&gt;&lt;pre&gt;v4l2-ctl --list-frameintervals=width=640,height=480,pixelformat=&amp;#39;YUYV&amp;#39;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;gives&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ioctl&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;VIDIOC_ENUM_FRAMEINTERVALS&lt;/span&gt;
-        &lt;span class="n"&gt;Interval&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Discrete&lt;/span&gt; &lt;span class="mf"&gt;0.033&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;30.000&lt;/span&gt; &lt;span class="n"&gt;fps&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="n"&gt;Interval&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Discrete&lt;/span&gt; &lt;span class="mf"&gt;0.067&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;15.000&lt;/span&gt; &lt;span class="n"&gt;fps&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This means that I've to use one of these settings for getting input from the camera, and then transcode them into the desired stream characteristics.&lt;/p&gt;
-&lt;h2&gt;Knowing your stereoscopic Camera&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Stereo" src="{filename}images/stereo-1.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;VLC carefully configured to stream the Left and Right Minoru Cameras/&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://www.minoru3d.com/"&gt;Minoru 3D&lt;/a&gt; webcam uses the following &lt;em&gt;Color Spaces&lt;/em&gt; -&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;RGB3&lt;/li&gt;
-&lt;li&gt;YU12&lt;/li&gt;
-&lt;li&gt;YV12&lt;/li&gt;
-&lt;li&gt;YUYV&lt;/li&gt;
-&lt;li&gt;BGR3&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Explanations ahead...&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;When colors meet computers and humans&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Color Spaces are models of 'Color Organization' that enable reproducible representations of color in different media (analog, digital). Color is a human subjective visual perceptual property. Recursing these definitions on Wikipedia took me back to Middle School. Color is a physical (observable and measurable) property. The way us humans see it is not the same as a color sensing photodiodes see it and the computer monitors reproduce it. Translating color from one base to another requires a data structure known as the &lt;strong&gt;color space&lt;/strong&gt;. The signals from the webcam are encoded into one of the color spaces. Just in case you're wondering - YUV model describes colors in terms of a &lt;strong&gt;Luma (luminance)&lt;/strong&gt; component and two chrominance components (U and V). The 2-D UV plane can describe all colors. YUV can be converted into RGB and vice-versa. The YUV422 data format shares U and V values between two pixels. As a result, these values are transmitted to the PC image buffer only once for every two pixels, resulting in an average transmission rate of 16 bits per pixel.
-Capturing on the YUV 4:2:2 format is more efficient than RGB formats whereas color reproduction on a pixel array is more convenient via RGB.
-For the purposes of Video Streaming from a Stereo Camera System like Minoru, using a RGB color space is the best option because it results in faster performance with a codec like MJPEG (Multi-part JPEG) which is the final requirement for the Blender Game Engine stream. I hope this theoretical explanation superveniently describes the challenge I've been trying to crack.&lt;/p&gt;
-&lt;p&gt;FFmpeg built with &lt;code&gt;v4l2-utils&lt;/code&gt; support is used for the Stereo Streaming.&lt;/p&gt;
-&lt;h2&gt;Experiments with Blender&lt;/h2&gt;
-&lt;p&gt;I tried capturing the two video devices directly from the Blender Game Engine application. It was a good experience learning about creating basic Blender Games.&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Blender Game" src="http://siddhantsci.org/images/blender-try-two-sources.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;The workflow to this end was -&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Create two Cube Meshes&lt;/li&gt;
-&lt;li&gt;Enable GLSL shading mode&lt;/li&gt;
-&lt;li&gt;Set Object Shading to &lt;code&gt;Shadeless&lt;/code&gt; to enhance brightness&lt;/li&gt;
-&lt;li&gt;Add Image Textures to both images&lt;/li&gt;
-&lt;li&gt;Add a &lt;code&gt;sensor&lt;/code&gt; that is triggered to &lt;code&gt;True&lt;/code&gt; &lt;strong&gt;always&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Add a Python script controller corresponding to each sensor.&lt;/li&gt;
-&lt;li&gt;The script to control the right camera of the stereo system is -&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;VideoTexture&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;bge&lt;/span&gt;
-
-&lt;span class="n"&gt;contr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getCurrentController&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;contr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;owner&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="nb"&gt;hasattr&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;video&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;matID&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VideoTexture&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;materialID&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;IMimage.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VideoTexture&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Texture&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matID&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;VideoTexture&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;VideoFFmpeg&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/dev/video2&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scale&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;flip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;framerate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.2&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;repeat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;
-    &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;play&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;In Video 2 fps: &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;framerate&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;    
-&lt;span class="n"&gt;bge&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logic&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;video&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;refresh&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;But it turns out Blender Game Engine does not provide extensive Video Device control. It relies on the default settings provided by Video4Linux. Since the Minoru camera is unable to stream both camera outputs at 30 frames per second - Blender simply gives in and compromises by playing the first camera output that it receives. Video4Linux simply reports &lt;code&gt;Insufficient Memory&lt;/code&gt; for the other stream.&lt;/p&gt;
-&lt;p&gt;The output could only support one camera at a time -
-&lt;img alt="Blender cameras" src="http://siddhantsci.org/images/blender-try-two-cameras.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;The BGE documentation is ambiguous in the use of the VideoTexture command while controlling webcam devices.&lt;/p&gt;
-&lt;p&gt;It was an exciting learning experience about contemporary game design nevertheless. The take-away was that Blender Game Engine is unable to handle cameras at the hardware level. Network Streaming with FFmpeg was the only option. &lt;/p&gt;
-&lt;h2&gt;FFmpeg - the one-stop-shop for Multimedia&lt;/h2&gt;
-&lt;p&gt;My search for the perfect tool for streaming ended with FFmpeg. It amazes me how versatile this software is. Some people even call it the &lt;a href="https://sonnati.wordpress.com/2011/08/08/ffmpeg-%E2%80%93-the-swiss-army-knife-of-internet-streaming-%E2%80%93-part-ii/"&gt;Swiss-army knife of Internet streaming&lt;/a&gt;. So I had to basically work with Streams.
-Streams are essentially Multimedia resources which are identified with the help of a &lt;em&gt;Media Resource Locator&lt;/em&gt; (&lt;strong&gt;MRL&lt;/strong&gt;). A combination of &lt;code&gt;ffmpeg&lt;/code&gt; and &lt;code&gt;ffserver&lt;/code&gt; is what I used to achieve the desired results. The stereoscopic stream produced will be used by multiple applications-&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Streaming to the Head-Mounted Device (currently Oculus Rift)&lt;/li&gt;
-&lt;li&gt;Processing Martian environment's video.&lt;/li&gt;
-&lt;li&gt;View in the ERAS application from ground control.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Why FFmpeg?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;It is fast, reliable, and free.&lt;/li&gt;
-&lt;li&gt;It provides a complete solution from streaming and transcoding to media playback, conversion, and probe analysis.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Quoting from its &lt;a href="http://ffmpeg.org/ffmpeg.html"&gt;documentation&lt;/a&gt; -&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ffmpeg reads from an arbitrary number of input "files" (which can be regular files, pipes, network streams, grabbing devices, etc.), specified by the -i option, and writes to an arbitrary number of output "files", which are specified by a plain output filename. Anything found on the command line which cannot be interpreted as an option is considered to be an output filename. &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I tinkered with loads of &lt;code&gt;ffmpeg&lt;/code&gt; options and created a lot of useful junkcode. The good thing about GSoC is that it makes you aware of the open-source influences out there. Throughout this work on streaming, I was motivated by the philosophy of &lt;strong&gt;Andrew Tridgell&lt;/strong&gt; who says that &lt;a href="http://samba.org/ftp/tridge/talks/junkcode.pdf"&gt;"junkcode can be an important learning tool"&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ffmpeg -f v4l2 -framerate 15 -video_size 640x480 -i /dev/video1 outp1.mp4 -framerate 15 -i /dev/video2 outp2.mp4
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;This resulted in a steady video stream -&lt;/p&gt;
-&lt;p&gt;A sample of three different frames at &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;frame= 1064 fps= 16 q=27.0 q=27.0 size=631kB time=00:01:07.06
-frame= 1072 fps= 16 q=27.0 q=27.0 size=723kB time=00:01:07.60
-frame= 1079 fps= 16 q=27.0 q=27.0 size=750kB time=00:01:08.06
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Learning about the &lt;code&gt;ffmpeg-filters&lt;/code&gt; made this experience worthwhile. I was not able to overlay videos side-by-side and combine them in real-time. This is the script that I used -&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nt"&gt;ffmpeg&lt;/span&gt; &lt;span class="nt"&gt;-s&lt;/span&gt; &lt;span class="nt"&gt;320x240&lt;/span&gt; &lt;span class="nt"&gt;-r&lt;/span&gt; &lt;span class="nt"&gt;24&lt;/span&gt; &lt;span class="nt"&gt;-f&lt;/span&gt; &lt;span class="nt"&gt;video4linux2&lt;/span&gt; &lt;span class="nt"&gt;-i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;video1&lt;/span&gt; &lt;span class="nt"&gt;-s&lt;/span&gt; &lt;span class="nt"&gt;320x240&lt;/span&gt; &lt;span class="nt"&gt;-r&lt;/span&gt; &lt;span class="nt"&gt;24&lt;/span&gt; &lt;span class="nt"&gt;-f&lt;/span&gt; &lt;span class="nt"&gt;video4linux2&lt;/span&gt; &lt;span class="nt"&gt;-i&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;dev&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;video2&lt;/span&gt; &lt;span class="nt"&gt;-filter_complex&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;setpts=PTS-STARTPTS, pad=iw*2:ih&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;bg&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;;&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nx"&gt;v&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;setpts=PTS-STARTPTS&lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;fg&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;; &lt;/span&gt;&lt;span class="cp"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;bg&lt;/span&gt;&lt;span class="cp"&gt;][&lt;/span&gt;&lt;span class="nx"&gt;fg&lt;/span&gt;&lt;span class="cp"&gt;]&lt;/span&gt;&lt;span class="s2"&gt;overlay=w&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;-c&lt;/span&gt;&lt;span class="nd"&gt;:v&lt;/span&gt; &lt;span class="nt"&gt;libx264&lt;/span&gt; &lt;span class="nt"&gt;-crf&lt;/span&gt; &lt;span class="nt"&gt;23&lt;/span&gt; &lt;span class="nt"&gt;-preset&lt;/span&gt; &lt;span class="nt"&gt;medium&lt;/span&gt; &lt;span class="nt"&gt;-movflags&lt;/span&gt; &lt;span class="nt"&gt;faststart&lt;/span&gt; &lt;span class="nt"&gt;nerf&lt;/span&gt;&lt;span class="nc"&gt;.mp4&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;It basically tells ffmpeg to use a resolution of 320x240 and 24 fps for each of the camera devices and apply an overlay filter to enable side-by-side video output. &lt;code&gt;PTS-STARTPTS&lt;/code&gt; allows for time synchronization of the two streams and the presets enable efficient encoding.&lt;/p&gt;
-&lt;p&gt;I shot a video using the Minoru video camera. After applying the Overlay filter, I got a nice video with the Left and Right video streams arranged side-by-side. In this screenshot, I am pointing my little brother's Nerf guns towards each of the Minoru's two cameras -&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Minoru Nerf Gun" src="http://siddhantsci.org/images/minoru-nerf.png" /&gt;&lt;/p&gt;
-&lt;p&gt;I can experiment with the &lt;strong&gt;Stereoscopic anaglyph filters&lt;/strong&gt; to extend it to a single-screen 3D live stream. But the present task involves streaming to the Oculus Rift which is what I'll be working on next. In addition to &lt;code&gt;ffmpeg&lt;/code&gt;, I also made use of &lt;code&gt;ffserver&lt;/code&gt; and &lt;code&gt;ffplay&lt;/code&gt; in my Streaming workflow. These have been explained in a &lt;a href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/"&gt;previous post&lt;/a&gt;.&lt;/p&gt;
-&lt;h2&gt;Experiments with &lt;code&gt;v4l2stereo&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;Working with stereoscopic cameras is atypical to a traditional Computer Vision workflow. Each of the cameras require calibration in order for Range-Imaging applications like depth maps and point clouds to work. I calibrated my camera using the excellent &lt;a href="https://github.com/bashrc/v4l2stereo"&gt;v4l2stereo&lt;/a&gt; tool.&lt;/p&gt;
-&lt;p&gt;Here are some screenshots -&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Minoru Calibration" src="http://siddhantsci.org/images/minoru-calibration.jpg" /&gt;&lt;/p&gt;
-&lt;p&gt;Basic Feature detection -&lt;/p&gt;
-&lt;p&gt;&lt;img alt="Minoru Calibration" src="http://siddhantsci.org/images/minoru-features.jpg" /&gt;&lt;/p&gt;
-&lt;h2&gt;Closing remarks&lt;/h2&gt;
-&lt;p&gt;This was a very hectic couple of weeks. The output I produced pales in comparison to the tinkering that I had been doing. I'll be using all the important scripts that did not make it to the final repository in the documentation so that future students won't have to wade through the insurmountable learning curve of Multimedia Streaming. All the work regarding this can be found &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/a31a7a135eb0315c4d3aa4d968e0832666af14eb/servers/telerobotics/streams/?at=default"&gt;here&lt;/a&gt;. I realized the overwhelming importance of IRC channels when I got help from #ffmpeg and #v4l2 channels when I was stuck with no end in sight. I gathered a GREAT DEAL of experience in Video Streaming which I hope will go a long way.&lt;/p&gt;
-&lt;p&gt;This has been one giant bi-weekly report. Thank you for reading. &lt;em&gt;Ciao!&lt;/em&gt;&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category><category term="IMS"></category><category term="Italian Mars Society"></category></entry><entry><title>All for Docker; Docker for all!</title><link href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" rel="alternate"></link><updated>2015-06-12T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-06-12:blog/2015/06/12/all-for-docker-docker-for-all/</id><summary type="html">&lt;p&gt;Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my &lt;a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/"&gt;last post&lt;/a&gt;, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -&lt;/p&gt;
+&lt;p&gt;Until then, Ciao!&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category><category term="IMS"></category><category term="Italian Mars Society"></category></entry><entry><title>All for Docker; Docker for all!</title><link href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/" rel="alternate"></link><updated>2015-06-12T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-06-12:blog/2015/06/12/all-for-docker-docker-for-all/</id><summary type="html">&lt;p&gt;Hi! This is going to be a short post about my developments in the Week 3 of my GSoC project. Since my &lt;a href="http://siddhantsci.org/blog/2015/06/08/tango-ing-with-ros-week-2/"&gt;last post&lt;/a&gt;, I have had the chance to work with some exciting state-of-the-art technologies which allow easy distribution and scalability. These are -&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Docker
 &lt;img alt="Docker Logo" src="http://siddhantsci.org/images/docker-logo.png" /&gt;&lt;/li&gt;
