@@ -66,7 +66,7 @@ WebCam SC-13HDL11939N (usb-0000:00:1a.0-1.4):
 
 &lt;p&gt;This means that I've to use one of these settings for getting input from the camera, and then transcode them into the desired stream characteristics.&lt;/p&gt;
 &lt;h2&gt;Knowing your stereoscopic Camera&lt;/h2&gt;
-&lt;p&gt;&lt;img alt="Stereo" src="{filename}images/stereo-1.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Stereo" src="http://siddhantsci.org/images/stereo-1.png" /&gt;&lt;/p&gt;
 &lt;p&gt;VLC carefully configured to stream the Left and Right Minoru Cameras/&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://www.minoru3d.com/"&gt;Minoru 3D&lt;/a&gt; webcam uses the following &lt;em&gt;Color Spaces&lt;/em&gt; -&lt;/p&gt;
 &lt;ol&gt;
