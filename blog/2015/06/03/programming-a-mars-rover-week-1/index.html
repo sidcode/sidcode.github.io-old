@@ -98,13 +98,13 @@ I banged my head against Python Streams. Message brokers like <a href="https://w
 <p>It is a haven for robot hobbyists like me and I'll continue to refer to it for time to come.</p>
 <p>Alright, I started my week with ROS programming. My first job was to bring up the simulator and make sure that Husky model responds to commands -</p>
 <p>Husky (and other ROS robots) describes movements in the form of <a href="http://docs.ros.org/api/geometry_msgs/html/msg/Twist.html">Twist</a> messages -</p>
-<div class="highlight"><pre>[(x, y, z), (a,b,c) ] where x,y,z is linear velocity along the x,y,z axes. And (a,b,c) is the angular velocity about the x,y,z axes.
+<div class="highlight"><pre><span class="p">[(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="p">]</span> <span class="n">where</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">is</span> <span class="n">linear</span> <span class="n">velocity</span> <span class="n">along</span> <span class="n">the</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">axes</span><span class="p">.</span> <span class="n">And</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="n">is</span> <span class="n">the</span> <span class="n">angular</span> <span class="n">velocity</span> <span class="n">about</span> <span class="n">the</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span> <span class="n">axes</span><span class="p">.</span>
 </pre></div>
 
 
 <p>So to move in a circle, we issue [ (5,0,0) , (0,0,2) ]. This would result in a linear speed of 5 in the x direction and angular speed of 2 about the z axis, resulting in a circular motion.</p>
 <p>A simple way to explain the working is to use this command -</p>
-<div class="highlight"><pre>rostopic pub /husky_velocity_controller/cmd_vel geometry_msgs/Twist -r 100 &#39;[0.5,0,0]&#39; &#39;[0,0,0]&#39;
+<div class="highlight"><pre><span class="n">rostopic</span> <span class="n">pub</span> <span class="o">/</span><span class="n">husky_velocity_controller</span><span class="o">/</span><span class="n">cmd_vel</span> <span class="n">geometry_msgs</span><span class="o">/</span><span class="n">Twist</span> <span class="o">-</span><span class="n">r</span> <span class="mi">100</span> <span class="err">&#39;</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="sc">&#39; &#39;</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="err">&#39;</span>
 </pre></div>
 
 
@@ -115,16 +115,16 @@ I banged my head against Python Streams. Message brokers like <a href="https://w
 <ul>
 <li>Import the required libraries (to support <em>rospy</em>, logging, and <em>Twist</em> messages)</li>
 </ul>
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">roslib</span>
-<span class="kn">import</span> <span class="nn">rospy</span>
-<span class="kn">from</span> <span class="nn">geometry_msgs.msg</span> <span class="kn">import</span> <span class="n">Twist</span>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">roslib</span>
+<span class="n">import</span> <span class="n">rospy</span>
+<span class="n">from</span> <span class="n">geometry_msgs</span><span class="p">.</span><span class="n">msg</span> <span class="n">import</span> <span class="n">Twist</span>
 </pre></div>
 
 
 <ul>
 <li>Set up a ROS node - in this case <strong>move</strong></li>
 </ul>
-<div class="highlight"><pre>rospy.init_node(&#39;move&#39;)
+<div class="highlight"><pre><span class="n">rospy</span><span class="p">.</span><span class="n">init_node</span><span class="p">(</span><span class="err">&#39;</span><span class="n">move</span><span class="err">&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -135,7 +135,7 @@ This is why ROS scales so well. Any number of publisher and subscriber nodes can
 <ul>
 <li>Set up a publisher to the appropriate ROS topic with the ROS message type </li>
 </ul>
-<div class="highlight"><pre>p = rospy.Publisher(&#39;husky_velocity_controller/cmd_vel&#39;, Twist, queue_size = 100)
+<div class="highlight"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">rospy</span><span class="p">.</span><span class="n">Publisher</span><span class="p">(</span><span class="err">&#39;</span><span class="n">husky_velocity_controller</span><span class="o">/</span><span class="n">cmd_vel</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">Twist</span><span class="p">,</span> <span class="n">queue_size</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 
 
@@ -143,18 +143,18 @@ This is why ROS scales so well. Any number of publisher and subscriber nodes can
 <ul>
 <li>Construct a Twist Message</li>
 </ul>
-<div class="highlight"><pre>twist = Twist()
-twist.linear.x = 0.5;                   
-twist.linear.y = 0; twist.linear.z = 0;     
-twist.angular.x = 0; twist.angular.y = 0;  
-twist.angular.z = 0;    
+<div class="highlight"><pre><span class="n">twist</span> <span class="o">=</span> <span class="n">Twist</span><span class="p">()</span>
+<span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>                   
+<span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">twist</span><span class="p">.</span><span class="n">linear</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>     
+<span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+<span class="n">twist</span><span class="p">.</span><span class="n">angular</span><span class="p">.</span><span class="n">z</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>    
 </pre></div>
 
 
 <ul>
 <li>Publish the message</li>
 </ul>
-<div class="highlight"><pre>p.publish(twist)
+<div class="highlight"><pre><span class="n">p</span><span class="p">.</span><span class="n">publish</span><span class="p">(</span><span class="n">twist</span><span class="p">)</span>
 </pre></div>
 
 
@@ -227,6 +227,9 @@ But this is where the <strong>Zen of Python</strong> kicks in! Using top-notch r
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/24/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
+      </li>
+      <li class="post">
           <a href="http://siddhantsci.org/blog/2015/07/16/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
       </li>
       <li class="post">
@@ -237,9 +240,6 @@ But this is where the <strong>Zen of Python</strong> kicks in! Using top-notch r
       </li>
       <li class="post">
           <a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/">The Half-Life of Telerobotics</a>
-      </li>
-      <li class="post">
-          <a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/">When two Distributed Systems meet!</a>
       </li>
     </ul>
   </section>
@@ -264,7 +264,7 @@ But this is where the <strong>Zen of Python</strong> kicks in! Using top-notch r
 
   <section>
   <h1>Tags</h1>
-    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>  </section>
+    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>  </section>
 
 
 

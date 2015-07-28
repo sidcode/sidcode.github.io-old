@@ -69,11 +69,11 @@
 <usual rant></p>
 <h2>Telerobotics Code Pushed</h2>
 <p>As I mentioned in my <a href="http://siddhantsci.org/blog/2015/04/29/gsoc-2015-with-the-italian-mars-society/">first post</a>, the contributors of the <strong>Italian Mars Society</strong> are given <em>write access</em> to the online Bitbucket repository. This is a tremendous responsibility to ensure that the updates don't disturb the stability of the project. To work with this, I follow the simple and effective advice of my mentors -</p>
-<div class="highlight"><pre>hg pull
-hg update
-hg add .
-hg commit -m &quot;My awesome Commit Message&quot;
-hg push
+<div class="highlight"><pre><span class="n">hg</span> <span class="n">pull</span>
+<span class="n">hg</span> <span class="n">update</span>
+<span class="n">hg</span> <span class="n">add</span> <span class="p">.</span>
+<span class="n">hg</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s">&quot;My awesome Commit Message&quot;</span>
+<span class="n">hg</span> <span class="n">push</span>
 </pre></div>
 
 
@@ -91,33 +91,33 @@ hg push
 <li><a href="http://www.esrf.eu/computing/cs/tango/tango_doc/kernel_doc/pytango/latest/index.html">PyTango documentation</a></li>
 </ul>
 <p>The happiest point of all this reading kicked in when I could help Vito to reduce <strong>fifty lines of code to just two</strong> with the use of the <code>exec</code> construct in Python. In case you're wondering, this is the <a href="https://bitbucket.org/italianmarssociety/eras/commits/2da8222593354228a1eb426bef556654e794365c#Lservers/body_tracker/tracker/tracker.pyT40">code written by Vito</a> -</p>
-<div class="highlight"><pre>   joints = [
-        &#39;skeleton_head&#39;,
-        &#39;skeleton_neck&#39;,
-        &#39;skeleton_left_shoulder&#39;,
-        &#39;skeleton_right_shoulder&#39;,
-        &#39;skeleton_left_elbow&#39;,
-        &#39;skeleton_right_elbow&#39;,
-        &#39;skeleton_left_hand&#39;,
-        &#39;skeleton_right_hand&#39;,
-        &#39;skeleton_torso&#39;,
-        &#39;skeleton_left_hip&#39;,
-        &#39;skeleton_right_hip&#39;,
-        &#39;skeleton_left_knee&#39;,
-        &#39;skeleton_right_knee&#39;,
-        &#39;skeleton_left_foot&#39;,
-        &#39;skeleton_right_foot&#39;
-    ]
+<div class="highlight"><pre>   <span class="nt">joints</span> <span class="o">=</span> <span class="cp">[</span>
+        <span class="s1">&#39;skeleton_head&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_neck&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_shoulder&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_shoulder&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_elbow&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_elbow&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_hand&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_hand&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_torso&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_hip&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_hip&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_knee&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_knee&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_left_foot&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;skeleton_right_foot&#39;</span>
+    <span class="cp">]</span>
 
-    attr_init_params = dict(
-        dtype=(&#39;float32&#39;,),
-        unit=&#39;m&#39;,
-        max_dim_x=3,
-        polling_period=POLLING
-    )
+    <span class="nt">attr_init_params</span> <span class="o">=</span> <span class="nt">dict</span><span class="o">(</span>
+        <span class="nt">dtype</span><span class="o">=(</span><span class="s1">&#39;float32&#39;</span><span class="o">,),</span>
+        <span class="nt">unit</span><span class="o">=</span><span class="s1">&#39;m&#39;</span><span class="o">,</span>
+        <span class="nt">max_dim_x</span><span class="o">=</span><span class="nt">3</span><span class="o">,</span>
+        <span class="nt">polling_period</span><span class="o">=</span><span class="nt">POLLING</span>
+    <span class="o">)</span>
 
-    for joint in joints:
-        exec &quot;%s = attribute(**attr_init_params)&quot; % joint
+    <span class="nt">for</span> <span class="nt">joint</span> <span class="nt">in</span> <span class="nt">joints</span><span class="o">:</span>
+        <span class="nt">exec</span> <span class="s2">&quot;%s = attribute(**attr_init_params)&quot;</span> <span class="o">%</span> <span class="nt">joint</span>
 </pre></div>
 
 
@@ -164,6 +164,9 @@ hg push
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/24/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
+      </li>
+      <li class="post">
           <a href="http://siddhantsci.org/blog/2015/07/16/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
       </li>
       <li class="post">
@@ -174,9 +177,6 @@ hg push
       </li>
       <li class="post">
           <a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/">The Half-Life of Telerobotics</a>
-      </li>
-      <li class="post">
-          <a href="http://siddhantsci.org/blog/2015/06/18/when-two-distributed-systems-meet/">When two Distributed Systems meet!</a>
       </li>
     </ul>
   </section>
@@ -201,7 +201,7 @@ hg push
 
   <section>
   <h1>Tags</h1>
-    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>  </section>
+    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>  </section>
 
 
 

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Streamed away (in Real-Time)! &mdash; All Day I Dream About Science</title>
+  <meta name="author" content="Siddhant Shrivastava">
+
+  <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+        title="All Day I Dream About Science Atom Feed" />
+
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="http://siddhantsci.org/favicon.png" rel="icon">
+
+  <link href="http://siddhantsci.org/theme/css/main.css" media="screen, projection"
+        rel="stylesheet" type="text/css">
+
+  <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic"
+        rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <header role="banner"><hgroup>
+  <h1><a href="http://siddhantsci.org/">All Day I Dream About Science</a></h1>
+    <h2>Where (Computer) Science meets everything</h2>
+</hgroup></header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-atom">Atom</a></li>
+</ul>
+
+
+<form action="//google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:siddhantsci.org" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+
+<ul class="main-navigation">
+    <li><a href="/archives.html">Archives</a></li>
+    <li><a href="http://siddhantsci.org">Home Page</a></li>
+    <li><a href="http://siddhantsci.org/bfc-orientation">Mozilla FOSS Talk</a></li>
+    <li><a href="http://siddhantsci.org/rightthingtodo">Talk on Justice</a></li>
+    <li><a href="pdfs/resume_siddhant.pdf">Résumé</a></li>
+</ul></nav>
+  <div id="main">
+    <div id="content">
+<div>
+  <article class="hentry" role="article">
+<header>
+      <h1 class="entry-title">Streamed away (in Real-Time)!</h1>
+    <p class="meta">
+<time datetime="2015-07-24T19:53:52+00:00" pubdate>Fri 24 July 2015</time>  &ndash; &#128339; 4 min read
+    </p>
+</header>
+
+  <div class="entry-content"><p>Hi! For the past couple of weeks, I've been trying to get a lot of things to work. Linux and Computer Networks seem to like me so much that they ensure my attention throughout the course of this program. This time it was dynamic libraries, Virtual Machine Networking, Docker Containers, Head-mounted display errors and so on.</p>
+<p>A brief discussion about these:</p>
+<h2>Dynamic Libraries, Oculus Rift, and Python Bindings</h2>
+<p>Using the open-source Python bindings for the <strong>Oculus SDK</strong> available <a href="https://github.com/jherico/python-ovrsdk">here</a>, Franco and I ran into a problem -</p>
+<div class="highlight"><pre><span class="nx">ImportError</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">root</span><span class="o">&gt;/</span><span class="nx">oculusvr</span><span class="p">/</span><span class="nx">linux</span><span class="na">-x86</span><span class="o">-</span><span class="mi">64</span><span class="p">/</span><span class="nx">libOculusVR.so</span><span class="p">:</span> <span class="nx">undefined</span> <span class="nx">symbol</span><span class="p">:</span> <span class="nx">glXMakeCurrent</span>
+</pre></div>
+
+
+<p>To get to the root of the problem, I tried to list all dependencies of the <strong>shared object file</strong> -</p>
+<div class="highlight"><pre>  <span class="n">linux</span><span class="o">-</span><span class="n">vdso</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="o">=&gt;</span>  <span class="p">(</span><span class="mh">0x00007ffddb388000</span><span class="p">)</span>
+  <span class="n">librt</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">librt</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="p">(</span><span class="mh">0x00007f6205e1d000</span><span class="p">)</span>
+  <span class="n">libpthread</span><span class="p">.</span><span class="n">so</span><span class="mf">.0</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libpthread</span><span class="p">.</span><span class="n">so</span><span class="mf">.0</span> <span class="p">(</span><span class="mh">0x00007f6205bff000</span><span class="p">)</span>
+  <span class="n">libX11</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libX11</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f62058ca000</span><span class="p">)</span>
+  <span class="n">libXrandr</span><span class="p">.</span><span class="n">so</span><span class="mf">.2</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libXrandr</span><span class="p">.</span><span class="n">so</span><span class="mf">.2</span> <span class="p">(</span><span class="mh">0x00007f62056c0000</span><span class="p">)</span>
+  <span class="n">libstdc</span><span class="o">++</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libstdc</span><span class="o">++</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f62053bc000</span><span class="p">)</span>
+  <span class="n">libm</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libm</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f62050b6000</span><span class="p">)</span>
+  <span class="n">libgcc_s</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libgcc_s</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="p">(</span><span class="mh">0x00007f6204ea0000</span><span class="p">)</span>
+  <span class="n">libc</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libc</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f6204adb000</span><span class="p">)</span>
+  <span class="o">/</span><span class="n">lib64</span><span class="o">/</span><span class="n">ld</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="mf">64.</span><span class="n">so</span><span class="mf">.2</span> <span class="p">(</span><span class="mh">0x00007f6206337000</span><span class="p">)</span>
+  <span class="n">libxcb</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libxcb</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="p">(</span><span class="mh">0x00007f62048bc000</span><span class="p">)</span>
+  <span class="n">libdl</span><span class="p">.</span><span class="n">so</span><span class="mf">.2</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libdl</span><span class="p">.</span><span class="n">so</span><span class="mf">.2</span> <span class="p">(</span><span class="mh">0x00007f62046b8000</span><span class="p">)</span>
+  <span class="n">libXext</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libXext</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f62044a6000</span><span class="p">)</span>
+  <span class="n">libXrender</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libXrender</span><span class="p">.</span><span class="n">so</span><span class="mf">.1</span> <span class="p">(</span><span class="mh">0x00007f620429c000</span><span class="p">)</span>
+  <span class="n">libXau</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libXau</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f6204098000</span><span class="p">)</span>
+  <span class="n">libXdmcp</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="o">=&gt;</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="n">gnu</span><span class="o">/</span><span class="n">libXdmcp</span><span class="p">.</span><span class="n">so</span><span class="mf">.6</span> <span class="p">(</span><span class="mh">0x00007f6203e92000</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXMakeCurrent</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glEnable</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glFrontFace</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glDisable</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glClear</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glGetError</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXDestroyContext</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXCreateContext</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glClearColor</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXGetCurrentContext</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXSwapBuffers</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glColorMask</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glBlendFunc</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glBindTexture</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glDepthMask</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glDeleteTextures</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glGetIntegerv</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXGetCurrentDrawable</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glDrawElements</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glTexImage2D</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXGetClientString</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glDrawArrays</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glGetString</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glXGetProcAddress</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glViewport</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glTexParameteri</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glGenTextures</span> <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+  <span class="n">undefined</span> <span class="n">symbol</span><span class="o">:</span> <span class="n">glFinish</span>  <span class="p">(.</span><span class="o">/</span><span class="n">libOculusVR</span><span class="p">.</span><span class="n">so</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This clearly implied one thing - <strong>libGL</strong> was not being linked. My task then was to <em>somehow</em> link libGL to the SO file that came with the Python Bindings. I tried out the following two options -</p>
+<ul>
+<li><strong>Creating my own bindings</strong>: Tried to regenerate the SO file from the Oculus C SDK by using the amazing <a href="https://github.com/davidjamesca/ctypesgen">Python Ctypesgen</a>. This method didn't work out as I couldn't resolve the <em>header</em> files that are requied by <em>Ctypesgen</em>. Nevertheless, I learned how to create Python Bindings and that is a huge take-away from the exercise. I had always wondered how Python interfaces are created out of programs written in other languages.</li>
+<li><strong>Making the existing shared object file believe that it is linked to libGL</strong>: So here's what I did - after a lot of searching, I found the nifty little environment variable that worked wonders for our Oculus development - <strong>LD_PRELOAD</strong></li>
+</ul>
+<p>As <a href="https://rafalcieslak.wordpress.com/2013/04/02/dynamic-linker-tricks-using-ld_preload-to-cheat-inject-features-and-investigate-programs/">this</a> and <a href="http://blog.chaselambda.com/2014/11/28/how-tmux-starts-up-an-adventure-with-linux-tools-updated.html">this</a> articles delineate the power of LD_PRELOAD, it is possible to force-load a dynamically linked shared object in the memory.
+If you set LD_PRELOAD to the path of a shared object, that file will be loaded before any other library (including the C runtime, libc.so). For example, to run <code>ls</code> with your special malloc() implementation, do this:</p>
+<p><code>$ LD_PRELOAD=/path/to/my/malloc.so /bin/ls</code></p>
+<p>Thus, the solution to my problem was to place this in the <code>.bashrc</code> file -</p>
+<p><code>LD_PRELOAD="/usr/lib/x86_64-linux-gnu/libGL.so"</code></p>
+<p>This allowed Franco to create the Oculus Test Tango server and ensured that our Oculus Rift development efforts continue with gusto.</p>
+<h2>ROS and Autonomous Navigation</h2>
+<p>On the programming side, I've been playing around with <code>actionlib</code> to interface Bodytracking with Telerobotics. I have created a simple walker script which provides a certain degree of autonomy to the robot and avoids collissions with objects to override human teleoperation commands. An obstacle could be a Martian rock in a simulated environment or an uneven terrain with a possible ditch ahead. To achieve this, I use the <code>LaserScan</code> message and check for the range readings at frequent intervals. The <em>LIDAR</em> readings ensure that the robot is in one of the following states -</p>
+<ul>
+<li>Approaching an obstacle</li>
+<li>Going away from an obstacle</li>
+<li>Hitting an obstacle</li>
+</ul>
+<p>The state can be inferred from the LaserScan Messages. A ROS Action Server then waits for one of these events to happen and triggers the callback which tells the robot to stop, turn and continue.</p>
+<h2>Windows and PyKinect</h2>
+<p>In order to run Vito's bodytracking code, I needed a Windows installation. Running into problems with a 32-bit Windows 7 Virtual Machine image I had, I needed to reinstall and use a 64-bits Virtual Machine image. I installed all the dependencies to run the bodytracking code. I am still stuck with Networking modes between the Virtual Machine and the Host machine. The TANGO host needs to be configured correctly to allow the TANGO_MASTER to point to the host and the TANGO_HOST to the virtual machine.</p>
+<h2>Docker and Qt Apps</h2>
+<p>Qt applications don't seem to work with sharing the display in a Docker container. The way out is to create users in the Docker container which I'm currently doing. I'll enable VNC and X-forwarding to allow the ROS Qt applications to work so that the other members of the Italian Mars Society can use the Docker container directly.</p>
+<h2>Gazebo Mars model</h2>
+<p>I took a brief look at the 3D models of Martial terrain available for free use on the Internet. I'll be trying to obtain the Gale Crater region and represent it in Gazebo to drive the Husky in a Martian Terrain.</p>
+<h2>Documentation week!</h2>
+<p>In addition to strong-arming my CS concepts against the Networking and Linux issues that loom over the project currently, I updated and added documentation for the modules developed so far.</p>
+<p>Hope the next post explains how I solved the problems described in this post. Ciao!</p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">
+        Siddhant Shrivastava
+    </span>
+  </span>
+<time datetime="2015-07-24T19:53:52+00:00" pubdate>Fri 24 July 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
+  </span>
+  <span class="categories">
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
+</p><div class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/07/24/streamed-away-in-real-time/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/07/24/streamed-away-in-real-time/" >Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+</div>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
+<aside class="sidebar">
+  <section>
+	  <img src="http://siddhantsci.org/images/sid_face.jpg" alt="Siddhant Shrivastava" width=""/> 
+  </section>
+  <section>
+    <h1>Recent Posts</h1>
+    <ul id="recent_posts">
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/24/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/16/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/08/remote-tests-in-telerobotics/">Remote tests in Telerobotics</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/07/01/mid-term-report-gsoc-15/">Mid-term Report - GSoC '15</a>
+      </li>
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/06/24/the-half-life-of-telerobotics/">The Half-Life of Telerobotics</a>
+      </li>
+    </ul>
+  </section>
+  <section>
+      
+    <h1>Categories</h1>
+    <ul id="recent_posts">
+        <li><a href="http://siddhantsci.org/category/analogy.html">Analogy</a></li>
+        <li><a href="http://siddhantsci.org/category/blog.html">Blog</a></li>
+        <li><a href="http://siddhantsci.org/category/computer-science.html">Computer Science</a></li>
+        <li><a href="http://siddhantsci.org/category/gsoc.html">GSoC</a></li>
+        <li><a href="http://siddhantsci.org/category/hacker-spirit.html">Hacker Spirit</a></li>
+        <li><a href="http://siddhantsci.org/category/internet.html">Internet</a></li>
+        <li><a href="http://siddhantsci.org/category/open-source.html">Open Source</a></li>
+        <li><a href="http://siddhantsci.org/category/personal.html">Personal</a></li>
+        <li><a href="http://siddhantsci.org/category/robotics.html">Robotics</a></li>
+        <li><a href="http://siddhantsci.org/category/science.html">Science</a></li>
+        <li><a href="http://siddhantsci.org/category/theoretical-computer-science.html">Theoretical Computer Science</a></li>
+    </ul>
+  </section>
+ 
+
+  <section>
+  <h1>Tags</h1>
+    <a href="http://siddhantsci.org/tag/ai.html">AI</a>,    <a href="http://siddhantsci.org/tag/random.html">random</a>,    <a href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a href="http://siddhantsci.org/tag/linux.html">linux</a>,    <a href="http://siddhantsci.org/tag/education.html">education</a>,    <a href="http://siddhantsci.org/tag/networks.html">networks</a>,    <a href="http://siddhantsci.org/tag/hacker.html">hacker</a>,    <a href="http://siddhantsci.org/tag/foss.html">foss</a>,    <a href="http://siddhantsci.org/tag/nano.html">nano</a>,    <a href="http://siddhantsci.org/tag/space.html">space</a>,    <a href="http://siddhantsci.org/tag/personal.html">personal</a>,    <a href="http://siddhantsci.org/tag/review.html">review</a>,    <a href="http://siddhantsci.org/tag/introspect.html">introspect</a>,    <a href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a href="http://siddhantsci.org/tag/life.html">life</a>,    <a href="http://siddhantsci.org/tag/retrospect.html">retrospect</a>,    <a href="http://siddhantsci.org/tag/python.html">Python</a>,    <a href="http://siddhantsci.org/tag/typesetting.html">typesetting</a>,    <a href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a href="http://siddhantsci.org/tag/robots.html">robots</a>,    <a href="http://siddhantsci.org/tag/movies.html">movies</a>,    <a href="http://siddhantsci.org/tag/puzzles.html">puzzles</a>,    <a href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a href="http://siddhantsci.org/tag/universe.html">universe</a>,    <a href="http://siddhantsci.org/tag/maths.html">maths</a>,    <a href="http://siddhantsci.org/tag/world.html">world</a>,    <a href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>,    <a href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a href="http://siddhantsci.org/tag/open-source.html">open source</a>,    <a href="http://siddhantsci.org/tag/memorabilia.html">memorabilia</a>,    <a href="http://siddhantsci.org/tag/science.html">science</a>,    <a href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a href="http://siddhantsci.org/tag/patterns.html">patterns</a>,    <a href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a href="http://siddhantsci.org/tag/healthcare.html">healthcare</a>,    <a href="http://siddhantsci.org/tag/professional.html">professional</a>,    <a href="http://siddhantsci.org/tag/soft.html">soft</a>,    <a href="http://siddhantsci.org/tag/vision.html">vision</a>,    <a href="http://siddhantsci.org/tag/history.html">history</a>  </section>
+
+
+
+<section>
+    <a href="http://twitter.com/siddhantcode" class="twitter-follow-button" data-show-count="true">Follow @siddhantcode</a>
+</section>
+<section class="googleplus">
+  <h1>
+    <a href="https://plus.google.com/+SiddhantShrivastava?rel=author">
+      <img src="//www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+</aside>    </div>
+  </div>
+  <footer role="contentinfo"><p>
+    Copyright &copy;  2014&ndash;2015  Siddhant Shrivastava &mdash;
+  <span class="credit">Powered by <a href="http://getpelican.com">Pelican</a></span>
+</p></footer>
+  <script src="http://siddhantsci.org/theme/js/modernizr-2.0.js"></script>
+  <script src="http://siddhantsci.org/theme/js/ender.js"></script>
+  <script src="http://siddhantsci.org/theme/js/octopress.js" type="text/javascript"></script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-59415221-1', 'auto');
+
+    ga('send', 'pageview');
+    </script>
+	<script type="text/javascript">
+	  var disqus_shortname = 'siddhant';
+          var disqus_identifier = '/blog/2015/07/24/streamed-away-in-real-time/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/07/24/streamed-away-in-real-time/';
+          var disqus_title = 'Streamed away (in Real-Time)!';
+	  (function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	   })();
+	</script>
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+</body>
+</html>

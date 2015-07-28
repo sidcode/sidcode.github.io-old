@@ -5,27 +5,27 @@
 &lt;p&gt;This exercise taught me the importance of documentation, yet again. I was not merely modifying someone's LaTeX code. The documentation was edifying and I actually learnt a lot in the process.&lt;/p&gt;
 &lt;p&gt;Ok, enough said. I urge you to try out LaTeX if you haven't already. It has a steep learning curve for certain - but I am sure the hacker in you will be happy to help you climb the TeXy mountain.&lt;/p&gt;
 &lt;p&gt;Alright, back to completing my application forms :) &lt;/p&gt;</summary><category term="computers"></category><category term="foss"></category><category term="open source"></category><category term="typesetting"></category><category term="professional"></category></entry><entry><title>Lessons from the Octopress Setup</title><link href="http://siddhantsci.org/blog/2014/06/11/lessons-from-the-octopress-setup/" rel="alternate"></link><updated>2014-06-11T23:37:37+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2014-06-11:blog/2014/06/11/lessons-from-the-octopress-setup/</id><summary type="html">&lt;p&gt;This is my first post on this blog. I am learning to play with the various commands and get a knack of the basic publishing workflow.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;This is how syntax highlighting is done
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;how&lt;/span&gt; &lt;span class="n"&gt;syntax&lt;/span&gt; &lt;span class="n"&gt;highlighting&lt;/span&gt; &lt;span class="n"&gt;is&lt;/span&gt; &lt;span class="n"&gt;done&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;After creating &lt;code&gt;.markdown&lt;/code&gt; files, all one has to do is to push changes to the master branch of the remote repo:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;bundle exec rake generate
-bundle exec rake deploy
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;bundle&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;rake&lt;/span&gt; &lt;span class="n"&gt;generate&lt;/span&gt;
+&lt;span class="n"&gt;bundle&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;rake&lt;/span&gt; &lt;span class="n"&gt;deploy&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Git commands to be used:&lt;/p&gt;
 &lt;p&gt;To update the &lt;code&gt;source&lt;/code&gt; branch with the latest changes (it is recommended to keep a backup)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git add .
-git commit -m &amp;quot;source update #&amp;quot;
-git push origin source
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;source update #&amp;quot;&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;whereas to revert to the master branch, go to the _deploy directory, and run:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;git pull origin master
-bundle exec rake deploy
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;pull&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;master&lt;/span&gt;
+&lt;span class="n"&gt;bundle&lt;/span&gt; &lt;span class="n"&gt;exec&lt;/span&gt; &lt;span class="n"&gt;rake&lt;/span&gt; &lt;span class="n"&gt;deploy&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

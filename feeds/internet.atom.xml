@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/internet.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2014-06-14T00:53:52+00:00</updated><entry><title>From GitHub pages to siddhantsci.org</title><link href="http://siddhantsci.org/blog/2014/06/14/from-github-pages-to-siddhantsciorg/" rel="alternate"></link><updated>2014-06-14T00:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2014-06-14:blog/2014/06/14/from-github-pages-to-siddhantsciorg/</id><summary type="html">&lt;p&gt;Being a total amateur when it comes to Domain Names, TLDs,&lt;code&gt;CNAME&lt;/code&gt; records, and selecting a service from the brutal competition among Domain/Host providers; this journey has been exhausting, time consuming, but essentially important.&lt;/p&gt;
 &lt;p&gt;Basically everything boils down to communication between two computers in the world. Computers on the World Wide Web (the Internet as we know it - ignoring deep web for now), are addressed by a set of numbers known as IP (Internet Protocol) addresses. Just like your home address, this helps all the computers in the world to know where "on the network", your computer/ your domain provider's computer is. IP addresses are generally of the form "192.30.252.153", in the IPv4 scheme (read more about Combinatorial Explosion and IP in this post's footnotes ).&lt;/p&gt;
 &lt;p&gt;Since memorizing numbers for humans is considered too brain-intensive, we delegate this important task to computers, and create human-friendly names in Natural Languages (like English, Arabic, Hindi, Mandarin etc). For example google.com runs on a lot of computers and one such address is 173.194.36.5. Copy paste this number in your browser's address bar and you'll reach google.com :D . How do I know about this number? There are a number of ways to find it out. I used:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;ping google.com
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;ping&lt;/span&gt; &lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;which resulted in&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;google.com.             91      IN      A       173.194.36.7
-google.com.             91      IN      A       173.194.36.4
-google.com.             91      IN      A       173.194.36.5
-google.com.             91      IN      A       173.194.36.2
-google.com.             91      IN      A       173.194.36.3
-google.com.             91      IN      A       173.194.36.14
-google.com.             91      IN      A       173.194.36.0
-google.com.             91      IN      A       173.194.36.1
-google.com.             91      IN      A       173.194.36.6
-google.com.             91      IN      A       173.194.36.9
-google.com.             91      IN      A       173.194.36.8
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.7&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.4&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.5&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.2&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.3&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.14&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.0&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.1&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.6&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.9&lt;/span&gt;
+&lt;span class="n"&gt;google&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;             &lt;span class="mi"&gt;91&lt;/span&gt;      &lt;span class="n"&gt;IN&lt;/span&gt;      &lt;span class="n"&gt;A&lt;/span&gt;       &lt;span class="mf"&gt;173.194.36.8&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
