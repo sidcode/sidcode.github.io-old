@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>The Tree of Life &mdash; All Day I Dream About Science</title>
+  <title>Telerobotics and Bodytracking - The Rendezvous &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -57,19 +57,58 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">The Tree of Life</h1>
+      <h1 class="entry-title">Telerobotics and Bodytracking - The Rendezvous</h1>
     <p class="meta">
-<time datetime="2014-06-16T22:43:56+00:00" pubdate>Mon 16 June 2014</time>  &ndash; &#128339; 1 min read
+<time datetime="2015-07-31T19:53:52+00:00" pubdate>Fri 31 July 2015</time>  &ndash; &#128339; 4 min read
     </p>
 </header>
 
-  <div class="entry-content"><p>Watching Cosmos [S01E02]. Neil deGrasse Tyson speaks about artificial and natural selection ( dog breeds, and polar bears; respectively ). He also talks that we share our DNA with plants, and furthermore, plants and humans share DNA with birds, etc..So we can backtrack in a similar inductive fashion to reason that life started as ONE COMMON ancestor.</p>
-<p>What I think?
-We have ML, and DM backtracking mechanisms available. Why not think in this direction, that we can establish a correlation between different species, a coming together of various kingdoms, in a way that both explains and justifies evolution - both in the artificial, and the natural way.</p>
-<p>My hunches are sometimes right, and mostly overstated. But we can try, right? It'll teach us a lot of things. Firstly it'll make us better at looking at ourselves, at the world as one great family (that's what Vasudev Kutumb is all about, right?)</p>
-<p>If we can use backtracking to predict disease vectors, and weather conditions (from the IIRS orientation session), I believe we can collectively develop a genealogy project for species all over.</p>
-<p>After all, why am I learning all the tools to process data, and to code? To make the world a better place, right?</p>
-<p>Remember, we don't need to save the planet, the planet is strong enough to sustain itself; we need to save ourselves, from the disasters we can cause artificially.</p></div>
+  <div class="entry-content"><p>Hi! The past week was a refreshingly positive one. I was able to solve some of the insidious issues that were plaguing the efforts that I was putting in last week.</p>
+<h2>Virtual Machine Networking issues Solved!</h2>
+<p>I was able to use the Tango server across the Windows 7 Virtual Machine and the Tango Host on my Ubuntu 14.04 Host Machine. The proper Networking mode for this turns out to be <strong>Bridged Networking mode</strong> which basically tunnels a connection between the Virtual Machine and the host.</p>
+<p>In the bridged mode, the Virtual Machine exposes a Virtual Network interface with its own IP Address and Networking stack. In my case it was <code>vm8</code> with an IP Address different from the IP Address patterns that were used by the <em>real</em> Ethernet and WiFi Network Interface Cards. Using bridged mode, I was able to maintain the Tango Device Database server on Ubuntu and use Vito's Bodytracking device on Windows. The Virtual Machine didn't slow down things by any magnitude while communicating across the Tango devices.</p>
+<p>This image explains what I'm talking about -</p>
+<p><img alt="Jive on Windows and Ubuntu machines" src="{filename}images/jive_windows_ubuntu.png" /></p>
+<p>In bridged mode, I chose the IP Address on the host which corresponds to the Virtual Machine interface - <code>vmnet8</code> in my case. I used the <code>vmnet8</code> interface on Ubuntu and a similar interface on the Windows Virtual Machine. I read quite a bit about how Networking works in Virtual Machines and was fascinated by the Virtualization in place.</p>
+<h2>Bodytracking meets Telerobotics</h2>
+<p>With Tango up and running, I had to ensure that <a href="https://vigentile.wordpress.com/2015/07/31/enhancement-of-kinect-integration-in-v-eras-fifth-report/">Vito's Bodytracking application</a> works on the Virtual Machine. To that end, I installed <em>Kinect for Windows SDK</em>, <em>Kinect Developer Tools</em>, <em>Visual Python</em>, <em>Tango-Controls</em>, and <em>PyTango</em>. Setting a new <em>virtual</em> machine up mildly slowed me down but was a necessary step in the development.</p>
+<p>Once I had that bit running, I was able to visualize the <strong>simulated Martian Motivity walk done in Innsbruck </strong> in a training station. The Bodytracking server created by Vito <em>published</em> events corresponding to the <code>moves</code> attribute which is a list of the following two metrics -</p>
+<ul>
+<li>Position</li>
+<li>Orientation</li>
+</ul>
+<p>I was able to read the attributes that the Bodytracking device was publishing by <strong>subscribing</strong> to Event Changes to that attribute.  This is done in the following way -</p>
+<div class="highlight"><pre>    <span class="k">while</span> <span class="n">TRIGGER</span><span class="o">:</span>
+        <span class="err">#</span> <span class="n">Subscribe</span> <span class="n">to</span> <span class="n">the</span> <span class="err">&#39;</span><span class="n">moves</span><span class="err">&#39;</span> <span class="n">event</span> <span class="n">from</span> <span class="n">the</span> <span class="n">Bodytracking</span> <span class="n">interface</span>
+        <span class="n">moves_event</span> <span class="o">=</span> <span class="n">device_proxy</span><span class="p">.</span><span class="n">subscribe_event</span><span class="p">(</span>
+                                                                                 <span class="err">&#39;</span><span class="n">moves</span><span class="err">&#39;</span><span class="p">,</span>
+                                                                                  <span class="n">PyTango</span><span class="p">.</span><span class="n">EventType</span><span class="p">.</span><span class="n">CHANGE_EVENT</span><span class="p">,</span>
+                                                                                  <span class="n">cb</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="err">#</span> <span class="n">Wait</span> <span class="k">for</span> <span class="n">at</span> <span class="n">least</span> <span class="n">REFRESH_RATE</span> <span class="n">Seconds</span> <span class="k">for</span> <span class="n">the</span> <span class="n">next</span> <span class="n">callback</span><span class="p">.</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">REFRESH_RATE</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This ensures that the Subscriber doesn't exhaust the polled attributes at a rate faster than they are published. In that unfortunate case, an <code>EventManagerException</code> occurs which must be handled properly.</p>
+<p>Note the <code>cb</code> attribute, it refers to the Callback function that is triggered when an Event change occurs. The callback function is responsible for reading and processing the attributes.</p>
+<p>The processing part in our case is the core of the <strong>Telerobotics-Bodytracking interface</strong>. It acts as the intermediary between Telerobotics  and Bodytracking - converting the <em>position</em>, and <em>orientation</em> values to <strong>linear and angular velocity</strong> that Husky can understand. I use a high-performance container from the <code>collections</code> class known as <code>deque</code>. It can act both as a stack and a queue using <code>deque.append</code>, <code>deque.appendleft</code>, <code>deque.pop</code>, <code>deque.popleft</code>.</p>
+<blockquote>
+<p>To calculate velocity, I compute the differences between consecutive events and their corresponding timestamps. The events are stored in a <code>deque</code>, popped when necessary and subtracted from the current event values</p>
+</blockquote>
+<p>For instance this is how <strong>linear velocity</strong> processing takes place -</p>
+<div class="highlight"><pre>  <span class="err">#</span> <span class="n">Position</span> <span class="n">and</span> <span class="n">Linear</span> <span class="n">Velocity</span> <span class="n">Processing</span>
+  <span class="n">position_previous</span> <span class="o">=</span> <span class="n">position_events</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+  <span class="n">position_current</span> <span class="o">=</span> <span class="n">position</span>
+  <span class="n">linear_displacement</span> <span class="o">=</span> <span class="n">position_current</span> <span class="o">-</span> <span class="n">position_previous</span>
+  <span class="n">linear_speed</span> <span class="o">=</span> <span class="n">linear_displacement</span> <span class="o">/</span> <span class="n">time_delta</span>
+</pre></div>
+
+
+<h2>ROS-Telerobotics Interface</h2>
+<p>We are halfway through the Telerobotics-Bodytracking architecture. Once the velocities are obtained, we have everything we need to send to ROS. The challenge here is to use velocities which ROS and the Husky UGV can understand. The messages are published ot ROS <em>only</em> when there is some change in the velocity. This has the added advantage of minimzing communication between ROS and Tango. When working with multiple distributed systems, it is always wise to keep the communication between them minimial. That's what I've aimed to do. I'll be enhacing the interface even further by adding Trigger Overrides in case of an emergency situation. The speeds currently are not ROS-friendly. I am writing a high-pass and low-pass filter to limit the velocities to what Husky can sustain. Vito and I will be refining the User Step estimation and the corresponding Robot movements respectively.</p>
+<p>GSoC is only becoming more exciting. I'm certain that I will be contributing to this project after GSoC as well. The Telerobotics scenario is full of possibilities, most of which I've tried to cover in my GSoC proposal.</p>
+<p>I'm back to my university now and it has become hectic but enjoyably challenging to complete this project. My next post will hopefully be a culmination of the Telerobotics/Bodytracking interface and the integration of 3D streaming with Oculus Rift Virtual Reality.</p>
+<p>Ciao!</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -77,13 +116,13 @@ We have ML, and DM backtracking mechanisms available. Why not think in this dire
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2014-06-16T22:43:56+00:00" pubdate>Mon 16 June 2014</time>  <span class="categories">
-    <a class='category' href='http://siddhantsci.org/category/science.html'>Science</a>
+<time datetime="2015-07-31T19:53:52+00:00" pubdate>Fri 31 July 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
-    <a class="category" href="http://siddhantsci.org/tag/astronomy.html">astronomy</a>,    <a class="category" href="http://siddhantsci.org/tag/evolution.html">evolution</a>,    <a class="category" href="http://siddhantsci.org/tag/learning.html">learning</a>,    <a class="category" href="http://siddhantsci.org/tag/life.html">life</a>,    <a class="category" href="http://siddhantsci.org/tag/universe.html">universe</a>  </span>
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2014/06/16/the-tree-of-life/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2014/06/16/the-tree-of-life/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/07/31/telerobotics-and-bodytracking-the-rendezvous/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/07/31/telerobotics-and-bodytracking-the-rendezvous/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
@@ -175,9 +214,9 @@ We have ML, and DM backtracking mechanisms available. Why not think in this dire
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
-          var disqus_identifier = '/blog/2014/06/16/the-tree-of-life/';
-          var disqus_url = 'http://siddhantsci.org/blog/2014/06/16/the-tree-of-life/';
-          var disqus_title = 'The Tree of Life';
+          var disqus_identifier = '/blog/2015/07/31/telerobotics-and-bodytracking-the-rendezvous/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/07/31/telerobotics-and-bodytracking-the-rendezvous/';
+          var disqus_title = 'Telerobotics and Bodytracking - The Rendezvous';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
