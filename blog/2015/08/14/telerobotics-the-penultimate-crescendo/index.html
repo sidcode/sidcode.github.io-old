@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>A Computing Era gone by... &mdash; All Day I Dream About Science</title>
+  <title>Telerobotics - The Penultimate Crescendo &mdash; All Day I Dream About Science</title>
   <meta name="author" content="Siddhant Shrivastava">
 
   <link href="/atom.xml" type="application/atom+xml" rel="alternate"
@@ -57,20 +57,42 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">A Computing Era gone by...</h1>
+      <h1 class="entry-title">Telerobotics - The Penultimate Crescendo</h1>
     <p class="meta">
-<time datetime="2014-06-28T14:55:17+05:30" pubdate>Sat 28 June 2014</time>  &ndash; &#128339; 1 min read
+<time datetime="2015-08-14T19:53:52+00:00" pubdate>Fri 14 August 2015</time>  &ndash; &#128339; 3 min read
     </p>
 </header>
 
-  <div class="entry-content"><p>Being a 90s person, mine was one of the first generation adopters of intuitive Graphical User Interfaces. It took me 18 years to properly lose my Unix virginity. It not only brought a plethora of hacking skills, but also a deep appreciation of our rich computer heritage. Computer Science is the best thing to happen to the world in the last century. Turing had a hunch - to replace the scores of women 'computers' calculating away during the World Wars, with a hypothetical machine that follows instructions and operates on data - continuously maintaining one of its several states.</p>
-<p>We have come a long way since. The Computer History Museum does an awesome job at preserving the heroics of the people who contrived contraptions that made life easier.</p>
-<p>Microsoft dominated the Unix market with its licensed platform - Xenix. DOS is heavily inspired by Unix. But then they split ways.</p>
-<p>Much more to be added in this post. Keep looking for the buzz.</p>
-<p>http://en.wikipedia.org/wiki/Computer_terminals
-http://en.wikipedia.org/wiki/Teletype_Model_33</p>
-<p>Refer : Unix Prog. Environment by Kernighan and Pike
-        The Man who knew too much - Life of Alan Turing</p></div>
+  <div class="entry-content"><p>Hi! As the hard-deadline date for the <em>Google Summer of Code</em> program draws to a close, I can feel the palpable tension that is shared by my mentors and fellow students at the <strong>Italian Mars Society</strong> and the <strong>Python Software Foundation</strong>.</p>
+<h1>All-Hands Meeting</h1>
+<p>We at the <em>Italian Mars Society</em> had the third all-hands meeting last evening (13th August). The almost two-hour Skype Conference call discussed a gamut of topics in-depth. Some of these were-</p>
+<h2><strong>Software Testing</strong>  guidelines</h2>
+<p>Ezio described the various ways of <strong>Unit Testing</strong> in different applications like rover movements, bodytracking, etc. In my case I had been checking for setup prerequisites and establishing the serializability of the ROS system before other modules could start up. That way the it is successfully ensured that all the required distributed systems are up and running before they are used. <strong>Integration Testing</strong> is crucial in the ERAS application where things like Telerobotics, Bodytracking, and the EUROPA Planner all blend together seamlessly. I've integrated Telerobotics and Bodytracking which can be observed in <a href="https://bitbucket.org/italianmarssociety/eras/commits/e87a0c1bfb46e0b8ba4b684b51060f8527aa1d6b">this commit</a>.</p>
+<h2>Telerobotics</h2>
+<p>Telerobotics is more precise than ever. This video demonstrates this fact -</p>
+<p>.. youtube:: 94vfIr1cu7k</p>
+<p>The YouTube link for the video is <a href="https://www.youtube.com/watch?v=94vfIr1cu7k">this</a>.</p>
+<p>I improved upon the previous integration with Bodytracking and handled the possible exceptions that may occur. The results have been stunning. I used the updated version of <a href="https://vigentile.wordpress.com/2015/07/31/enhancement-of-kinect-integration-in-v-eras-fifth-report/">Vito's bodytracker</a> which can detect closed hands. Since the sensor refresh-rate has been reduced to 30 times per second, the Telerobotics module has much smoother movements. Here is a snapshot of the Bodytracking application running in a Windows Virtual Machine -</p>
+<p><img alt="Visual Tracker" src="http://siddhantsci.org/images/visual-3.png" /></p>
+<h2>EUROPA Planner and Navigation Integration</h2>
+<p>Shridhar has been working on the Planner which outputs Cartesian coordinates in the format <code>(x,y)</code> to which the rover must navigate. I am using the <code>AMCL</code> navigation algorithm for known maps in addition to the <code>actionlib</code> server of ROS to facilitate this integration. The challenge here is to resolve between the Cartesian coordinates of <code>EUROPA</code> and that of <code>ROS</code>. This should be hopefully complete in the next couple of days.</p>
+<h2>AMADEE15 mission</h2>
+<p>Yuval described that the the recently concluded mission was a huge success which focused on the following frontiers-</p>
+<ul>
+<li>GPS integration with Blender</li>
+<li>Photogrammetry to reproduce Blender scenes for Virtual EVAs.</li>
+<li>Unity3D and Oculus Integration</li>
+<li>AoudaX realtime software</li>
+<li>Generic ERAS Data Logger</li>
+<li>Husky navigation</li>
+</ul>
+<p>Franco explained in brief about the <em>Neuro-vestibular</em> and <em>Husky</em> Scientific experiments.</p>
+<h2>Other things</h2>
+<p>Final efforts with Docker - After a lot of success, I have just one gripe with <strong>Docker</strong>.  Running the Gazebo simulator, <code>rviz</code> (ROS visualizer), and the Telerobotics module requires THREE terminals.Working with ROS as a master inherently requires access to a lot of terminals for logging, echoing topic messages, starting programs, etc.  The current ways to achieve multiple terminals and Qt applications in Docker are at best makeshift workarounds. To handle a graphics-heavy application like Telerobotics, we require a Graphical Environment. Docker is great for providing a common service framework but not so good at graphical applications like ROS. That's why I have been unable to get Docker working with the graphical aspects of ROS.</p>
+<h1>Documentation</h1>
+<p>In the final leg of the program, it is vital to go all-guns-blazing with the documentation of the software work that the students do. This is to ensure future development, maintainability, and clarity of thought. I recently added instructions in the Documentation directory - <code>telerobotics/doc/</code> to <strong>replicate my setup</strong>. This can be found in my <a href="https://bitbucket.org/italianmarssociety/eras/commits/dcd59b09d09f2e782e8c596f9f76b529eafd2151">current  commit</a>.</p>
+<p>I am ensuring that my mentors would be able to replicate my setup and give feedback very soon. The last week of GSoC is quite frenzied with the action to produce a consistent wrap-up of the project. The next post will officially be the last post of my GSoC 2015 experience. In reality, of course, I would keep working on the project and keep blogging :)</p>
+<p>Till then, ciao.</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -78,13 +100,13 @@ http://en.wikipedia.org/wiki/Teletype_Model_33</p>
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2014-06-28T14:55:17+05:30" pubdate>Sat 28 June 2014</time>  <span class="categories">
-    <a class='category' href='http://siddhantsci.org/category/computer-science.html'>Computer Science</a>
+<time datetime="2015-08-14T19:53:52+00:00" pubdate>Fri 14 August 2015</time>  <span class="categories">
+    <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
-    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/history.html">history</a>,    <a class="category" href="http://siddhantsci.org/tag/electronics.html">electronics</a>,    <a class="category" href="http://siddhantsci.org/tag/nix.html">nix</a>,    <a class="category" href="http://siddhantsci.org/tag/world.html">world</a>,    <a class="category" href="http://siddhantsci.org/tag/linux.html">linux</a>  </span>
+    <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2014/06/28/a-computing-era-gone-by/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2014/06/28/a-computing-era-gone-by/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/08/14/telerobotics-the-penultimate-crescendo/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/08/14/telerobotics-the-penultimate-crescendo/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
@@ -176,9 +198,9 @@ http://en.wikipedia.org/wiki/Teletype_Model_33</p>
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
-          var disqus_identifier = '/blog/2014/06/28/a-computing-era-gone-by/';
-          var disqus_url = 'http://siddhantsci.org/blog/2014/06/28/a-computing-era-gone-by/';
-          var disqus_title = 'A Computing Era gone by...';
+          var disqus_identifier = '/blog/2015/08/14/telerobotics-the-penultimate-crescendo/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/08/14/telerobotics-the-penultimate-crescendo/';
+          var disqus_title = 'Telerobotics - The Penultimate Crescendo';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
