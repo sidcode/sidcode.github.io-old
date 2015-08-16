@@ -69,7 +69,7 @@
 <h2><strong>Software Testing</strong>  guidelines</h2>
 <p>Ezio described the various ways of <strong>Unit Testing</strong> in different applications like rover movements, bodytracking, etc. In my case I had been checking for setup prerequisites and establishing the serializability of the ROS system before other modules could start up. That way the it is successfully ensured that all the required distributed systems are up and running before they are used. <strong>Integration Testing</strong> is crucial in the ERAS application where things like Telerobotics, Bodytracking, and the EUROPA Planner all blend together seamlessly. I've integrated Telerobotics and Bodytracking which can be observed in <a href="https://bitbucket.org/italianmarssociety/eras/commits/e87a0c1bfb46e0b8ba4b684b51060f8527aa1d6b">this commit</a>.</p>
 <h2>Telerobotics</h2>
-<p>Telerobotics is more precise than ever. This video demonstrates this fact -</p>
+<p>Telerobotics in its current state is more precise than ever. This video demonstrates this fact -</p>
 <p>.. youtube:: 94vfIr1cu7k</p>
 <p>The YouTube link for the video is <a href="https://www.youtube.com/watch?v=94vfIr1cu7k">this</a>.</p>
 <p>I improved upon the previous integration with Bodytracking and handled the possible exceptions that may occur. The results have been stunning. I used the updated version of <a href="https://vigentile.wordpress.com/2015/07/31/enhancement-of-kinect-integration-in-v-eras-fifth-report/">Vito's bodytracker</a> which can detect closed hands. Since the sensor refresh-rate has been reduced to 30 times per second, the Telerobotics module has much smoother movements. Here is a snapshot of the Bodytracking application running in a Windows Virtual Machine -</p>
