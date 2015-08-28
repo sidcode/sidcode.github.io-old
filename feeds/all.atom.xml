@@ -1,5 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-08-14T19:53:52+00:00</updated><entry><title>Telerobotics - The Penultimate Crescendo</title><link href="http://siddhantsci.org/blog/2015/08/14/telerobotics-the-penultimate-crescendo/" rel="alternate"></link><updated>2015-08-14T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-08-14:blog/2015/08/14/telerobotics-the-penultimate-crescendo/</id><summary type="html">&lt;p&gt;Hi! As the hard-deadline date for the &lt;em&gt;Google Summer of Code&lt;/em&gt; program draws to a close, I can feel the palpable tension that is shared by my mentors and fellow students at the &lt;strong&gt;Italian Mars Society&lt;/strong&gt; and the &lt;strong&gt;Python Software Foundation&lt;/strong&gt;.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>All Day I Dream About Science</title><link href="http://siddhantsci.org/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://siddhantsci.org/</id><updated>2015-08-22T19:53:52+00:00</updated><entry><title>Telerobotics - Final Report</title><link href="http://siddhantsci.org/blog/2015/08/22/telerobotics-final-report/" rel="alternate"></link><updated>2015-08-22T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-08-22:blog/2015/08/22/telerobotics-final-report/</id><summary type="html">&lt;p&gt;Hi all! Yesterday was the firm-pencils-down deadline for the Coding Period  and the past week was one of the best weeks of the &lt;em&gt;Google Summer of Code 2015&lt;/em&gt; program. I went all-guns-blazing with the &lt;strong&gt;documentation&lt;/strong&gt; and &lt;em&gt;Virtual Machine distribution efforts&lt;/em&gt; of my work on Telerobotics. I also added some significant features to Telerobotics such as &lt;em&gt;ROS Integration with the EUROPA Scheduler&lt;/em&gt; which &lt;a href="http://shrigsoc.blogspot.in/2015/08/finals.html"&gt;Shridhar&lt;/a&gt; worked on this summer with the Italian Mars Society.&lt;/p&gt;
+&lt;h1&gt;Project Report&lt;/h1&gt;
+&lt;p&gt;I completed the main aspects of the Telerobotics interface with strong results -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduced Robot Operating Sytem (ROS) to ERAS&lt;/li&gt;
+&lt;li&gt;Developed a Telerobotics Interface to Bodytracking and EUROPA&lt;/li&gt;
+&lt;li&gt;Implemented Stereoscopic Streaming of 3-D video to the Blender Game Engine V-ERAS application&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I explain each of these points and summarize my experience in the following paragraphs. In the last week, I got a chance to pursue a collective effort in all the areas of my project -&lt;/p&gt;
+&lt;h2&gt;Replication Experiments&lt;/h2&gt;
+&lt;p&gt;The ultimate week started with attempts to ensure that my mentors could replicate my machine setup in order to test and comment on the performance of Telerobotics. To that end, I added detailed instructions to describe my machine and network configuration, which can be &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/machine-configurations.rst?at=default"&gt;found here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Docker Working!&lt;/h2&gt;
+&lt;p&gt;I explained the importance of Docker in this project in a &lt;a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/"&gt;previous post&lt;/a&gt;. Franco started the ball rolling by telling me how the &lt;a href="http://www.itsprite.com/openstack-docker-for-gui-based-environments/"&gt;ssh-to-image&lt;/a&gt; method could be used for running Qt applications in Docker. ROS and Gazebo employ Qt extensively for their visualization and simulation applications. Thus, it was a non-functional requirement of Telerobotics. Thus the long-standing Docker issue was solved. The final Docker image with everything packaged can be used to test Telerobotics. The image can be pulled &lt;a href="https://hub.docker.com/r/sidcode/ros-eras/"&gt;from here&lt;/a&gt;. The instructions to use the image are in the &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/docker-instructions.rst?at=default"&gt;Telerobotics Documentation pages&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A walkthrough with the Docker image can be found in this YouTube video that I created -&lt;/p&gt;
+&lt;p&gt;&lt;div class="videobox"&gt;
+                &lt;iframe width="640" height="390"
+                    src='https://www.youtube.com/embed/cyGshc9RLoQ'
+                    frameborder='0' webkitAllowFullScreen mozallowfullscreen
+                    allowFullScreen&gt;
+                &lt;/iframe&gt;
+            &lt;/div&gt;&lt;/p&gt;
+&lt;h2&gt;Fallback Keyboard Teleoperation&lt;/h2&gt;
+&lt;p&gt;Telerobotics works out of the box with the Bodytracking module that Vito has developed. But in the unfortunate case when the Tango-Control server fails, there emerges the functional requirement to have a &lt;strong&gt;fallback interface&lt;/strong&gt; in place. Seeking inspiration from the Teleoperation tools for ROS, I added the Fallback Keyboard Teleoperation interface. Thus, the Rover can now also be controlled with the Keyboard if need be. The controls are currently inclined  towards right-handed astronauts. I hope to add the left-handed version soon as a minor extension of the interface.
+The code for this can be &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/src/teleoperation-keyboard.py?at=default"&gt;found here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;EUROPA and Navigation Interfaces&lt;/h2&gt;
+&lt;p&gt;Shridhar's work on the &lt;a href="https://code.google.com/p/europa-pso/"&gt;EUROPA platform&lt;/a&gt; needed access to the Telerobotics interface for the following tasks -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Getting Robot Diagnostic Information&lt;/li&gt;
+&lt;li&gt;Navigating the Robot to certain points&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I achieved the initial goal before midsems. The second goal was achieved this week after the EUROPA Planner was complete. The workflow to this end was to receive coordinates from the EUROPA Tango Server and send them to the ROS Node corresponding to the Husky.&lt;/p&gt;
+&lt;p&gt;Finding the optimal path between two points on an incompletely-known map is solved by using &lt;a href="http://wiki.ros.org/amcl"&gt;Augmented Monte Carlo Localization&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;It is necessary to localize the rover with respect to its environment based on the inputs of its multiple sensors. The following diagram from the ROS website explains the concept -
+&lt;img alt="ROS Localization" src="http://siddhantsci.org/images/ros_localization.png" /&gt;&lt;/p&gt;
+&lt;p&gt;I used the Husky frame coordinates and added the code using the &lt;a href="http://wiki.ros.org/actionlib"&gt;ROS Action Server and Action Client&lt;/a&gt; and Tango Event Listeners to create the appropriate &lt;strong&gt;Telerobotics-EUROPA interfaces&lt;/strong&gt;. It can be &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/src/europa-navigation.py?at=default"&gt;found here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Minoru Camera Tools&lt;/h2&gt;
+&lt;p&gt;The Minoru 3-D Camera that I used to prototype &lt;a href=""&gt;streaming applications&lt;/a&gt; for ERAS has obscure documentation for Linux platforms. I was able to setup the Minoru Calibration tools from a &lt;a href="https://github.com/bashrc/libv4l2cam"&gt;Git clone&lt;/a&gt; of the &lt;a href="https://code.google.com/p/sentience/wiki/MinoruWebcam"&gt;original&lt;/a&gt; &lt;code&gt;vl42stereo&lt;/code&gt; package. I added them to the &lt;code&gt;streams&lt;/code&gt; tree of the Telerobotics source code. It can be &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/streams/Minoru3D/v4l2stereo-calibrate-minoru/?at=default"&gt;accessed here&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;Documentation!&lt;/h2&gt;
+&lt;p&gt;The documentation underwent a major overhaul this week. In addition to &lt;strong&gt;commenting the code&lt;/strong&gt; since the beginning, I ensured to update/add the following documentation pages -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/sad.rst?at=default"&gt;Software Architecture Document for Telerobotics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/docker-instructions.rst?at=default"&gt;Docker Image Setup Instructions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/telerobotics-guide.rst?at=default"&gt;Telerobotics Walkthrough&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/setup-minoru.rst?at=default"&gt;Minoru Camera Calibration and Instructions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/erasvr/doc/setup.rst?at=default"&gt;Oculus Rift Troubleshooting and Installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/setup-ffmpeg.rst?at=default"&gt;Video Streaming FFmpeg Manual&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The latest version of the documentation can be &lt;a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/?at=default"&gt;found here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The excitement of the final moments can be ascertained from my commit patterns on the last day -&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Archive Tagging" src="http://siddhantsci.org/images/gsoc_ends.png" /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Learning Experience&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The past 12 weeks (and an almost equivalent time before that during application period) have been transformative.&lt;/p&gt;
+&lt;p&gt;Just to get an idea of the different tools and concepts that I've been exposed to, here's a list -&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Tango Controls&lt;/li&gt;
+&lt;li&gt;Robot Operating System&lt;/li&gt;
+&lt;li&gt;Blender Game Engine&lt;/li&gt;
+&lt;li&gt;Oculus Rift&lt;/li&gt;
+&lt;li&gt;FFmpeg&lt;/li&gt;
+&lt;li&gt;Stereoscopic Cameras&lt;/li&gt;
+&lt;li&gt;Video4Linux2&lt;/li&gt;
+&lt;li&gt;Python&lt;/li&gt;
+&lt;li&gt;OpenVPN&lt;/li&gt;
+&lt;li&gt;Docker&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That indicates a great deal of experience in terms of tools alone.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I learned how to create software architecture documents, how to work in tandem with other developers, how to communicate in the Open Source Community, when to seek help, how to seek help, how to help others, how to document my work, how to blog, and much more.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With so many things to say, here's what I must definitely acknowledge -&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Thank you Python Software Foundation, Italian Mars Society, and Google Open Source Programs Office for this opportunity!&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I seriously can't imagine a better way in which I could have spent the past summer. I got a chance to pursue what I wanted to do, got an amazing mentoring and umbrella organization, a fascinating group of peers to work with, and arguably the best launchpad for Open Source contributions - the Google Summer of Code.&lt;/p&gt;
+&lt;p&gt;Time for evaluations now! Fingers crossed :-)&lt;/p&gt;
+&lt;p&gt;I have maintained a weekly-updated blog since the beginning of this summer of code. My organization required the blog frequency to be one post every two weeks. I loved blogging about my progress throughout. The eighteen posts so far can be found in the &lt;a href="http://siddhantsci.org/category/gsoc.html"&gt;GSoC Category of my website&lt;/a&gt;.
+In case you are interested in this project with the Italian Mars Society, you can follow the &lt;a href="http://siddhantsci.org/tag/ims.html"&gt;page of my blog&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Ciao!&lt;/p&gt;</summary><category term="GSoC"></category><category term="Python"></category><category term="PSF"></category><category term="computers"></category><category term="science"></category><category term="exploration"></category><category term="space"></category><category term="mars"></category><category term="IMS"></category><category term="Italian Mars Society"></category></entry><entry><title>Telerobotics - The Penultimate Crescendo</title><link href="http://siddhantsci.org/blog/2015/08/14/telerobotics-the-penultimate-crescendo/" rel="alternate"></link><updated>2015-08-14T19:53:52+00:00</updated><author><name>Siddhant Shrivastava</name></author><id>tag:siddhantsci.org,2015-08-14:blog/2015/08/14/telerobotics-the-penultimate-crescendo/</id><summary type="html">&lt;p&gt;Hi! As the hard-deadline date for the &lt;em&gt;Google Summer of Code&lt;/em&gt; program draws to a close, I can feel the palpable tension that is shared by my mentors and fellow students at the &lt;strong&gt;Italian Mars Society&lt;/strong&gt; and the &lt;strong&gt;Python Software Foundation&lt;/strong&gt;.&lt;/p&gt;
 &lt;h1&gt;All-Hands Meeting&lt;/h1&gt;
 &lt;p&gt;We at the &lt;em&gt;Italian Mars Society&lt;/em&gt; had the third all-hands meeting last evening (13th August). The almost two-hour Skype Conference call discussed a gamut of topics in-depth. Some of these were-&lt;/p&gt;
 &lt;h2&gt;&lt;strong&gt;Software Testing&lt;/strong&gt;  guidelines&lt;/h2&gt;

@@ -16,7 +16,6 @@
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="robots" content="noindex, nofollow" />
 
     <link href="http://siddhantsci.org/favicon.png" rel="icon">
 
@@ -60,15 +59,90 @@
 <header>
       <h1 class="entry-title">Telerobotics - Final Report</h1>
     <p class="meta">
-<time datetime="2015-08-21T19:53:52+00:00" pubdate>Fri 21 August 2015</time>  &ndash; &#128339; 1 min read
+<time datetime="2015-08-22T19:53:52+00:00" pubdate>Sat 22 August 2015</time>  &ndash; &#128339; 4 min read
     </p>
 </header>
 
-  <div class="entry-content"><p>Docker Working!
-Fallback Keyboard Teleoperation
-EUROPA Navigation
-Documentation!</p>
-<p>Integration Tests Successful</p></div>
+  <div class="entry-content"><p>Hi all! Yesterday was the firm-pencils-down deadline for the Coding Period  and the past week was one of the best weeks of the <em>Google Summer of Code 2015</em> program. I went all-guns-blazing with the <strong>documentation</strong> and <em>Virtual Machine distribution efforts</em> of my work on Telerobotics. I also added some significant features to Telerobotics such as <em>ROS Integration with the EUROPA Scheduler</em> which <a href="http://shrigsoc.blogspot.in/2015/08/finals.html">Shridhar</a> worked on this summer with the Italian Mars Society.</p>
+<h1>Project Report</h1>
+<p>I completed the main aspects of the Telerobotics interface with strong results -</p>
+<ul>
+<li>Introduced Robot Operating Sytem (ROS) to ERAS</li>
+<li>Developed a Telerobotics Interface to Bodytracking and EUROPA</li>
+<li>Implemented Stereoscopic Streaming of 3-D video to the Blender Game Engine V-ERAS application</li>
+</ul>
+<p>I explain each of these points and summarize my experience in the following paragraphs. In the last week, I got a chance to pursue a collective effort in all the areas of my project -</p>
+<h2>Replication Experiments</h2>
+<p>The ultimate week started with attempts to ensure that my mentors could replicate my machine setup in order to test and comment on the performance of Telerobotics. To that end, I added detailed instructions to describe my machine and network configuration, which can be <a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/machine-configurations.rst?at=default">found here</a>.</p>
+<h2>Docker Working!</h2>
+<p>I explained the importance of Docker in this project in a <a href="http://siddhantsci.org/blog/2015/06/12/all-for-docker-docker-for-all/">previous post</a>. Franco started the ball rolling by telling me how the <a href="http://www.itsprite.com/openstack-docker-for-gui-based-environments/">ssh-to-image</a> method could be used for running Qt applications in Docker. ROS and Gazebo employ Qt extensively for their visualization and simulation applications. Thus, it was a non-functional requirement of Telerobotics. Thus the long-standing Docker issue was solved. The final Docker image with everything packaged can be used to test Telerobotics. The image can be pulled <a href="https://hub.docker.com/r/sidcode/ros-eras/">from here</a>. The instructions to use the image are in the <a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/docker-instructions.rst?at=default">Telerobotics Documentation pages</a>.</p>
+<p>A walkthrough with the Docker image can be found in this YouTube video that I created -</p>
+<p><div class="videobox">
+                <iframe width="640" height="390"
+                    src='https://www.youtube.com/embed/cyGshc9RLoQ'
+                    frameborder='0' webkitAllowFullScreen mozallowfullscreen
+                    allowFullScreen>
+                </iframe>
+            </div></p>
+<h2>Fallback Keyboard Teleoperation</h2>
+<p>Telerobotics works out of the box with the Bodytracking module that Vito has developed. But in the unfortunate case when the Tango-Control server fails, there emerges the functional requirement to have a <strong>fallback interface</strong> in place. Seeking inspiration from the Teleoperation tools for ROS, I added the Fallback Keyboard Teleoperation interface. Thus, the Rover can now also be controlled with the Keyboard if need be. The controls are currently inclined  towards right-handed astronauts. I hope to add the left-handed version soon as a minor extension of the interface.
+The code for this can be <a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/src/teleoperation-keyboard.py?at=default">found here</a>.</p>
+<h2>EUROPA and Navigation Interfaces</h2>
+<p>Shridhar's work on the <a href="https://code.google.com/p/europa-pso/">EUROPA platform</a> needed access to the Telerobotics interface for the following tasks -</p>
+<ul>
+<li>Getting Robot Diagnostic Information</li>
+<li>Navigating the Robot to certain points</li>
+</ul>
+<p>I achieved the initial goal before midsems. The second goal was achieved this week after the EUROPA Planner was complete. The workflow to this end was to receive coordinates from the EUROPA Tango Server and send them to the ROS Node corresponding to the Husky.</p>
+<p>Finding the optimal path between two points on an incompletely-known map is solved by using <a href="http://wiki.ros.org/amcl">Augmented Monte Carlo Localization</a>.</p>
+<p>It is necessary to localize the rover with respect to its environment based on the inputs of its multiple sensors. The following diagram from the ROS website explains the concept -
+<img alt="ROS Localization" src="http://siddhantsci.org/images/ros_localization.png" /></p>
+<p>I used the Husky frame coordinates and added the code using the <a href="http://wiki.ros.org/actionlib">ROS Action Server and Action Client</a> and Tango Event Listeners to create the appropriate <strong>Telerobotics-EUROPA interfaces</strong>. It can be <a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/src/europa-navigation.py?at=default">found here</a>.</p>
+<h2>Minoru Camera Tools</h2>
+<p>The Minoru 3-D Camera that I used to prototype <a href="">streaming applications</a> for ERAS has obscure documentation for Linux platforms. I was able to setup the Minoru Calibration tools from a <a href="https://github.com/bashrc/libv4l2cam">Git clone</a> of the <a href="https://code.google.com/p/sentience/wiki/MinoruWebcam">original</a> <code>vl42stereo</code> package. I added them to the <code>streams</code> tree of the Telerobotics source code. It can be <a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/streams/Minoru3D/v4l2stereo-calibrate-minoru/?at=default">accessed here</a>.</p>
+<h2>Documentation!</h2>
+<p>The documentation underwent a major overhaul this week. In addition to <strong>commenting the code</strong> since the beginning, I ensured to update/add the following documentation pages -</p>
+<ul>
+<li><a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/sad.rst?at=default">Software Architecture Document for Telerobotics</a></li>
+<li><a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/docker-instructions.rst?at=default">Docker Image Setup Instructions</a></li>
+<li><a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/telerobotics-guide.rst?at=default">Telerobotics Walkthrough</a></li>
+<li><a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/setup-minoru.rst?at=default">Minoru Camera Calibration and Instructions</a></li>
+<li><a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/erasvr/doc/setup.rst?at=default">Oculus Rift Troubleshooting and Installation</a></li>
+<li><a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/setup-ffmpeg.rst?at=default">Video Streaming FFmpeg Manual</a></li>
+</ul>
+<p>The latest version of the documentation can be <a href="https://bitbucket.org/italianmarssociety/eras/src/402e47bccb3e329c95596a06f8cc66cafcaa0658/servers/telerobotics/doc/?at=default">found here</a>.</p>
+<p>The excitement of the final moments can be ascertained from my commit patterns on the last day -</p>
+<p><img alt="Archive Tagging" src="http://siddhantsci.org/images/gsoc_ends.png" /></p>
+<blockquote>
+<p>Learning Experience</p>
+</blockquote>
+<p>The past 12 weeks (and an almost equivalent time before that during application period) have been transformative.</p>
+<p>Just to get an idea of the different tools and concepts that I've been exposed to, here's a list -</p>
+<ul>
+<li>Tango Controls</li>
+<li>Robot Operating System</li>
+<li>Blender Game Engine</li>
+<li>Oculus Rift</li>
+<li>FFmpeg</li>
+<li>Stereoscopic Cameras</li>
+<li>Video4Linux2</li>
+<li>Python</li>
+<li>OpenVPN</li>
+<li>Docker</li>
+</ul>
+<p>That indicates a great deal of experience in terms of tools alone.</p>
+<blockquote>
+<p>I learned how to create software architecture documents, how to work in tandem with other developers, how to communicate in the Open Source Community, when to seek help, how to seek help, how to help others, how to document my work, how to blog, and much more.</p>
+</blockquote>
+<p>With so many things to say, here's what I must definitely acknowledge -</p>
+<blockquote>
+<p>Thank you Python Software Foundation, Italian Mars Society, and Google Open Source Programs Office for this opportunity!</p>
+</blockquote>
+<p>I seriously can't imagine a better way in which I could have spent the past summer. I got a chance to pursue what I wanted to do, got an amazing mentoring and umbrella organization, a fascinating group of peers to work with, and arguably the best launchpad for Open Source contributions - the Google Summer of Code.</p>
+<p>Time for evaluations now! Fingers crossed :-)</p>
+<p>I have maintained a weekly-updated blog since the beginning of this summer of code. My organization required the blog frequency to be one post every two weeks. I loved blogging about my progress throughout. The eighteen posts so far can be found in the <a href="http://siddhantsci.org/category/gsoc.html">GSoC Category of my website</a>.
+In case you are interested in this project with the Italian Mars Society, you can follow the <a href="http://siddhantsci.org/tag/ims.html">page of my blog</a></p>
+<p>Ciao!</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -76,18 +150,22 @@ Documentation!</p>
         Siddhant Shrivastava
     </span>
   </span>
-<time datetime="2015-08-21T19:53:52+00:00" pubdate>Fri 21 August 2015</time>  <span class="categories">
+<time datetime="2015-08-22T19:53:52+00:00" pubdate>Sat 22 August 2015</time>  <span class="categories">
     <a class='category' href='http://siddhantsci.org/category/gsoc.html'>GSoC</a>
   </span>
   <span class="categories">
     <a class="category" href="http://siddhantsci.org/tag/gsoc.html">GSoC</a>,    <a class="category" href="http://siddhantsci.org/tag/python.html">Python</a>,    <a class="category" href="http://siddhantsci.org/tag/psf.html">PSF</a>,    <a class="category" href="http://siddhantsci.org/tag/computers.html">computers</a>,    <a class="category" href="http://siddhantsci.org/tag/science.html">science</a>,    <a class="category" href="http://siddhantsci.org/tag/exploration.html">exploration</a>,    <a class="category" href="http://siddhantsci.org/tag/space.html">space</a>,    <a class="category" href="http://siddhantsci.org/tag/mars.html">mars</a>,    <a class="category" href="http://siddhantsci.org/tag/ims.html">IMS</a>,    <a class="category" href="http://siddhantsci.org/tag/italian-mars-society.html">Italian Mars Society</a>  </span>
 </p><div class="sharing">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/drafts/telerobotics-final-report.html" data-via="siddhantcode" data-counturl="http://siddhantsci.org/drafts/telerobotics-final-report.html" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://siddhantsci.org/blog/2015/08/22/telerobotics-final-report/" data-via="siddhantcode" data-counturl="http://siddhantsci.org/blog/2015/08/22/telerobotics-final-report/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
 </div>    </footer>
   </article>
 
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
 </div>
 <aside class="sidebar">
   <section>
@@ -96,6 +174,9 @@ Documentation!</p>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="http://siddhantsci.org/blog/2015/08/22/telerobotics-final-report/">Telerobotics - Final Report</a>
+      </li>
       <li class="post">
           <a href="http://siddhantsci.org/blog/2015/08/14/telerobotics-the-penultimate-crescendo/">Telerobotics - The Penultimate Crescendo</a>
       </li>
@@ -107,9 +188,6 @@ Documentation!</p>
       </li>
       <li class="post">
           <a href="http://siddhantsci.org/blog/2015/07/24/virtual-machines-virtual-reality-real-challenges/">Virtual Machines + Virtual Reality = Real Challenges!</a>
-      </li>
-      <li class="post">
-          <a href="http://siddhantsci.org/blog/2015/07/16/streamed-away-in-real-time/">Streamed away (in Real-Time)!</a>
       </li>
     </ul>
   </section>
@@ -170,8 +248,8 @@ Documentation!</p>
     </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'siddhant';
-          var disqus_identifier = '/drafts/telerobotics-final-report.html';
-          var disqus_url = 'http://siddhantsci.org/drafts/telerobotics-final-report.html';
+          var disqus_identifier = '/blog/2015/08/22/telerobotics-final-report/';
+          var disqus_url = 'http://siddhantsci.org/blog/2015/08/22/telerobotics-final-report/';
           var disqus_title = 'Telerobotics - Final Report';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
