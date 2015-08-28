@@ -6,7 +6,13 @@
 &lt;p&gt;Ezio described the various ways of &lt;strong&gt;Unit Testing&lt;/strong&gt; in different applications like rover movements, bodytracking, etc. In my case I had been checking for setup prerequisites and establishing the serializability of the ROS system before other modules could start up. That way the it is successfully ensured that all the required distributed systems are up and running before they are used. &lt;strong&gt;Integration Testing&lt;/strong&gt; is crucial in the ERAS application where things like Telerobotics, Bodytracking, and the EUROPA Planner all blend together seamlessly. I've integrated Telerobotics and Bodytracking which can be observed in &lt;a href="https://bitbucket.org/italianmarssociety/eras/commits/e87a0c1bfb46e0b8ba4b684b51060f8527aa1d6b"&gt;this commit&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;Telerobotics&lt;/h2&gt;
 &lt;p&gt;Telerobotics in its current state is more precise than ever. This video demonstrates this fact -&lt;/p&gt;
-&lt;p&gt;.. youtube:: 94vfIr1cu7k&lt;/p&gt;
+&lt;p&gt;&lt;div class="videobox"&gt;
+                &lt;iframe width="640" height="390"
+                    src='https://www.youtube.com/embed/94vfIr1cu7k'
+                    frameborder='0' webkitAllowFullScreen mozallowfullscreen
+                    allowFullScreen&gt;
+                &lt;/iframe&gt;
+            &lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;The YouTube link for the video is &lt;a href="https://www.youtube.com/watch?v=94vfIr1cu7k"&gt;this&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I improved upon the previous integration with Bodytracking and handled the possible exceptions that may occur. The results have been stunning. I used the updated version of &lt;a href="https://vigentile.wordpress.com/2015/07/31/enhancement-of-kinect-integration-in-v-eras-fifth-report/"&gt;Vito's bodytracker&lt;/a&gt; which can detect closed hands. Since the sensor refresh-rate has been reduced to 30 times per second, the Telerobotics module has much smoother movements. Here is a snapshot of the Bodytracking application running in a Windows Virtual Machine -&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Visual Tracker" src="http://siddhantsci.org/images/visual-3.png" /&gt;&lt;/p&gt;
@@ -34,7 +40,13 @@
 &lt;p&gt;&lt;img alt="Telerobotics Integration" src="http://siddhantsci.org/images/telerobotics-0.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Screen recording - YouTube Video&lt;/h2&gt;
 &lt;p&gt;I used the same tool for screen capturing this integration that I used for real-time streaming from a 3-D camera. The output is as follows -&lt;/p&gt;
-&lt;p&gt;.. youtube:: T3qbZaGvYao&lt;/p&gt;
+&lt;p&gt;&lt;div class="videobox"&gt;
+                &lt;iframe width="640" height="390"
+                    src='https://www.youtube.com/embed/T3qbZaGvYao'
+                    frameborder='0' webkitAllowFullScreen mozallowfullscreen
+                    allowFullScreen&gt;
+                &lt;/iframe&gt;
+            &lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;If my blogging platform is unable to embed the video on the page, you could &lt;a href="https://youtu.be/T3qbZaGvYao"&gt;use this link&lt;/a&gt; to watch the first version of Telerobotics and Bodytracking integration. The Visual Tracker designed by Vito looks like this -&lt;/p&gt;
 &lt;p&gt;&lt;img alt="Visual Tracker" src="http://siddhantsci.org/images/visual-2.png" /&gt;&lt;/p&gt;
 &lt;h2&gt;Current Status&lt;/h2&gt;
